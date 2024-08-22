@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MandelaPremium</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="update_msg">Update is available to download. Downloading the latest update you will get the latest features, improvements and bug fixes of MandelaPremium.</string>
+
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="don_t_worry_resetting_your_password_is_easy_n_just_type_your_mobile_number_registered_n_with_lionmiles">Don\'t worry! Resetting your password is easy.\n Just type your registered mobile number</string>
+    <string name="enter_mobile_number_membership_id">Enter Mobile number</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="profile_image_updated">Profile image updated</string>
+    <string name="faile_to_update_profile_image">Failed to update profile image</string>
+
+
+</resources>

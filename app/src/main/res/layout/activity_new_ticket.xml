@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:outlineProvider="bounds"
+    tools:context=".ui.help.newTicket.NewTicketActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardElevation="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:elevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
+
+                <TextView
+                    android:id="@+id/title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="My Query"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/h2"
+                    android:visibility="visible" />
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        app:cardBackgroundColor="@color/lightBlack"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="2dp">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:src="@drawable/mandela_primum" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="Please submit your query using this form"
+                android:textColor="@color/textLightWhite"
+                android:textSize="16sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="7dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+
+           <!--     <TextView
+                    android:id="@+id/select_query_topic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="5.5"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="4dp"
+                    android:text=""
+                    android:hint="Select Query Topic"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/textLightWhite"
+                    android:textSize="16sp" />
+-->
+                <TextView
+                    android:id="@+id/select_query_topic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="4.5"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="10dp"
+                    android:onClick="SelectQueryTopic"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:text="Select Query Topic"
+                    android:textColor="@color/textYello" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.50dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/line_color" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="7dp"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="Query Summary"
+                    android:textColor="@color/textYello" />
+
+
+                <EditText
+                    android:id="@+id/query_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Type your Summary.."
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:text=""
+                    android:textCursorDrawable="@drawable/color_cursor"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/textLightWhite"
+                    android:textSize="16sp" />
+
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.50dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/line_color" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="7dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="Query Details"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/textYello" />
+
+
+                <EditText
+                    android:id="@+id/query_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Type your Details.."
+                    android:paddingStart="5dp"
+                    android:layout_marginTop="8dp"
+                    android:paddingEnd="4dp"
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/color_cursor"
+                    android:textColorHint="@color/textLightWhite"
+                    android:textSize="16sp" />
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.50dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/line_color" />
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/image_relative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardCornerRadius="3dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/browse_Img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/mandela_product_banner"
+                    android:maxWidth="100sp"
+                    android:visibility="visible" />
+
+            </androidx.cardview.widget.CardView>
+
+
+
+            <TextView
+                android:id="@+id/file_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="@dimen/mid_margin"
+                android:layout_marginEnd="@dimen/mid_margin"
+                android:textSize="14sp"
+                android:textColor="@color/green"
+                android:gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove"
+                android:visibility="gone"
+                android:background="#14F44336"
+                android:textSize="18sp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/red"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+
+                <TextView
+                    android:id="@+id/browse_image"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/border_yellow_back_white"
+                    android:gravity="center"
+                    android:text="BROWSE IMAGE"
+                    android:textColor="@color/textYello"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/submit"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/gradiant_button"
+                    android:gravity="center"
+                    android:text="SUBMIT"
+                    android:textColor="@color/btn_text_color"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        </ScrollView>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

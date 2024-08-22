@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:padding="15dp"
+            android:text="Terms and Conditions"
+            android:textColor="@android:color/white"
+            android:textSize="19sp" />
+
+
+        <WebView
+            android:id="@+id/feature_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="7"
+            android:background="@color/colorPrimary" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/accept_decline_ll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/h2"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:weightSum="2">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/decline_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/h7"
+            android:layout_weight="1"
+            android:background="@drawable/border_yellow_back_white"
+            android:elevation="@dimen/h3"
+            android:text="Decline"
+            android:textColor="@color/textYello" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/accept_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/h7"
+            android:layout_weight="1"
+            android:background="@drawable/gradiant_button"
+            android:elevation="@dimen/h3"
+            android:text="Accept"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

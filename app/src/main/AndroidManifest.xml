@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.loyltworks.mandelapremium">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.Manifest.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name=".ApplicationClass"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MandelaPremium"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+        <activity
+            android:name=".ui.raffle.RaffleActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.help.feedback.FeedbackActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.notification.NotificationActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.notification.HistoryNotificationActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.programinformation.ProgramInformationActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.SplashScreen.SplashScreenActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.scanner.ScannerActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.MyActivity.MyActivity"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.OfferAndPromotion.OfferAndPromotionActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.BuyAndGift.BuyGiftDetailsActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.BuyAndGift.BuyGiftActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.GiftCards.fragment.GiftReceived.GiftReceivedDetailsActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.GiftCards.fragment.MyVoucher.MyVoucherDetailsActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.GiftCards.GiftCardsActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.OfferAndPromotion.OfferPromotionDetailsActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.Login.LoginActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.help.CustomerServiceActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.help.newTicket.NewTicketActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.help.help_topic_chat_status.QueryChatActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.help.supportLisitng.MyQueryActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.help.HelpActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.dashboard.DashboardActivity"
+            android:label=""
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+    </application>
+
+</manifest>

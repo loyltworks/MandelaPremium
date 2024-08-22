@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context=".ui.GiftCards.fragment.GiftReceived.GiftReceivedDetailsActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:cardElevation="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:elevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_gravity="center"
+                    android:elevation="8dp"
+                    android:gravity="center"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
+
+                    <TextView
+                        android:id="@+id/title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Gift Cards"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/h2"
+                        android:visibility="visible" />
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/temp_offer_promotion" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="180dp"
+                    android:layout_marginEnd="5dp"
+                    android:orientation="vertical">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/lightBlack"
+                        app:cardCornerRadius="3dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:orientation="vertical"
+                            android:paddingStart="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="22dp">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="10dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:text="Name"
+                                    android:textColor="@color/white"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="end"
+                                    android:text="Valid Till"
+                                    android:textColor="@color/white"
+                                    android:textSize="16sp" />
+
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="10dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:text="Apparel Gift Card"
+                                    android:textColor="@color/textYello"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="end"
+                                    android:text="31/01/2021"
+                                    android:textColor="@color/textYello"
+                                    android:textSize="18sp" />
+
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="18dp"
+                                android:layout_marginEnd="10dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:text="Card Number"
+                                    android:textColor="@color/white"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="end"
+                                    android:text="Status"
+                                    android:textColor="@color/white"
+                                    android:textSize="16sp" />
+
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="10dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:text="B6_BA_f_5J"
+                                    android:textColor="@color/textYello"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="end"
+                                    android:text="Active"
+                                    android:textColor="@color/textYello"
+                                    android:textSize="18sp" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:visibility="visible"
+                        app:cardBackgroundColor="@color/lightBlack"
+                        app:cardCornerRadius="3dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:paddingStart="10dp"
+                                android:text="700 Rewards"
+                                android:textColor="@color/textYello"
+                                android:textSize="16sp" />
+
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="10dp"
+                                android:src="@drawable/ic_mask_group_42" />
+
+
+                        </RelativeLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <!-- Gift Card details view-->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/gift_card_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:visibility="visible"
+                        app:cardBackgroundColor="@color/lightBlack"
+                        app:cardCornerRadius="3dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingStart="10dp"
+                            android:paddingTop="10dp">
+
+
+                            <!-- Offer Details -->
+                            <LinearLayout
+                                android:id="@+id/offer_detils"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp">
+
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/ic_info" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text="Offer Details"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="14sp" />
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="10dp">
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_alignParentEnd="true"
+                                        android:src="@drawable/ic_arrow_down" />
+
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.80dp"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="10dp"
+                                android:background="#6E6E6E" />
+
+
+                            <LinearLayout
+                                android:id="@+id/offer_details_description_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:paddingStart="30dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="This voucher is valid until the date mentioned on the voucher and can be redeemed at any apprael group of AUE"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="13sp" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.80dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="#6E6E6E" />
+
+
+                            </LinearLayout>
+
+
+                            <!-- Steps to redeem the voucher  -->
+
+                            <LinearLayout
+                                android:id="@+id/steps_to_redeem_the_voucher"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:orientation="horizontal"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="8dp">
+
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/ic_gourp_123" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text="Steps to redeem the voucher"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="14sp" />
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="10dp">
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_alignParentEnd="true"
+                                        android:src="@drawable/ic_arrow_down" />
+
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.80dp"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="10dp"
+                                android:background="#6E6E6E" />
+
+
+                            <LinearLayout
+                                android:id="@+id/step_to_redeem_the_voucher_description_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingStart="30dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="1.Dineout pay"
+                                    android:textColor="@color/textYello"
+                                    android:textSize="13sp" />
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingStart="30dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="This voucher is valid until the date mentioned on the voucher and can be redeemed at any apprael group of AUE"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="13sp" />
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingStart="30dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="2.Super Saver"
+                                    android:textColor="@color/textYello"
+                                    android:textSize="13sp" />
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="10dp"
+                                    android:paddingStart="30dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="This voucher is valid until the date mentioned on the voucher and can be redeemed at any apprael group of AUE"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="13sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingStart="30dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="3.Contractless Dining"
+                                    android:textColor="@color/textYello"
+                                    android:textSize="13sp" />
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="10dp"
+                                    android:paddingStart="30dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="This voucher is valid until the date mentioned on the voucher and can be redeemed at any apprael group of AUE"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="13sp" />
+
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.80dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="#6E6E6E" />
+
+
+                            </LinearLayout>
+
+
+                            <!-- Terms and Condition -->
+                            <LinearLayout
+                                android:id="@+id/terms_and_conditions"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:orientation="horizontal"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="8dp">
+
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/ic_article_24" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text="Terms and conditions"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="14sp" />
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="10dp">
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_alignParentEnd="true"
+                                        android:src="@drawable/ic_arrow_down" />
+
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.80dp"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="10dp"
+                                android:background="#6E6E6E" />
+
+
+                            <LinearLayout
+                                android:id="@+id/tc_description_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:paddingStart="30dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="This voucher is valid until the date mentioned on the voucher and can be redeemed at any apprael group of AUE"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="13sp" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.80dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="#6E6E6E" />
+
+
+                            </LinearLayout>
+
+
+                            <!-- Redeemable outlet -->
+                            <LinearLayout
+                                android:id="@+id/redeemable_outlet"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:orientation="horizontal"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
+
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/ic_location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text="Redeemable outlet"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="14sp" />
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="10dp">
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_alignParentEnd="true"
+                                        android:src="@drawable/ic_arrow_down" />
+
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/redeemable_outlet_description_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <View
+                                    android:id="@+id/redeemable_outlet_line"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.80dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="#6E6E6E"
+                                    android:visibility="visible" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:paddingStart="30dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="This voucher is valid until the date mentioned on the voucher and can be redeemed at any apprael group of AUE"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="13sp" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="5dp"
+                        android:visibility="visible"
+                        app:cardBackgroundColor="@color/lightBlack"
+                        app:cardCornerRadius="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.8">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="15dp"
+                                    android:src="@drawable/ic_mask_group_51" />
+
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="5"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Gifted By"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Harrish"
+                                    android:textColor="@color/textYello"
+                                    android:textSize="18sp" />
+
+
+                            </LinearLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3.2">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:text="31/01/2021"
+                                    android:textColor="@color/textLightWhite" />
+
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

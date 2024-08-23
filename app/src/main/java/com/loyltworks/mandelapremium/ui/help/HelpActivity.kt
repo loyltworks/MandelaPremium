@@ -32,12 +32,12 @@ class HelpActivity : BaseActivity(), View.OnClickListener {
         //set context
         context = this
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
             resources.getDrawable(R.drawable.ic_back_arrow)
-        supportActionBar!!.setHomeAsUpIndicator(upArrow)
+        //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
         my_query.setOnClickListener(this)
         contact_us.setOnClickListener(this)

@@ -25,7 +25,7 @@ import javax.xml.parsers.ParserConfigurationException
 class SplashScreenViewModel : BaseViewModel() {
 
 
-    var UPDATE_URL = "http://appupdate.arokiait.com/updates/serviceget?pid=com.loyltworks.mandelapremium"
+    var UPDATE_URL = "http://appupdate.arokiait.com/updates/serviceget?pid=com.loyltworks.mandela"
 
     var SUCCESS = true
     var FAILURE = false

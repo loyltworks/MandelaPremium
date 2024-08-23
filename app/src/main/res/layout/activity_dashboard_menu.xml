@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -148,7 +148,7 @@
         </androidx.cardview.widget.CardView>
 
 
-        <!-- My Profile -->
+        &lt;!&ndash; My Profile &ndash;&gt;
 
         <RelativeLayout
             android:id="@+id/nav_myProfile"
@@ -204,7 +204,7 @@
         </RelativeLayout>
 
 
-        <!-- My Activity -->
+        &lt;!&ndash; My Activity &ndash;&gt;
 
         <LinearLayout
             android:id="@+id/navi_myActivity_fullview"
@@ -212,7 +212,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:orientation="horizontal">
-            <!--yellowTextTransparent-->
+            &lt;!&ndash;yellowTextTransparent&ndash;&gt;
 
 
             <View
@@ -275,7 +275,7 @@
                 </LinearLayout>
 
 
-                <!-- in My Activity Earning and Redemption-->
+                &lt;!&ndash; in My Activity Earning and Redemption&ndash;&gt;
 
                 <LinearLayout
                     android:id="@+id/nav_earning_redemptions"
@@ -287,7 +287,7 @@
                     android:visibility="gone">
 
 
-                    <!--  My Earning   -->
+                    &lt;!&ndash;  My Earning   &ndash;&gt;
 
                     <LinearLayout
                         android:id="@+id/navi_myearing"
@@ -321,7 +321,7 @@
                         android:layout_marginEnd="50dp"
                         android:background="#4E4C4C" />
 
-                    <!--  My Redemption   -->
+                    &lt;!&ndash;  My Redemption   &ndash;&gt;
 
 
                     <LinearLayout
@@ -358,7 +358,7 @@
         </LinearLayout>
 
 
-        <!--  Gift Card -->
+        &lt;!&ndash;  Gift Card &ndash;&gt;
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -413,7 +413,7 @@
         </RelativeLayout>
 
 
-        <!--  Offer and Promotion -->
+        &lt;!&ndash;  Offer and Promotion &ndash;&gt;
 
         <RelativeLayout
             android:id="@+id/offer_and_promoions"
@@ -468,7 +468,7 @@
         </RelativeLayout>
 
 
-        <!--  Raffle -->
+        &lt;!&ndash;  Raffle &ndash;&gt;
 
         <RelativeLayout
             android:id="@+id/navi_raffle"
@@ -523,7 +523,7 @@
         </RelativeLayout>
 
 
-        <!--  Help -->
+        &lt;!&ndash;  Help &ndash;&gt;
 
         <RelativeLayout
             android:id="@+id/navi_help"
@@ -578,7 +578,7 @@
         </RelativeLayout>
 
 
-        <!--  Program Information  -->
+        &lt;!&ndash;  Program Information  &ndash;&gt;
 
         <LinearLayout
             android:id="@+id/navi_programInfo_fullview"
@@ -586,7 +586,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:orientation="horizontal">
-            <!--yellowTextTransparent-->
+            &lt;!&ndash;yellowTextTransparent&ndash;&gt;
 
 
             <View
@@ -649,7 +649,7 @@
                 </LinearLayout>
 
 
-                <!-- inside program information-->
+                &lt;!&ndash; inside program information&ndash;&gt;
 
                 <LinearLayout
                     android:id="@+id/nav_aboutmandela_redemptions"
@@ -661,7 +661,7 @@
                     android:visibility="gone">
 
 
-                    <!--  About MandelaPremium Club   -->
+                    &lt;!&ndash;  About MandelaPremium Club   &ndash;&gt;
 
                     <LinearLayout
                         android:id="@+id/navi_about_mandela"
@@ -695,7 +695,7 @@
                         android:layout_marginEnd="50dp"
                         android:background="#4E4C4C" />
 
-                    <!--  My Benefits   -->
+                    &lt;!&ndash;  My Benefits   &ndash;&gt;
 
                     <LinearLayout
                         android:id="@+id/navi_mybenefits"
@@ -731,7 +731,7 @@
                         android:background="#4E4C4C" />
 
 
-                    <!--  Terms and Condition   -->
+                    &lt;!&ndash;  Terms and Condition   &ndash;&gt;
 
                     <LinearLayout
                         android:id="@+id/navi_terms_and_condition"
@@ -757,7 +757,7 @@
 
                     </LinearLayout>
 
-                 <!--   <View
+                 &lt;!&ndash;   <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginStart="73dp"
@@ -791,7 +791,7 @@
                             android:textSize="16sp" />
 
                     </LinearLayout>
--->
+&ndash;&gt;
 
                     <View
                         android:layout_width="match_parent"
@@ -801,7 +801,7 @@
                         android:layout_marginEnd="50dp"
                         android:background="#4E4C4C" />
 
-                    <!--  FAQ   -->
+                    &lt;!&ndash;  FAQ   &ndash;&gt;
 
                     <LinearLayout
                         android:id="@+id/navi_faq"
@@ -837,7 +837,7 @@
         </LinearLayout>
 
 
-        <!--  Logout -->
+        &lt;!&ndash;  Logout &ndash;&gt;
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -892,7 +892,7 @@
         </RelativeLayout>
 
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
 </ScrollView>

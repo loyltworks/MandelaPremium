@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardActivity">
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -28,7 +28,7 @@
 
         <include layout="@layout/content_dashboard" />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

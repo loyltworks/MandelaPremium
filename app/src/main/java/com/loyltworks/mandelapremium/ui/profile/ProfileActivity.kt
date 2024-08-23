@@ -58,16 +58,16 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
         //set context
         context = this
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar!!.setDisplayShowHomeEnabled(true)
+        //supportActionBar!!.setDisplayShowTitleEnabled(false)
 //        toolbar.title = "My Profile"
 
         profile_image.setOnClickListener(this)
 
         @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
             resources.getDrawable(R.drawable.ic_back_arrow)
-        supportActionBar!!.setHomeAsUpIndicator(upArrow)
+        //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 

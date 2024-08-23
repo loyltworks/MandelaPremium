@@ -109,14 +109,14 @@ class NewTicketActivity : BaseActivity() , View.OnClickListener{
         //set context
         context = this
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         browse_image.setOnClickListener(this)
 
         @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
             resources.getDrawable(R.drawable.ic_back_arrow)
-        supportActionBar!!.setHomeAsUpIndicator(upArrow)
+        //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
         browse_Img.setOnClickListener(this)
         submit.setOnClickListener(this)

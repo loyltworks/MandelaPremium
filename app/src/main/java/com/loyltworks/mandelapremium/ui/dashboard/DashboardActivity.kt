@@ -4,27 +4,25 @@ import android.Manifest
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.Toast
+import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.GravityCompat
-import androidx.core.view.isVisible
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.*
+import com.loyltworks.mandelapremium.model.AttributeRequest
+import com.loyltworks.mandelapremium.model.CustomerDetails
+import com.loyltworks.mandelapremium.model.DashboardCustomerRequest
+import com.loyltworks.mandelapremium.model.DashboardRequest
+import com.loyltworks.mandelapremium.model.GetWhatsNewRequest
+import com.loyltworks.mandelapremium.model.LstAttributesDetail
+import com.loyltworks.mandelapremium.model.LstPromotionList
+import com.loyltworks.mandelapremium.model.RegistrationRequest
 import com.loyltworks.mandelapremium.ui.BuyAndGift.BuyGiftActivity
 import com.loyltworks.mandelapremium.ui.GiftCards.GiftCardsActivity
 import com.loyltworks.mandelapremium.ui.Login.LoginActivity
@@ -32,6 +30,7 @@ import com.loyltworks.mandelapremium.ui.MyActivity.MyActivity
 import com.loyltworks.mandelapremium.ui.OfferAndPromotion.OfferAndPromotionActivity
 import com.loyltworks.mandelapremium.ui.OfferAndPromotion.OfferPromotionDetailsActivity
 import com.loyltworks.mandelapremium.ui.OfferAndPromotion.PromotionViewModel
+import com.loyltworks.mandelapremium.ui.OffersAdapter
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.help.HelpActivity
 import com.loyltworks.mandelapremium.ui.profile.ProfileActivity
@@ -39,17 +38,51 @@ import com.loyltworks.mandelapremium.ui.profile.fragment.ProfileViewModel
 import com.loyltworks.mandelapremium.ui.programinformation.ProgramInformationActivity
 import com.loyltworks.mandelapremium.ui.raffle.RaffleActivity
 import com.loyltworks.mandelapremium.ui.scanner.ScannerActivity
-import com.loyltworks.mandelapremium.utils.GridSpacingItemDecoration
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_dashboard_menu.*
-import kotlinx.android.synthetic.main.content_dashboard.*
+import com.oneloyalty.goodpack.utils.BlockMultipleClick
+import kotlinx.android.synthetic.main.activity_dashboard.buy_gift
+import kotlinx.android.synthetic.main.activity_dashboard.darkBackground
+import kotlinx.android.synthetic.main.activity_dashboard.dash_earning
+import kotlinx.android.synthetic.main.activity_dashboard.dash_help
+import kotlinx.android.synthetic.main.activity_dashboard.dash_profile
+import kotlinx.android.synthetic.main.activity_dashboard.dash_redemption
+import kotlinx.android.synthetic.main.activity_dashboard.dash_scan
+import kotlinx.android.synthetic.main.activity_dashboard.my_gift_card
+
+
+import kotlinx.android.synthetic.main.activity_dashboard.nav_myProfile
+import kotlinx.android.synthetic.main.activity_dashboard.navi_about_mandela
+
+import kotlinx.android.synthetic.main.activity_dashboard.navi_faq
+import kotlinx.android.synthetic.main.activity_dashboard.navi_gift_card
+import kotlinx.android.synthetic.main.activity_dashboard.navi_help
+import kotlinx.android.synthetic.main.activity_dashboard.navi_logout
+
+import kotlinx.android.synthetic.main.activity_dashboard.navi_mybenefits
+import kotlinx.android.synthetic.main.activity_dashboard.navi_myearing
+import kotlinx.android.synthetic.main.activity_dashboard.navi_profile_image
+
+import kotlinx.android.synthetic.main.activity_dashboard.navi_raffle
+import kotlinx.android.synthetic.main.activity_dashboard.navi_redemption
+import kotlinx.android.synthetic.main.activity_dashboard.navi_terms_and_condition
+
+import kotlinx.android.synthetic.main.activity_dashboard.offer_and_promoions
+import kotlinx.android.synthetic.main.activity_dashboard.offersRV
+import kotlinx.android.synthetic.main.activity_dashboard.openDrawer
+import kotlinx.android.synthetic.main.activity_dashboard.points
+import kotlinx.android.synthetic.main.activity_dashboard.products_rv
+import kotlinx.android.synthetic.main.activity_dashboard.sideMenu
+import kotlinx.android.synthetic.main.activity_dashboard.userName
+import kotlinx.android.synthetic.main.activity_dashboard.user_mobile_number
+import kotlinx.android.synthetic.main.activity_dashboard.user_name
+import kotlinx.android.synthetic.main.activity_dashboard.user_points
 import java.io.Serializable
 import java.text.DecimalFormat
 
 
 class DashboardActivity : BaseActivity(), View.OnClickListener,
-    DashboardProductsAdapter.OnItemClickListener {
+    DashboardProductsAdapter.OnItemClickListener, OffersAdapter.PromotionClickListener {
 
     private lateinit var dashBoardViewModel: DashBoardViewModel
 
@@ -161,9 +194,9 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                     )
                 )
 
-                mobileNumber.text = "Mobile " + it.lstCustomerFeedBackJson[0].CustomerMobile
+                //mobileNumber.text = "Mobile " + it.lstCustomerFeedBackJson[0].CustomerMobile
                 user_mobile_number.text = it.lstCustomerFeedBackJson[0].CustomerMobile
-                userName.text = "Welcome " + it.lstCustomerFeedBackJson[0].FirstName
+                userName.text = it.lstCustomerFeedBackJson[0].FirstName
                 user_name.text = it.lstCustomerFeedBackJson[0].FirstName
 
                 // call dashboard details 2
@@ -271,58 +304,31 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         })
 
 
-        carouselView.setImageClickListener {
-            if (BlockMultipleClick.click()) return@setImageClickListener
-            drawerLayout!!.closeDrawer(GravityCompat.START)
-            val intent = Intent(context, OfferPromotionDetailsActivity::class.java)
-            intent.putExtra("PromotionDetails", _listPromotions[it])
-            startActivity(intent)
-           overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
-        }
+//        carouselView.setImageClickListener {
+//            if (BlockMultipleClick.click()) return@setImageClickListener
+//            closeDrawer()
+//            val intent = Intent(context, OfferPromotionDetailsActivity::class.java)
+//            intent.putExtra("PromotionDetails", _listPromotions[it])
+//            startActivity(intent)
+//           overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+//        }
+
+
 
 
         // promotion Lising
-        promotionViewModel.getPromotionListLiveData.observe(
-            this,
-            Observer {
+        promotionViewModel.getPromotionListLiveData.observe(this, Observer {
                 LoadingDialogue.dismissDialog()
                 if (it != null && !it.LstPromotionJsonList.isNullOrEmpty()) {
-
-                    Log.d("fjksdjfks", it.LstPromotionJsonList!![0].ValidFrom.toString())
-                    Log.d("fsdrewrwefsdr", it.LstPromotionJsonList!![0].ValidTo.toString())
-
                     _listPromotions = it.LstPromotionJsonList!!
 
-                    default_offer_promotion.visibility = View.GONE
-                    carouselView.visibility = View.VISIBLE
-                    left_arror.visibility = View.VISIBLE
-                    right_arrow.visibility = View.VISIBLE
-
-                    carouselView.setImageListener { position, imageView ->
-
-                        Glide.with(this)
-                            .load(
-                                BuildConfig.PROMO_IMAGE_BASE + it.LstPromotionJsonList!![position].ProImage?.replace(
-                                    "..",
-                                    ""
-                                )
-                            )
-                            .placeholder(R.drawable.placeholder)
-                            .fitCenter()
-                            .into(imageView)
-
-                        imageView.scaleType = ImageView.ScaleType.FIT_CENTER;
-                    }
-
-                    carouselView.pageCount = it.LstPromotionJsonList!!.size;
+                    offersRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+                    offersRV.adapter = OffersAdapter(it.LstPromotionJsonList!!,this)
 
 
                 } else {
 
-                    default_offer_promotion.visibility = View.VISIBLE
-                    carouselView.visibility = View.GONE
-                    left_arror.visibility = View.GONE
-                    right_arrow.visibility = View.GONE
+
 
 
                 }
@@ -330,19 +336,26 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
     }
 
+    override fun onPromotionClicked(lstPromotionJson: LstPromotionList) {
+        val intent = Intent(context, OfferPromotionDetailsActivity::class.java)
+        intent.putExtra("PromotionDetails", lstPromotionJson)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+    }
+
 //    lateinit var notification: MenuItem
 
 
-    private var drawerLayout: DrawerLayout? = null
-    var toggle: ActionBarDrawerToggle? = null
+//    private var drawerLayout: DrawerLayout? = null
+//    var toggle: ActionBarDrawerToggle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
-        drawerLayout = findViewById(R.id.drawer_layout)
+//        drawerLayout = findViewById(R.id.drawer_layout)
 
         dashBoardViewModel = ViewModelProvider(this).get(DashBoardViewModel::class.java)
         promotionViewModel = ViewModelProvider(this).get(PromotionViewModel::class.java)
@@ -350,18 +363,22 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
 
+
+
+
         //set context
         context = this
 
-        toolbar.post {
-            val d = ResourcesCompat.getDrawable(resources, R.drawable.ic_group_275, null)
-            toolbar.navigationIcon = d
-        }
+//        toolbar.post {
+//            val d = ResourcesCompat.getDrawable(resources, R.drawable.ic_group_275, null)
+//            toolbar.navigationIcon = d
+//        }
 
 
+        openDrawer.setOnClickListener(this)
+        darkBackground.setOnClickListener(this)
         nav_myProfile.setOnClickListener(this)
-        navi_myActivity.setOnClickListener(this)
-        navi_programinfo.setOnClickListener(this)
+
 
         navi_myearing.setOnClickListener(this)
         navi_redemption.setOnClickListener(this)
@@ -374,14 +391,14 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         navi_gift_card.setOnClickListener(this)
         navi_raffle.setOnClickListener(this)
         navi_logout.setOnClickListener(this)
-        navi_back_arrow.setOnClickListener(this)
+
 
 
 
         dash_profile.setOnClickListener(this)
         dash_help.setOnClickListener(this)
         offer_and_promoions.setOnClickListener(this)
-        carouselView.setOnClickListener(this)
+        //carouselView.setOnClickListener(this)
         my_gift_card.setOnClickListener(this)
         buy_gift.setOnClickListener(this)
         dash_redemption.setOnClickListener(this)
@@ -400,22 +417,22 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         )
 
 
-        toggle = ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-            toolbar,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-        drawerLayout!!.addDrawerListener(toggle!!)
+//        toggle = ActionBarDrawerToggle(
+//            this,
+//            drawerLayout,
+//            toolbar,
+//            R.string.navigation_drawer_open,
+//            R.string.navigation_drawer_close
+//        )
+//        drawerLayout!!.addDrawerListener(toggle!!)
 
 
         val gridLayoutManager = GridLayoutManager(this, 4)
         products_rv.layoutManager = gridLayoutManager
         // For example 10 pixels
         // For example 10 pixels
-        val spaceInPixels = 2
-        products_rv.addItemDecoration(GridSpacingItemDecoration(spaceInPixels))
+//        val spaceInPixels = 2
+//        products_rv.addItemDecoration(GridSpacingItemDecoration(spaceInPixels))
 
 
         // Request camera and location permission
@@ -427,89 +444,51 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
     }
 
+    fun openDrawer(){
+        sideMenu.visibility = View.VISIBLE
+        sideMenu.animation = AnimationUtils.loadAnimation(this,R.anim.slide_in_right)
+        darkBackground.visibility = View.VISIBLE
+        darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_in)
+    }
+    fun closeDrawer(){
+        sideMenu.visibility = View.GONE
+        sideMenu.animation = AnimationUtils.loadAnimation(this,R.anim.slide_out_left)
+        darkBackground.visibility = View.GONE
+        darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_out)
+    }
+
     override fun onClick(v: View) {
         if (BlockMultipleClick.click()) return
 
         when (v.id) {
+
+            R.id.darkBackground -> {
+                closeDrawer()
+            }
+
+            R.id.openDrawer -> {
+                openDrawer()
+            }
             R.id.nav_myProfile -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 startActivity(Intent(context, ProfileActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
             R.id.navi_help -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 startActivity(Intent(context, HelpActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
-            R.id.navi_back_arrow -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
-            }
 
-            R.id.navi_myActivity -> {
 
-                if (nav_earning_redemptions.visibility != View.VISIBLE) {
 
-                    /* Gone Program Information View*/
-                    nav_aboutmandela_redemptions.visibility = View.GONE
-                    navi_view_programInfo_staring_border.visibility = View.INVISIBLE
-                    navi_programinfo_text.setTextColor(resources.getColor(R.color.textLightWhite))
-                    navi_programInfo_fullview.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                    navi_programinfo_down_arrow.rotation = 0f
 
-                    nav_earning_redemptions.visibility = View.VISIBLE
-                    navi_view_myactivity_staring_border.visibility = View.VISIBLE
-                    navi_myactivity_text.setTextColor(resources.getColor(R.color.textYello))
-                    navi_myActivity_fullview.setBackgroundColor(resources.getColor(R.color.sidebox_color))
-                    navi_myActivity_down_arrow.rotation = 180f
-                } else {
-                    nav_earning_redemptions.visibility = View.GONE
-                    navi_view_myactivity_staring_border.visibility = View.INVISIBLE
-                    navi_myactivity_text.setTextColor(resources.getColor(R.color.textLightWhite))
-                    navi_myActivity_fullview.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                    navi_myActivity_down_arrow.rotation = 0f
-                }
 
-            }
-
-            R.id.navi_programinfo -> {
-
-                if (nav_aboutmandela_redemptions.visibility != View.VISIBLE) {
-
-                    /* Gone My Activity View*/
-                    nav_earning_redemptions.visibility = View.GONE
-                    navi_view_myactivity_staring_border.visibility = View.INVISIBLE
-                    navi_myactivity_text.setTextColor(resources.getColor(R.color.textLightWhite))
-                    navi_myActivity_fullview.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                    navi_myActivity_down_arrow.rotation = 0f
-
-                    nav_aboutmandela_redemptions.visibility = View.VISIBLE
-                    navi_view_programInfo_staring_border.visibility = View.VISIBLE
-                    navi_programinfo_text.setTextColor(resources.getColor(R.color.textYello))
-                    navi_programInfo_fullview.setBackgroundColor(resources.getColor(R.color.sidebox_color))
-                    navi_programinfo_down_arrow.rotation = 180f
-                } else {
-                    nav_aboutmandela_redemptions.visibility = View.GONE
-                    navi_view_programInfo_staring_border.visibility = View.INVISIBLE
-                    navi_programinfo_text.setTextColor(resources.getColor(R.color.textLightWhite))
-                    navi_programInfo_fullview.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                    navi_programinfo_down_arrow.rotation = 0f
-                }
-            }
 
             R.id.navi_myearing -> {
-
-                /* Visibility Gone Of Redemption and my earning*/
-                nav_earning_redemptions.visibility = View.GONE
-                navi_view_myactivity_staring_border.visibility = View.INVISIBLE
-                navi_myactivity_text.setTextColor(resources.getColor(R.color.textLightWhite))
-                navi_myActivity_fullview.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                navi_myActivity_down_arrow.rotation = 0f
-
-                drawerLayout!!.closeDrawer(GravityCompat.START)
-
-
+                closeDrawer()
 
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
 
@@ -535,14 +514,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             R.id.navi_redemption -> {
 
-                /* Visibility Gone Of Redemption and my earning*/
-                nav_earning_redemptions.visibility = View.GONE
-                navi_view_myactivity_staring_border.visibility = View.INVISIBLE
-                navi_myactivity_text.setTextColor(resources.getColor(R.color.textLightWhite))
-                navi_myActivity_fullview.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                navi_myActivity_down_arrow.rotation = 0f
-
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
 
                 _attributesDetailsLis_.add(
@@ -567,13 +539,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             R.id.navi_about_mandela -> {
 
-                nav_aboutmandela_redemptions.visibility = View.GONE
-                navi_view_programInfo_staring_border.visibility = View.INVISIBLE
-                navi_programinfo_text.setTextColor(resources.getColor(R.color.textLightWhite))
-                navi_programInfo_fullview.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                navi_programinfo_down_arrow.rotation = 0f
-
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 val intent = Intent(context, ProgramInformationActivity::class.java)
                 intent.putExtra("MyActivity", "About MandelaPremium Club")
                 startActivity(intent)
@@ -583,13 +549,8 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             R.id.navi_mybenefits -> {
 
-                nav_aboutmandela_redemptions.visibility = View.GONE
-                navi_view_programInfo_staring_border.visibility = View.INVISIBLE
-                navi_programinfo_text.setTextColor(resources.getColor(R.color.textLightWhite))
-                navi_programInfo_fullview.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                navi_programinfo_down_arrow.rotation = 0f
 
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 val intent = Intent(context, ProgramInformationActivity::class.java)
                 intent.putExtra("MyActivity", "My Benefits")
                 startActivity(intent)
@@ -599,13 +560,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             R.id.navi_terms_and_condition -> {
 
-                nav_aboutmandela_redemptions.visibility = View.GONE
-                navi_view_programInfo_staring_border.visibility = View.INVISIBLE
-                navi_programinfo_text.setTextColor(resources.getColor(R.color.textLightWhite))
-                navi_programInfo_fullview.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                navi_programinfo_down_arrow.rotation = 0f
-
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 val intent = Intent(context, ProgramInformationActivity::class.java)
                 intent.putExtra("MyActivity", "Terms and Conditions")
                 startActivity(intent)
@@ -630,13 +585,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }*/
             R.id.navi_faq -> {
 
-                nav_aboutmandela_redemptions.visibility = View.GONE
-                navi_view_programInfo_staring_border.visibility = View.INVISIBLE
-                navi_programinfo_text.setTextColor(resources.getColor(R.color.textLightWhite))
-                navi_programInfo_fullview.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                navi_programinfo_down_arrow.rotation = 0f
-
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 val intent = Intent(context, ProgramInformationActivity::class.java)
                 intent.putExtra("MyActivity", "FAQ")
                 startActivity(intent)
@@ -644,38 +593,38 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }
 
             R.id.dash_profile -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 startActivity(Intent(context, ProfileActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
 //                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             }
             R.id.my_gift_card -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 startActivity(Intent(context, GiftCardsActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.navi_gift_card -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 startActivity(Intent(context, GiftCardsActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.navi_raffle -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 startActivity(Intent(context, RaffleActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.buy_gift -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 startActivity(Intent(context, BuyGiftActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.dash_help -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 startActivity(Intent(context, HelpActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.offer_and_promoions -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
 
                 _attributesDetailsLis_.add(
@@ -701,7 +650,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                   overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
               }*/
             R.id.dash_redemption -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
 
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
 
@@ -726,7 +675,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
             R.id.dash_earning -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
 
                 _attributesDetailsLis_.add(
@@ -749,7 +698,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
             R.id.dash_scan -> {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 val intent = Intent(context, ScannerActivity::class.java)
 //                intent.putExtra("MyActivity", 0)
                 startActivity(intent)
@@ -757,7 +706,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }
             R.id.navi_logout -> {
                 // Logout
-                drawerLayout!!.closeDrawer(GravityCompat.START)
+                closeDrawer()
                 PreferenceHelper.clear(applicationContext!!)
                 startActivity(Intent(applicationContext, LoginActivity::class.java))
                 finish()
@@ -781,7 +730,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
     override fun onItemClicked(position: Int, attributesDetailsList: List<LstAttributesDetail>) {
 
-        drawerLayout!!.closeDrawer(GravityCompat.START)
+        closeDrawer()
 
         var _attributesDetailsLis = ArrayList(attributesDetailsList)
 
@@ -824,27 +773,27 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
     private var click_exit = false
 
-    override fun onBackPressed() {
-        if (drawerLayout!!.isVisible) {
-            if (drawerLayout!!.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout!!.closeDrawer(GravityCompat.START)
-            } else {
-                if (click_exit) {
-                    super.onBackPressed()
-                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
-                    finish()
-                } else {
-                    click_exit = true
-                    Toast.makeText(context, "Press again to exis.", Toast.LENGTH_SHORT).show()
-                    Handler().postDelayed(
-                        { click_exit = false }, 2000
-                    )
-                }
-            }
-        } else {
-            super.onBackPressed()
-        }
-    }
+//    override fun onBackPressed() {
+//        if (drawerLayout!!.isVisible) {
+//            if (drawerLayout!!.isDrawerOpen(GravityCompat.START)) {
+//                drawerLayout!!.closeDrawer(GravityCompat.START)
+//            } else {
+//                if (click_exit) {
+//                    super.onBackPressed()
+//                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+//                    finish()
+//                } else {
+//                    click_exit = true
+//                    Toast.makeText(context, "Press again to exis.", Toast.LENGTH_SHORT).show()
+//                    Handler().postDelayed(
+//                        { click_exit = false }, 2000
+//                    )
+//                }
+//            }
+//        } else {
+//            super.onBackPressed()
+//        }
+//    }
 
 
     /** Currency formatter*/
@@ -857,4 +806,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             "0.00"
         }
     }
+
+
 }

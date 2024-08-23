@@ -60,12 +60,12 @@ class BuyGiftActivity : BaseActivity(), BuyGiftAdapter.OnItemClickListener {
         //set context
         context = this
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
             resources.getDrawable(R.drawable.ic_back_arrow)
-        supportActionBar!!.setHomeAsUpIndicator(upArrow)
+        //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
         buyGiftViewModel = ViewModelProvider(this).get(BuyGiftViewModel::class.java)
 

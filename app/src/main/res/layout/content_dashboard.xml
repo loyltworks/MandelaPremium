@@ -7,14 +7,14 @@
     android:background="@color/colorPrimary"
     tools:context=".ui.dashboard.DashboardActivity">
 
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="visible">
 
 
-        <!-- user profile details-->
+        &lt;!&ndash; user profile details&ndash;&gt;
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -131,7 +131,7 @@
         </RelativeLayout>
 
 
-        <!--Gift Voucher-->
+        &lt;!&ndash;Gift Voucher&ndash;&gt;
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -257,7 +257,7 @@
         </LinearLayout>
 
 
-        <!--   row - help, redemption, earning scan -->
+        &lt;!&ndash;   row - help, redemption, earning scan &ndash;&gt;
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -407,7 +407,7 @@
         </LinearLayout>
 
 
-        <!-- Offer and Promotions-->
+        &lt;!&ndash; Offer and Promotions&ndash;&gt;
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -491,7 +491,7 @@
         </LinearLayout>
 
 
-        <!-- Products-->
+        &lt;!&ndash; Products&ndash;&gt;
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -522,7 +522,7 @@
         </LinearLayout>
 
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
 </androidx.core.widget.NestedScrollView>

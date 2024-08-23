@@ -31,7 +31,11 @@
 
 
     <color name="light_grey">#2c303d</color>
+    <color name="light_grey1">#F6F6F6</color>
+    <color name="orange">#E99A13</color>
+    <color name="light_orange">#FDF8DA</color>
     <color name="primary_dark_blue">#01447B</color>
+    <color name="transparent">#80000000</color>
     <color name="light_blue_text">#73BFFD</color>
     <color name="line_color">#C49A9A9A</color>
 

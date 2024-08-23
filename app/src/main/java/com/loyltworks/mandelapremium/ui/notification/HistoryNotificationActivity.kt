@@ -129,13 +129,13 @@ class HistoryNotificationActivity : BaseActivity(), HistoryNotificationAdapter.I
         //set context
         context = this
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar!!.setDisplayShowHomeEnabled(true)
+        //supportActionBar!!.setDisplayShowTitleEnabled(false)
 
         @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
             resources.getDrawable(R.drawable.ic_back_arrow)
-        supportActionBar!!.setHomeAsUpIndicator(upArrow)
+        //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
 //        historyNotificationAdapter = HistoryNotificationAdapter(null, this)
 //        history_rv.adapter = historyNotificationAdapter

@@ -26,8 +26,8 @@ class HelpActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_help)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
         //set context
         context = this
@@ -41,6 +41,7 @@ class HelpActivity : BaseActivity(), View.OnClickListener {
 
         my_query.setOnClickListener(this)
         contact_us.setOnClickListener(this)
+        back.setOnClickListener(this)
 
     }
 
@@ -67,6 +68,9 @@ class HelpActivity : BaseActivity(), View.OnClickListener {
                 startActivity(Intent(context, CustomerServiceActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
 
+            }
+            R.id.back -> {
+                onBackPressed()
             }
         }
 

@@ -108,19 +108,21 @@ class ScannerActivity : BaseActivity(), ScannerListener , Listener {
         }
 
         productQRCode.setOnClickListener{
-            productQRCode.setCardBackgroundColor(ContextCompat.getColor(this,R.color.gray))
-            productQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.white))
-            raffleQRCode.setCardBackgroundColor(ContextCompat.getColor(this,R.color.colorPrimary))
-            raffleQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.textLightWhite))
+            productQRCode.background = ContextCompat.getDrawable(this,R.drawable.tab_selected)
+            productQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.black))
+            toolbarTitle.setTextColor(ContextCompat.getColor(this,R.color.white))
+            raffleQRCode.background = null
+            raffleQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.white))
             productQRCodeLayout.visibility = View.VISIBLE
             raffleQRCodeLayout.visibility = View.GONE
         }
 
         raffleQRCode.setOnClickListener{
-            raffleQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.white))
-            raffleQRCode.setCardBackgroundColor(ContextCompat.getColor(this,R.color.gray))
-            productQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.textLightWhite))
-            productQRCode.setCardBackgroundColor(ContextCompat.getColor(this,R.color.colorPrimary))
+            raffleQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.black))
+            raffleQRCode.background = ContextCompat.getDrawable(this,R.drawable.tab_selected)
+            productQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.black))
+            toolbarTitle.setTextColor(ContextCompat.getColor(this,R.color.black))
+            productQRCode.background = null
             productQRCodeLayout.visibility = View.GONE
             raffleQRCodeLayout.visibility = View.VISIBLE
         }

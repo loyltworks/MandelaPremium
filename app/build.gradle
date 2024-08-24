@@ -144,7 +144,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     // lottie
-    implementation 'com.airbnb.android:lottie:3.4.1'
+    implementation 'com.airbnb.android:lottie:6.0.0'
 
     implementation 'com.synnapps:carouselview:0.1.5'
 

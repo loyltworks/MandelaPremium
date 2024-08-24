@@ -1,8 +1,6 @@
 package com.loyltworks.mandelapremium.ui.help.feedback
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.widget.RatingBar
 import android.widget.RatingBar.OnRatingBarChangeListener
@@ -13,21 +11,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.model.FeedbackRequest
 import com.loyltworks.mandelapremium.model.ObjCustomerAllQueryList
-import com.loyltworks.mandelapremium.model.PostChatStatusRequest
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.help.HelpViewModel
-import com.loyltworks.mandelapremium.utils.AppController
-import com.loyltworks.mandelapremium.utils.DatePickerBox
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_feedback.*
-import kotlinx.android.synthetic.main.activity_my_query.*
-import kotlinx.android.synthetic.main.activity_my_query.fromDate
-import kotlinx.android.synthetic.main.activity_my_query.fromDate_tv
-import kotlinx.android.synthetic.main.activity_my_query.toDate
-import kotlinx.android.synthetic.main.activity_my_query.toDate_tv
-import kotlinx.android.synthetic.main.fragment_my_earning.*
-import kotlinx.android.synthetic.main.fragment_my_earning.view.*
+import kotlinx.android.synthetic.main.activity_feedback.feeback_description_bottom_title
+import kotlinx.android.synthetic.main.activity_feedback.feedback_description
+import kotlinx.android.synthetic.main.activity_feedback.feedback_rating_bar
+import kotlinx.android.synthetic.main.activity_feedback.feedback_submit
+import kotlinx.android.synthetic.main.activity_feedback.feedback_text
+import kotlinx.android.synthetic.main.activity_feedback.success_message
 import kotlin.math.roundToInt
 
 class FeedbackActivity : BaseActivity() {

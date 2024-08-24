@@ -4,38 +4,33 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
-import android.view.animation.AnimationUtils
-import android.widget.AdapterView
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.*
+import com.loyltworks.mandelapremium.model.GenderSpinner
+import com.loyltworks.mandelapremium.model.GetHelpTopicRetrieveRequest
+import com.loyltworks.mandelapremium.model.HelpTopicRetrieveRequest
+import com.loyltworks.mandelapremium.model.ObjCustomerAllQueryList
+import com.loyltworks.mandelapremium.model.ObjHelpTopicList
+import com.loyltworks.mandelapremium.model.QueryListingRequest
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.help.HelpViewModel
-import com.loyltworks.mandelapremium.ui.help.newTicket.NewTicketActivity
 import com.loyltworks.mandelapremium.ui.help.adapter.MyQueryAdapter
 import com.loyltworks.mandelapremium.ui.help.feedback.FeedbackActivity
 import com.loyltworks.mandelapremium.ui.help.help_topic_chat_status.QueryChatActivity
-import com.loyltworks.mandelapremium.ui.profile.adapter.GenderAdapter
+import com.loyltworks.mandelapremium.ui.help.newTicket.NewTicketActivity
 import com.loyltworks.mandelapremium.utils.AppController
 import com.loyltworks.mandelapremium.utils.DatePickerBox
+import com.loyltworks.mandelapremium.utils.LastItemMarginItemDecoration
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_my_query.*
-import kotlinx.android.synthetic.main.activity_my_query.filterBtn
-import kotlinx.android.synthetic.main.activity_my_query.fromDate
-import kotlinx.android.synthetic.main.activity_my_query.fromDate_tv
-import kotlinx.android.synthetic.main.activity_my_query.toDate
-import kotlinx.android.synthetic.main.activity_my_query.toDate_tv
-import kotlinx.android.synthetic.main.fragment_my_earning.*
-import kotlinx.android.synthetic.main.fragment_promotion_tab1.*
-import kotlinx.android.synthetic.main.fragment_tab1.*
-import kotlinx.android.synthetic.main.fragment_tab2.*
-import kotlinx.android.synthetic.main.row_history_notifications.*
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.activity_my_query.add_query
+import kotlinx.android.synthetic.main.activity_my_query.myQuery_rv
+import kotlinx.android.synthetic.main.activity_my_query.query_error_hint
+import kotlinx.android.synthetic.main.activity_my_query.back
+
+import kotlinx.android.synthetic.main.fragment_promotion_tab1.filterBtn
 
 class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
 
@@ -77,6 +72,7 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
         viewModel.queryListLiveData.observe(this, androidx.lifecycle.Observer {
             if (it != null && !it.objCustomerAllQueryJsonList.isNullOrEmpty()) {
                 LoadingDialogue.dismissDialog()
+                myQuery_rv?.addItemDecoration(LastItemMarginItemDecoration())
                 myQuery_rv?.adapter = MyQueryAdapter(it, this)
                 myQuery_rv?.visibility = View.VISIBLE
                 query_error_hint?.visibility = View.GONE
@@ -110,8 +106,8 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
                     )
                 )
 
-                select_topic.adapter =
-                    CustomSpinnersAdapter2(this, objHelptopicList)
+//                select_topic.adapter =
+//                    CustomSpinnersAdapter2(this, objHelptopicList)
 
             }
         })
@@ -123,8 +119,8 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
         viewModel = ViewModelProvider(this).get(HelpViewModel::class.java)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_query)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
         //set context
         context = this
@@ -136,7 +132,7 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
             resources.getDrawable(R.drawable.ic_back_arrow)
         //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
-        query_filterDisplay.visibility = View.GONE
+//        query_filterDisplay.visibility = View.GONE
 
         getQueryListing(
             topicFilter,
@@ -151,22 +147,22 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
         }
 
 
-        filter_display.setOnClickListener {
-            if (query_filterDisplay.visibility == View.VISIBLE) {
-                query_filterDisplay.animation =
-                    AnimationUtils.loadAnimation(context, R.anim.slide_out_up)
-                query_filterDisplay.visibility = View.GONE
-            } else if (query_filterDisplay.visibility == View.GONE) {
-                query_filterDisplay.animation =
-                    AnimationUtils.loadAnimation(context, R.anim.slide_in_down)
-                query_filterDisplay.visibility = View.VISIBLE
-            }
-        }
+//        filter_display.setOnClickListener {
+//            if (query_filterDisplay.visibility == View.VISIBLE) {
+//                query_filterDisplay.animation =
+//                    AnimationUtils.loadAnimation(context, R.anim.slide_out_up)
+//                query_filterDisplay.visibility = View.GONE
+//            } else if (query_filterDisplay.visibility == View.GONE) {
+//                query_filterDisplay.animation =
+//                    AnimationUtils.loadAnimation(context, R.anim.slide_in_down)
+//                query_filterDisplay.visibility = View.VISIBLE
+//            }
+//        }
 
 //        myQuery_rv.adapter = MyQueryAdapter(null, this)
 
 
-        fromDate.setOnClickListener {
+        /*fromDate.setOnClickListener {
             DatePickerBox.date(this) {
                 fromDate_tv.text = it
                 FromDate = it
@@ -180,10 +176,10 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
                 } catch (e: Exception) {
                 }
             }
-        }
+        }*/
 
 
-        toDate.setOnClickListener {
+        /*toDate.setOnClickListener {
             DatePickerBox.date(this) {
                 toDate_tv.text = it
                 ToDate = it
@@ -194,10 +190,10 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
                     }
                 }
             }
-        }
+        }*/
 
 
-        filterBtn.setOnClickListener { v ->
+        /*filterBtn.setOnClickListener { v ->
             if (listiner) {
                 listiner = false
                 getQueryListing(
@@ -223,7 +219,12 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
             } else
                 Toast.makeText(this, "Please select date range", Toast.LENGTH_SHORT).show()
 
+        }*/
+
+        back.setOnClickListener { 
+            onBackPressed()
         }
+        
 
 
         SpinnerSetUp()
@@ -265,47 +266,47 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
         genderList.add(genderSpinner4)
         genderList.add(genderSpinner5)
 
-        select_status.adapter = GenderAdapter(this, android.R.layout.simple_spinner_item, genderList)
+//        select_status.adapter = GenderAdapter(this, android.R.layout.simple_spinner_item, genderList)
 
 
-        select_topic.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                topicFilter =
-                    (parent?.getItemAtPosition(position) as ObjHelpTopicList).HelpTopicId!!
-
-                Log.d("fjhsdhfjds", topicFilter.toString())
-
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-
-        }
-
-
-        select_status.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-
-                statusFilter = (parent?.getItemAtPosition(position) as GenderSpinner).id!!
-
-                Log.d("fjhsdhfjds", statusFilter.toString())
-
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-
-        }
+//        select_topic.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(
+//                parent: AdapterView<*>?,
+//                view: View?,
+//                position: Int,
+//                id: Long
+//            ) {
+//                topicFilter =
+//                    (parent?.getItemAtPosition(position) as ObjHelpTopicList).HelpTopicId!!
+//
+//                Log.d("fjhsdhfjds", topicFilter.toString())
+//
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//            }
+//
+//        }
+//
+//
+//        select_status.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(
+//                parent: AdapterView<*>?,
+//                view: View?,
+//                position: Int,
+//                id: Long
+//            ) {
+//
+//                statusFilter = (parent?.getItemAtPosition(position) as GenderSpinner).id!!
+//
+//                Log.d("fjhsdhfjds", statusFilter.toString())
+//
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//            }
+//
+//        }
 
     }
 

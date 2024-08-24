@@ -20,8 +20,8 @@ class CustomerServiceActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_service)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
         //set context
         context = this
@@ -32,7 +32,6 @@ class CustomerServiceActivity : BaseActivity() {
         @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
             resources.getDrawable(R.drawable.ic_back_arrow)
         //supportActionBar!!.setHomeAsUpIndicator(upArrow)
-
 
 
         email_btn.setOnClickListener {
@@ -50,10 +49,13 @@ class CustomerServiceActivity : BaseActivity() {
         call_btn.setOnClickListener {
             startActivity(
                 Intent(
-                    Intent.ACTION_DIAL,
-                    Uri.fromParts("tel", "+ 25699000000", null)
+                    Intent.ACTION_DIAL, Uri.fromParts("tel", "+ 25699000000", null)
                 )
             )
+        }
+
+        back.setOnClickListener {
+            onBackPressed()
         }
 
 

@@ -39,6 +39,7 @@ import com.loyltworks.mandelapremium.ui.programinformation.ProgramInformationAct
 import com.loyltworks.mandelapremium.ui.raffle.RaffleActivity
 import com.loyltworks.mandelapremium.ui.scanner.ScannerActivity
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
+import com.loyltworks.mandelapremium.utils.Vibrator
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import kotlinx.android.synthetic.main.activity_dashboard.buy_gift
@@ -427,7 +428,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 //        drawerLayout!!.addDrawerListener(toggle!!)
 
 
-        val gridLayoutManager = GridLayoutManager(this, 4)
+        val gridLayoutManager = GridLayoutManager(this, 3)
         products_rv.layoutManager = gridLayoutManager
         // For example 10 pixels
         // For example 10 pixels
@@ -458,24 +459,29 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
     }
 
     override fun onClick(v: View) {
-        if (BlockMultipleClick.click()) return
+
 
         when (v.id) {
 
             R.id.darkBackground -> {
+                Vibrator.vibrate(this@DashboardActivity)
                 closeDrawer()
             }
 
             R.id.openDrawer -> {
+                if (BlockMultipleClick.click()) return
+                Vibrator.vibrate(this@DashboardActivity)
                 openDrawer()
             }
             R.id.nav_myProfile -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, ProfileActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
             R.id.navi_help -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, HelpActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
@@ -488,6 +494,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
 
             R.id.navi_myearing -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
 
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
@@ -513,6 +520,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }
 
             R.id.navi_redemption -> {
+                if (BlockMultipleClick.click()) return
 
                 closeDrawer()
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
@@ -538,6 +546,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }
 
             R.id.navi_about_mandela -> {
+                if (BlockMultipleClick.click()) return
 
                 closeDrawer()
                 val intent = Intent(context, ProgramInformationActivity::class.java)
@@ -548,7 +557,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }
 
             R.id.navi_mybenefits -> {
-
+                if (BlockMultipleClick.click()) return
 
                 closeDrawer()
                 val intent = Intent(context, ProgramInformationActivity::class.java)
@@ -559,7 +568,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }
 
             R.id.navi_terms_and_condition -> {
-
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 val intent = Intent(context, ProgramInformationActivity::class.java)
                 intent.putExtra("MyActivity", "Terms and Conditions")
@@ -584,7 +593,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }*/
             R.id.navi_faq -> {
-
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 val intent = Intent(context, ProgramInformationActivity::class.java)
                 intent.putExtra("MyActivity", "FAQ")
@@ -593,37 +602,44 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }
 
             R.id.dash_profile -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, ProfileActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
 //                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             }
             R.id.my_gift_card -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, GiftCardsActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.navi_gift_card -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, GiftCardsActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.navi_raffle -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, RaffleActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.buy_gift -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, BuyGiftActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.dash_help -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, HelpActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.offer_and_promoions -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
 
@@ -650,6 +666,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                   overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
               }*/
             R.id.dash_redemption -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
 
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
@@ -675,6 +692,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
             R.id.dash_earning -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
 
@@ -698,6 +716,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
             R.id.dash_scan -> {
+                if (BlockMultipleClick.click()) return
                 closeDrawer()
                 val intent = Intent(context, ScannerActivity::class.java)
 //                intent.putExtra("MyActivity", 0)
@@ -705,6 +724,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
             R.id.navi_logout -> {
+                if (BlockMultipleClick.click()) return
                 // Logout
                 closeDrawer()
                 PreferenceHelper.clear(applicationContext!!)

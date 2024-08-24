@@ -25,13 +25,10 @@ class MyQueryAdapter(var queryListingResponse : QueryListingResponse?, var onIte
         val row_query_text = itemView.row_query_text
         val row_query_status = itemView.row_query_status
         val status_icon = itemView.status_icon
-        val star_row = itemView.star_row
-        val row_for_new_comment = itemView.row_for_new_comment
-        val feedback_no = itemView.feedback_no
-        val feedback_yes = itemView.feedback_yes
-        val rating_bar = itemView.rating_bar
-        val row_query = itemView.row_query
-        val empty_linear = itemView.empty_linear
+
+
+        //val row_query = itemView.row_query
+
 //        val star_relative = itemView.star_relative
 
     }
@@ -59,53 +56,22 @@ class MyQueryAdapter(var queryListingResponse : QueryListingResponse?, var onIte
 
         when (lstQueryDetail.TicketStatus) {
             "Closed" -> {
-                if (lstQueryDetail.Rating != null && lstQueryDetail.Rating != 0) {
-
-                    holder.star_row.visibility = View.VISIBLE
-                    holder.row_for_new_comment.visibility = View.GONE
-                    holder.rating_bar.rating = lstQueryDetail.Rating.toString().toFloat()
-
-                } else {
-
-                    holder.star_row.visibility = View.GONE
-                    holder.row_for_new_comment.visibility = View.VISIBLE
-
-                }
-
                 holder.status_icon.setImageResource(R.drawable.ic_close_red)
             }
 
             "Resolved" -> {
-                holder.star_row.visibility = View.GONE
-                holder.row_for_new_comment.visibility = View.GONE
                 holder.status_icon.setImageResource(R.drawable.ic_mask_group_12)
             }
             else -> {
-                holder.star_row.visibility = View.GONE
-                holder.row_for_new_comment.visibility = View.GONE
                 holder.status_icon.setImageResource(R.drawable.ic_mask_group_9)
             }
         }
-        holder.row_query.setOnClickListener { v ->
+        holder.itemView.setOnClickListener { v ->
             onItemClickListener.onQueryListItemClickResponse(v,position,queryListingResponse!!.objCustomerAllQueryJsonList)
         }
 
 
-        holder.feedback_no.setOnClickListener {
-            onItemClickListener.onClickFeedback(0,position, queryListingResponse!!.objCustomerAllQueryJsonList)
-        }
 
-        holder.feedback_yes.setOnClickListener {
-            onItemClickListener.onClickFeedback(1,position, queryListingResponse!!.objCustomerAllQueryJsonList)
-        }
-
-        holder.star_row.setOnClickListener {
-            onItemClickListener.onClickFeedback(2,position, queryListingResponse!!.objCustomerAllQueryJsonList)
-        }
-
-        holder.empty_linear.setOnClickListener {
-            onItemClickListener.onClickFeedback(2,position, queryListingResponse!!.objCustomerAllQueryJsonList)
-        }
 
 
     }

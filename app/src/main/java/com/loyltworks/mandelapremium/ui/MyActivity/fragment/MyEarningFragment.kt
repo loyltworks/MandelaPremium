@@ -37,25 +37,29 @@ import kotlin.collections.ArrayList
 class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
 
     var FromDate = ""
-    var ToDate= ""
-    var filterBy:Int = -1
+    var ToDate = ""
+    var filterBy: Int = -1
 
     val sdf = SimpleDateFormat("yyyy-MM-dd")
     val currentDate = sdf.format(Date())
 
     private lateinit var earningRedemptionViewModel: EarningRedemptionViewModel
 
-    private lateinit var viewModel : MyActivityViewModel
+    private lateinit var viewModel: MyActivityViewModel
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
 
 
-        val root =  inflater.inflate(R.layout.fragment_my_earning, container, false)
+        val root = inflater.inflate(R.layout.fragment_my_earning, container, false)
 
-    /*    FromDate = currentDate.toString()
-        ToDate = currentDate.toString()*/
+        /*    FromDate = currentDate.toString()
+            ToDate = currentDate.toString()*/
 
 //        root.fromDate_tv.text = AppController.dateFormat(FromDate)
 //        root.toDate_tv.text = AppController.dateFormat(ToDate)
@@ -66,13 +70,14 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
                 root.fromDate_tv.text = it
                 FromDate = it
                 try {
-                    DatePickerBox.dateCompare(activity, FromDate, ToDate){
-                        if(!it){
+                    DatePickerBox.dateCompare(activity, FromDate, ToDate) {
+                        if (!it) {
                             fromDate_tv.text = "DD/MM/YYYY"
                             FromDate = ""
                         }
                     }
-                }catch (e: Exception){}
+                } catch (e: Exception) {
+                }
             }
         }
 
@@ -91,15 +96,32 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
         }
 
 
-        root.earning_filterBtn.setOnClickListener { v->
+        root.earning_filterBtn.setOnClickListener { v ->
 
-            if (!TextUtils.isEmpty(FromDate) && !TextUtils.isEmpty(ToDate)) {
-                FromDate = fromDate_tv.text.toString()
-                ToDate = toDate_tv.text.toString()
-                getTransactionHistory(filterBy,AppController.dateAPIFormats(FromDate).toString(),AppController.dateAPIFormats(ToDate).toString())
-            } else
-             Toast.makeText(activity,"Please select date range",Toast.LENGTH_SHORT).show()
-        /*( activity as MyActivity).snackBar("Please select date range", R.color.green)*/
+            if(root.btnText.text == "Filter"){
+                if (!TextUtils.isEmpty(FromDate) && !TextUtils.isEmpty(ToDate)) {
+                    FromDate = fromDate_tv.text.toString()
+                    ToDate = toDate_tv.text.toString()
+                    getTransactionHistory(
+                        filterBy,
+                        AppController.dateAPIFormats(FromDate).toString(),
+                        AppController.dateAPIFormats(ToDate).toString()
+                    )
+                    root.btnText.text = "Reset"
+                } else Toast.makeText(activity, "Please select date range", Toast.LENGTH_SHORT).show()
+            }else{
+                root.btnText.text = "Filter"
+                root.fromDate_tv.text = ""
+                root.toDate_tv.text = ""
+                FromDate = ""
+                ToDate = ""
+                getTransactionHistory(
+                    filterBy,
+                    AppController.dateAPIFormats(FromDate).toString(),
+                    AppController.dateAPIFormats(ToDate).toString()
+                )
+            }
+
         }
 
 
@@ -113,65 +135,66 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        earningRedemptionViewModel = ViewModelProvider(this).get(EarningRedemptionViewModel::class.java)
+        earningRedemptionViewModel =
+            ViewModelProvider(this).get(EarningRedemptionViewModel::class.java)
         viewModel = ViewModelProvider(this).get(MyActivityViewModel::class.java)
 
 
-         lstAttributesDetail = requireActivity().intent.getSerializableExtra("mulipleProducts") as ArrayList<LstAttributesDetail>
-        val selectedPosition = requireActivity().intent.getIntExtra("SelectedPosition",0)
-        var fromlist =  requireActivity().intent.getIntExtra("fromList",0)
+        lstAttributesDetail =
+            requireActivity().intent.getSerializableExtra("mulipleProducts") as ArrayList<LstAttributesDetail>
+        val selectedPosition = requireActivity().intent.getIntExtra("SelectedPosition", 0)
+        var fromlist = requireActivity().intent.getIntExtra("fromList", 0)
 
-        if (fromlist == 0) {
-            product_name_point_balance_myearning.visibility = View.GONE
-        } else {
-            product_name_point_balance_myearning.visibility = View.VISIBLE
-        }
+//        if (fromlist == 0) {
+//            product_name_point_balance_myearning.visibility = View.GONE
+//        } else {
+//            product_name_point_balance_myearning.visibility = View.VISIBLE
+//        }
 
         locationAttributeID = lstAttributesDetail[selectedPosition].AttributeId!!.toInt()
-        product_name.text = lstAttributesDetail[selectedPosition].AttributeType
+//        product_name.text = lstAttributesDetail[selectedPosition].AttributeType
 
         GetWishePoint(locationAttributeID)
 
         filterBy = lstAttributesDetail[selectedPosition].AttributeId!!
 
-        getTransactionHistory(filterBy,FromDate,ToDate)
+        getTransactionHistory(filterBy, FromDate, ToDate)
 
 
 
-        earnig_product_status.adapter = CustomSpinnersAdapter(requireContext(), lstAttributesDetail)
-        earnig_product_status.setSelection(selectedPosition)
-
-        earnig_product_status.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                filterBy = (parent?.getItemAtPosition(position) as LstAttributesDetail).AttributeId!!
-                (activity as MyActivity).filterID = filterBy
-                product_name.text = (parent.getItemAtPosition(position) as LstAttributesDetail).AttributeType
-                GetWishePoint(filterBy)
-
-                if (filterBy != -1){
-                    fromlist = 1
-                    product_name_point_balance_myearning.visibility = View.VISIBLE
-                }
-                else   product_name_point_balance_myearning.visibility = View.GONE
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-
-        }
+//        earnig_product_status.adapter = CustomSpinnersAdapter(requireContext(), lstAttributesDetail)
+//        earnig_product_status.setSelection(selectedPosition)
+//
+//        earnig_product_status.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(
+//                parent: AdapterView<*>?, view: View?, position: Int, id: Long
+//            ) {
+//                filterBy =
+//                    (parent?.getItemAtPosition(position) as LstAttributesDetail).AttributeId!!
+//                (activity as MyActivity).filterID = filterBy
+//                product_name.text =
+//                    (parent.getItemAtPosition(position) as LstAttributesDetail).AttributeType
+//                GetWishePoint(filterBy)
+//
+//                if (filterBy != -1) {
+//                    fromlist = 1
+//                    product_name_point_balance_myearning.visibility = View.VISIBLE
+//                } else product_name_point_balance_myearning.visibility = View.GONE
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//            }
+//
+//        }
 
 //        myearing_rv.adapter = MyEarningAdapter(null, this)
     }
 
-    fun GetWishePoint(locationAttributeID:Int) {
+    fun GetWishePoint(locationAttributeID: Int) {
 
         val wishPointRequest = WishPointRequest()
-        wishPointRequest.ActorId = PreferenceHelper.getLoginDetails(requireContext())?.UserList!![0].UserId.toString()
+        wishPointRequest.ActorId =
+            PreferenceHelper.getLoginDetails(requireContext())?.UserList!![0].UserId.toString()
         wishPointRequest.ActionType = "1"
         wishPointRequest.LocationId = locationAttributeID.toString()
         viewModel.wishPointsLiveData(wishPointRequest)
@@ -179,15 +202,15 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
     }
 
 
-   /* override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser) {
-            try {
-                GetWishePoint((activity as MyActivity).filterID)
-            } catch (e: Exception) {
-            }
-        }
-    }*/
+    /* override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+         super.setUserVisibleHint(isVisibleToUser)
+         if (isVisibleToUser) {
+             try {
+                 GetWishePoint((activity as MyActivity).filterID)
+             } catch (e: Exception) {
+             }
+         }
+     }*/
 
     fun FilterDislplay() {
 
@@ -209,56 +232,55 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
 
         LoadingDialogue.showDialog(requireContext())
         val transactionHistoryRequest = TransactionHistoryRequest()
-        transactionHistoryRequest.ActorId =  PreferenceHelper.getLoginDetails(requireContext())?.UserList!![0].UserId.toString()
+        transactionHistoryRequest.ActorId = PreferenceHelper.getLoginDetails(requireContext())?.UserList!![0].UserId.toString()
         transactionHistoryRequest.MerchantId = PreferenceHelper.getDashboardDetails(requireContext())?.lstCustomerFeedBackJson!![0].MerchantId
         transactionHistoryRequest.LocationId = FilterID
         transactionHistoryRequest.CreatedBy = -1
 
-        if(FromDate.isNotEmpty()) transactionHistoryRequest.JFromDate = FromDate
-        if(ToDate.isNotEmpty()) transactionHistoryRequest.JToDate = ToDate
+        if (FromDate.isNotEmpty()) transactionHistoryRequest.JFromDate = FromDate
+        if (ToDate.isNotEmpty()) transactionHistoryRequest.JToDate = ToDate
 
-         earningRedemptionViewModel.transactionHistoryLiveData(transactionHistoryRequest)
+        earningRedemptionViewModel.transactionHistoryLiveData(transactionHistoryRequest)
     }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         earningRedemptionViewModel.transactionHistoryListLiveData.observe(viewLifecycleOwner, Observer {
-            LoadingDialogue.dismissDialog()
-            if (it != null && !it.lstRewardTransJsonDetails.isNullOrEmpty()) {
+                LoadingDialogue.dismissDialog()
+                if (it != null && !it.lstRewardTransJsonDetails.isNullOrEmpty()) {
 
-                myearing_rv.adapter = MyEarningAdapter(it, this)
-                earning_error.visibility = View.GONE
-                myearing_rv.visibility = View.VISIBLE
+                    myearing_rv.adapter = MyEarningAdapter(it, this)
+                    earning_error.visibility = View.GONE
+                    myearing_rv.visibility = View.VISIBLE
 
-            } else {
+                } else {
 
-                earning_error.visibility = View.VISIBLE
-                myearing_rv.visibility = View.GONE
+                    earning_error.visibility = View.VISIBLE
+                    myearing_rv.visibility = View.GONE
 
 //                FromDate = ""
 //                ToDate = ""
 
-            }
-        })
+                }
+            })
 
         viewModel.wisePointLiveData.observe(viewLifecycleOwner, {
             LoadingDialogue.dismissDialog()
-            if (it != null && !it.ObjCustomerDashboardList.isNullOrEmpty()){
+            if (it != null && !it.ObjCustomerDashboardList.isNullOrEmpty()) {
 
                 var productPointBalance = 0
 
-          //      product_point.text =  it.ObjCustomerDashboardList[0].BehaviourWisePoints.toString()
+                //      product_point.text =  it.ObjCustomerDashboardList[0].BehaviourWisePoints.toString()
 
                 it.ObjCustomerDashboardList.forEachIndexed { index, objCustomerDashboards ->
                     productPointBalance += it.ObjCustomerDashboardList[index].BehaviourWisePoints!!
                 }
 
-                product_point.text = productPointBalance.toString()
+//                product_point.text = productPointBalance.toString()
 
-            }else {
-                product_point.text = "0"
+            } else {
+//                product_point.text = "0"
 
             }
 

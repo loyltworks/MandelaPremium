@@ -28,6 +28,7 @@ import com.vmb.fileSelect.FileSelector
 import com.vmb.fileSelect.FileSelectorCallBack
 import com.vmb.fileSelect.FileSelectorData
 import com.vmb.fileSelect.FileType
+import kotlinx.android.synthetic.main.activity_profile.back
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : BaseActivity(), View.OnClickListener {
@@ -52,8 +53,8 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
         //set context
         context = this
@@ -64,6 +65,10 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 //        toolbar.title = "My Profile"
 
         profile_image.setOnClickListener(this)
+
+        back.setOnClickListener{
+            onBackPressed()
+        }
 
         @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
             resources.getDrawable(R.drawable.ic_back_arrow)
@@ -83,7 +88,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
         Glide.with(this@ProfileActivity)
             .asBitmap()
             .load(PreferenceHelper.getStringValue(this,"ProfileImage"))
-            .error(R.drawable.ic_person)
+            .error(R.drawable.default_person)
             .placeholder(R.drawable.placeholder)
             .into((profile_image))
 

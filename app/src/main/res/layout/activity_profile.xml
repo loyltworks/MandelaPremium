@@ -1,292 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context=".ui.profile.ProfileActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_arrow"
+            app:tint="@color/orange" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="My Profile"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="visible"
-        android:weightSum="10">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/default_person" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:cardElevation="3dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:elevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:fontFamily="@font/poppins_bold"
+                android:text="XXXXXX"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_gravity="center"
-                    android:elevation="8dp"
-                    android:gravity="center"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
-
-                    <TextView
-                        android:id="@+id/title_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="My Profile"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/h2"
-                        android:visibility="visible" />
-
-
-                </androidx.appcompat.widget.Toolbar>
-
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/coordinator_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appbar"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/mobileNumber"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                android:fontFamily="@font/poppins_regular"
+                android:text="XXXXXX"
+                android:textColor="@color/white"
+                android:textSize="12dp" />
 
 
-                <LinearLayout
-                    android:id="@+id/linear_scroolFlags"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="vertical"
-                    app:layout_scrollFlags="scroll">
-
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="4"
-                        android:background="@color/colorPrimary">
-
-                        <!-- user profile details-->
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="210dp"
-                            android:background="@drawable/repeat_grid1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="210dp" />
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="12dp"
-                                app:cardBackgroundColor="#DF181F2B">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:weightSum="10">
-
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="0dp"
-                                        android:layout_gravity="center"
-                                        android:layout_weight="6"
-                                        android:gravity="center"
-                                        android:orientation="horizontal">
-
-
-                                        <de.hdodenhof.circleimageview.CircleImageView
-                                            android:id="@+id/profile_image"
-                                            android:layout_width="90dp"
-                                            android:layout_height="90dp"
-                                            android:layout_marginEnd="5dp"
-                                            android:src="@drawable/ic_person"
-                                            app:civ_border_color="@color/white"
-                                            app:civ_border_width="4dp" />
-
-
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="10dp"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:id="@+id/user_name"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text=""
-                                                android:textColor="@android:color/white"
-                                                android:textSize="16sp"
-                                                android:textStyle="bold" />
-
-                                            <TextView
-                                                android:id="@+id/mobileNumber"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text=""
-                                                android:textColor="@android:color/white"
-                                                android:textSize="14sp" />
-
-
-                                        </LinearLayout>
-
-
-                                    </LinearLayout>
-
-                                    <View
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0.50dp"
-                                        android:layout_marginStart="7dp"
-                                        android:layout_marginEnd="7dp"
-                                        android:background="#919191" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="4"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Total Reward"
-                                            android:textColor="@android:color/white"
-                                            android:textSize="14sp" />
-
-                                        <TextView
-                                            android:id="@+id/points"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:textColor="@color/textYello"
-                                            android:textSize="16sp"
-                                            android:textStyle="bold" />
-
-
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-
-                            </androidx.cardview.widget.CardView>
-
-
-                        </RelativeLayout>
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/Tab_linear_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/light_grey"
-                    android:elevation="5dp"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tablayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="11dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="11dp"
-                        android:background="@drawable/oval_shape"
-                        app:tabBackground="@drawable/tab_selector"
-                        app:tabIndicator="@drawable/shape_tab_indicator"
-                        app:tabIndicatorHeight="0dp"
-                        app:tabSelectedTextColor="@color/textYello"
-                        app:tabTextAppearance="@style/MyCustomTabTextAppearance"
-                        app:tabTextColor="@color/textLightWhite">
-
-                        <com.google.android.material.tabs.TabItem
-                            android:id="@+id/general_info_tab"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="General Information"
-                            android:textAlignment="center" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:id="@+id/bank_detail_tab"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Vehicle Informatioin" />
-
-
-                    </com.google.android.material.tabs.TabLayout>
-
-
-                </LinearLayout>
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
-            </RelativeLayout>
-
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </LinearLayout>
 
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/curve_bg"
+        android:orientation="horizontal">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Total Reward"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/points" />
+
+            <TextView
+                android:id="@+id/points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="XXXXXX"
+                android:textColor="@color/orange"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/Tab_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="11dp"
+            android:background="@drawable/yellow_stroke"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabIndicatorHeight="0dp"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextAppearance="@style/MyCustomTabTextAppearance"
+            app:tabTextColor="@color/black"
+            app:tabRippleColor="@null">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/general_info_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="General Information"
+                android:textAlignment="center" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/bank_detail_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vehicle Informatioin" />
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+</LinearLayout>

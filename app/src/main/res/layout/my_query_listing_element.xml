@@ -1,287 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/curve_bg"
+    android:backgroundTint="@color/light_grey1"
     android:orientation="vertical">
 
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_weight="10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/row_query_ref_no"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="5"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center_vertical"
+            android:text="xxxxx"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/row_query_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_vertical"
+                android:text="xxxx"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/row_query_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="11dp"
+                android:layout_toEndOf="@+id/row_query_date"
+                android:gravity="center_vertical"
+                android:text="10:40 am"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/colorPrimary"
-        app:cardUseCompatPadding="true">
+        android:layout_marginBottom="10dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/row_query_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center_vertical"
+            android:text="xxxx"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="10dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/row_query"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:layout_weight="10"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/row_query_ref_no"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="5"
-                        android:gravity="center_vertical"
-                        android:text="xxxxx"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
-
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="5"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/row_query_date"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:gravity="center_vertical"
-                            android:text="xxxx"
-                            android:textColor="@color/textLightWhite"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/row_query_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="11dp"
-                            android:layout_toEndOf="@+id/row_query_date"
-                            android:gravity="center_vertical"
-                            android:text="10:40 am"
-                            android:textColor="@color/white"
-                            android:textSize="14sp"
-                            android:visibility="gone" />
-
-                    </RelativeLayout>
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/row_query_text"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="xxxx"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/status_icon"
-                            android:layout_width="15dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:src="@drawable/ic_mask_group_9" />
-
-                        <TextView
-                            android:id="@+id/row_query_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_vertical"
-                            android:gravity="center_vertical"
-                            android:text="xxxxx"
-                            android:textColor="@color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_yes_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+            <ImageView
+                android:id="@+id/status_icon"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                app:cardBackgroundColor="@color/lightBlack"
-                app:cardCornerRadius="6dp">
+                android:src="@drawable/ic_mask_group_9" />
 
-
-                <!-- Star row -->
-
-                <RelativeLayout
-                    android:id="@+id/star_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="end"
-                    android:layout_weight="6"
-                    android:clickable="false"
-                    android:gravity="end"
-                    android:visibility="visible">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="visible"
-                        android:weightSum="10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentStart="true"
-                            android:gravity="center_vertical"
-                            android:paddingStart="15dp"
-                            android:text="Edit Review"
-                            android:textColor="@color/textYello"
-                            android:textSize="16sp" />
-
-
-                        <RatingBar
-                            android:id="@+id/rating_bar"
-                            style="@style/RatingBar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_gravity="end"
-                            android:clickable="false"
-                            android:elevation="5dp"
-                            android:focusableInTouchMode="false"
-                            android:numStars="5"
-                            android:paddingTop="5dp"
-                            android:progressTint="@color/textYello"
-                            android:scaleX="0.7"
-                            android:scaleY="0.7"
-                            android:stepSize="1"
-                            android:theme="@style/RatingBar" />
-
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:id="@+id/empty_linear"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="80dp"
-                        android:clickable="false"
-                        android:orientation="vertical">
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <!-- for new comment view-->
-                <LinearLayout
-                    android:id="@+id/row_for_new_comment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:gravity="center_vertical"
-                        android:paddingStart="15dp"
-                        android:text="Was it helpful ?"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-
-
-                    <RelativeLayout
-                        android:id="@+id/feedback_no"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/yello_border"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:text="No"
-                            android:textColor="@color/white" />
-
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
-                        android:id="@+id/feedback_yes"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/gradiant_button"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:text="Yes"
-                            android:textColor="@color/lightBlack" />
-
-
-                    </RelativeLayout>
-
-
-                </LinearLayout>
-
-
-            </androidx.cardview.widget.CardView>
-
+            <TextView
+                android:id="@+id/row_query_status"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_vertical"
+                android:text="xxxxx"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-
-    </androidx.cardview.widget.CardView>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.50dp"
-        android:background="#9EDADADA" />
+    </LinearLayout>
 
 
 </LinearLayout>

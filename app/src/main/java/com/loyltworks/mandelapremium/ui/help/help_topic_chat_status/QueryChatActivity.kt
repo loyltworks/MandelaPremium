@@ -24,6 +24,7 @@ import com.vmb.fileSelect.FileSelectorCallBack
 import com.vmb.fileSelect.FileSelectorData
 import kotlinx.android.synthetic.main.activity_my_query.*
 import kotlinx.android.synthetic.main.activity_query_chat.*
+import kotlinx.android.synthetic.main.activity_query_chat.back
 
 
 class QueryChatActivity  : BaseActivity(), View.OnClickListener, QueryChatAdapter.ChatImageDisplay  {
@@ -97,18 +98,8 @@ class QueryChatActivity  : BaseActivity(), View.OnClickListener, QueryChatAdapte
         viewModel = ViewModelProvider(this).get(HelpViewModel::class.java)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_query_chat)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
         //set context
         context = this
-
-        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        //supportActionBar!!.setDisplayShowHomeEnabled(true)
-
-        @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
-            resources.getDrawable(R.drawable.ic_back_arrow)
-        //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
         val intent = this.intent
         val bundle = intent.extras
@@ -141,6 +132,7 @@ class QueryChatActivity  : BaseActivity(), View.OnClickListener, QueryChatAdapte
 
         imageAdd.setOnClickListener(this)
         send_query_btn.setOnClickListener(this)
+        back.setOnClickListener(this)
 
         closeImage.setOnClickListener {
             ChatImageOpen.visibility = View.GONE
@@ -179,6 +171,11 @@ class QueryChatActivity  : BaseActivity(), View.OnClickListener, QueryChatAdapte
         if(BlockMultipleClick.click()) return
 
         when (v?.id) {
+
+            R.id.back ->{
+                onBackPressed()
+            }
+
             R.id.imageAdd ->
                 // Browse Image or File
                 FileSelector.open(this, object : FileSelectorCallBack {

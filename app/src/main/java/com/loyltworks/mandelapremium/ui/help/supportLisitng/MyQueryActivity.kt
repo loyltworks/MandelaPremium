@@ -3,9 +3,7 @@ package com.loyltworks.mandelapremium.ui.help.supportLisitng
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.model.GenderSpinner
@@ -20,17 +18,13 @@ import com.loyltworks.mandelapremium.ui.help.adapter.MyQueryAdapter
 import com.loyltworks.mandelapremium.ui.help.feedback.FeedbackActivity
 import com.loyltworks.mandelapremium.ui.help.help_topic_chat_status.QueryChatActivity
 import com.loyltworks.mandelapremium.ui.help.newTicket.NewTicketActivity
-import com.loyltworks.mandelapremium.utils.AppController
-import com.loyltworks.mandelapremium.utils.DatePickerBox
 import com.loyltworks.mandelapremium.utils.LastItemMarginItemDecoration
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import kotlinx.android.synthetic.main.activity_my_query.add_query
+import kotlinx.android.synthetic.main.activity_my_query.back
 import kotlinx.android.synthetic.main.activity_my_query.myQuery_rv
 import kotlinx.android.synthetic.main.activity_my_query.query_error_hint
-import kotlinx.android.synthetic.main.activity_my_query.back
-
-import kotlinx.android.synthetic.main.fragment_promotion_tab1.filterBtn
 
 class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
 

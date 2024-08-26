@@ -32,8 +32,8 @@ class OfferPromotionDetailsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_offer_promotion_details)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
         if (intent != null)
             offersPromotions = intent.getSerializableExtra("PromotionDetails") as LstPromotionList
@@ -46,14 +46,14 @@ class OfferPromotionDetailsActivity : BaseActivity() {
         //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         //supportActionBar!!.setDisplayShowHomeEnabled(true)
 
-        @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
-            resources.getDrawable(R.drawable.ic_back_arrow)
+//        @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
+//            resources.getDrawable(R.drawable.ic_back_arrow)
         //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
 //        Log.d("fjkjdkas", " :"+ offersPromotions.PromotionName.toString())
 
         promotion_name.text = offersPromotions.PromotionName
-        promotion_claim_id.text = offersPromotions.Claim
+        //promotion_claim_id.text = offersPromotions.Claim
 
 
         promotion_valid_till.text = offersPromotions.ValidFrom!!.split(" ")[0] + " to " + offersPromotions.ValidTo!!.split(" ")[0]
@@ -71,6 +71,11 @@ class OfferPromotionDetailsActivity : BaseActivity() {
                     ""
                 )
             ).into(promotion_image)
+
+
+        back.setOnClickListener{
+            onBackPressed()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

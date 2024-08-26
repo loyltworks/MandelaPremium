@@ -2,23 +2,18 @@ package com.loyltworks.mandelapremium.ui.MyActivity.fragment
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.AdapterView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.model.*
-import com.loyltworks.mandelapremium.ui.MyActivity.MyActivity
 import com.loyltworks.mandelapremium.ui.MyActivity.MyActivityViewModel
 import com.loyltworks.mandelapremium.ui.MyActivity.adapter.MyEarningAdapter
-import com.loyltworks.mandelapremium.ui.OfferAndPromotion.adapter.offerAndPromotionAdapter
 import com.loyltworks.mandelapremium.utils.AppController
 import com.loyltworks.mandelapremium.utils.DatePickerBox
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
@@ -27,11 +22,8 @@ import kotlinx.android.synthetic.main.activity_my.*
 import kotlinx.android.synthetic.main.fragment_my_earning.*
 import kotlinx.android.synthetic.main.fragment_my_earning.view.*
 import kotlinx.android.synthetic.main.fragment_my_redemption.*
-import kotlinx.android.synthetic.main.fragment_promotion_tab1.filterDisplay
-import kotlinx.android.synthetic.main.fragment_promotion_tab1.promotion_rv
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
@@ -212,17 +204,17 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
          }
      }*/
 
-    fun FilterDislplay() {
-
-        if (filterDisplay.visibility == View.VISIBLE) {
-            filterDisplay.animation = AnimationUtils.loadAnimation(context, R.anim.slide_out_up)
-            filterDisplay.visibility = View.GONE
-        } else if (filterDisplay.visibility == View.GONE) {
-            filterDisplay.animation = AnimationUtils.loadAnimation(context, R.anim.slide_in_down)
-            filterDisplay.visibility = View.VISIBLE
-        }
-
-    }
+//    fun FilterDislplay() {
+//
+//        if (filterDisplay.visibility == View.VISIBLE) {
+//            filterDisplay.animation = AnimationUtils.loadAnimation(context, R.anim.slide_out_up)
+//            filterDisplay.visibility = View.GONE
+//        } else if (filterDisplay.visibility == View.GONE) {
+//            filterDisplay.animation = AnimationUtils.loadAnimation(context, R.anim.slide_in_down)
+//            filterDisplay.visibility = View.VISIBLE
+//        }
+//
+//    }
 
     override fun onItemClicked(offersPromotions: LstPromotionList?) {
     }

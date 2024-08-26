@@ -54,8 +54,8 @@ class BuyGiftActivity : BaseActivity(), BuyGiftAdapter.OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buy_gift)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
         //set context
         context = this
@@ -78,6 +78,10 @@ class BuyGiftActivity : BaseActivity(), BuyGiftAdapter.OnItemClickListener {
                 buy_gift_rv.adapter = BuyGiftAdapter(it.lstVoucherDetails, this)
             }
         })
+
+        back.setOnClickListener{
+            onBackPressed()
+        }
 
 
 

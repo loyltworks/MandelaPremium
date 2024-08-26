@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
     <TextView
         android:id="@+id/error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="No Data Found ! "
         android:textColor="@color/black"
         android:textSize="14dp"
-        android:gravity="center"
-        android:fontFamily="@font/poppins_bold"
-        android:visibility="gone"
-        android:text="No Data Found ! "/>
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vehicle_mgr_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:nestedScrollingEnabled="true"
+        android:orientation="vertical"
+        android:paddingTop="7.5dp"
+        android:paddingBottom="7.5dp"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"/>
-
+        tools:listitem="@layout/row_vehicle_manager_layout" />
 
 
 </LinearLayout>

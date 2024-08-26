@@ -5,29 +5,16 @@
     android:layout_height="match_parent">
 
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/noInternetAnimation"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_centerInParent="true"
-        app:cardBackgroundColor="@color/colorPrimary"
-        app:cardElevation="8dp"
-        app:cardCornerRadius="10dp">
-
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/noInternetAnimation"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="2dp"
-            android:layout_gravity="center"
-            app:lottie_fileName="looti_round.json"
-            app:lottie_loop="true"
-            android:scaleType="centerCrop"
-            app:lottie_autoPlay="true" />
-
-    </androidx.cardview.widget.CardView>
-
+        android:layout_marginEnd="2dp"
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="looti_round.json"
+        app:lottie_loop="true" />
 
 
 </RelativeLayout>

@@ -74,8 +74,8 @@ class QueryChatAdapter(
         val lstQueryDetail = queryListingResponse!!.objQueryResponseJsonList!![position]
         holder.row_query_sender?.text = lstQueryDetail.RepliedBy.toString()
         holder.row_query_time?.text = lstQueryDetail.JCreatedDate.toString()
-        if (!lstQueryDetail.QueryResponseInfo.isNullOrEmpty() || !lstQueryDetail.ImageUrl?.isNullOrEmpty()!!) {
-            if (!lstQueryDetail.ImageUrl?.isNullOrEmpty()!!) {
+        if (!lstQueryDetail.QueryResponseInfo.isNullOrEmpty() || lstQueryDetail.ImageUrl != null) {
+            if (lstQueryDetail.ImageUrl != null) {
 
                 val extension =
                     lstQueryDetail.ImageUrl.toString().substringAfterLast(".").toLowerCase()

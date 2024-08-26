@@ -25,19 +25,11 @@ class OfferAndPromotionActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_offer_and_promotion)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
 
         //set context
         context = this
 
-        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        //supportActionBar!!.setDisplayShowHomeEnabled(true)
 
-        @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
-            resources.getDrawable(R.drawable.ic_back_arrow)
-        //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
         var mFragment: Fragment? = null
         mFragment = OfferAndPromotionsFragment()
@@ -46,16 +38,14 @@ class OfferAndPromotionActivity: BaseActivity() {
             .replace(R.id.frameLayout, mFragment).commit()
 
 
-
-
-        // Calling offer promotion fragment method
-
-      /*  filter_date_display.setOnClickListener {
-            var fragment = supportFragmentManager.findFragmentById(R.id.frameLayout) as OfferAndPromotionsFragment
-            fragment.ChooseFragmentToShowingFilterView()
-
+        back.setOnClickListener{
+            onBackPressed()
         }
-*/
+
+
+
+
+
 
     }
 

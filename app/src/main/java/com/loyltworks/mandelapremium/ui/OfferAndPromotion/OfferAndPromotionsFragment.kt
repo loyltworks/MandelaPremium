@@ -87,44 +87,44 @@ class OfferAndPromotionsFragment : Fragment() {
     }
 
 
-    fun ChooseFragmentToShowingFilterView() {
-
-        /*
-            val promotionTab1Fragment: PromotionTab1Fragment? = fragmentManager?.findFragmentByTag("PromotionTab1Fragment") as PromotionTab1Fragment?
-                if (promotionTab1Fragment != null && promotionTab1Fragment.isVisible) {
-                         val fragment: PromotionTab1Fragment = pager.adapter!!.instantiateItem(pager, pager.currentItem) as PromotionTab1Fragment
-                         fragment.FilterDislplay()}
-                     */
-
-
-        val tabPosition = tablayout.selectedTabPosition
-
-        when (tabPosition) {
-            0 -> {
-                val fragment: PromotionTab1Fragment = pager.adapter!!.instantiateItem(
-                    pager,
-                    pager.currentItem
-                ) as PromotionTab1Fragment
-                fragment.FilterDislplay()
-            }
-            1 -> {
-                val fragment: PromotionTab2Fragment = pager.adapter!!.instantiateItem(
-                    pager,
-                    pager.currentItem
-                ) as PromotionTab2Fragment
-                fragment.FilterDislplay()
-            }
-            2 -> {
-                val fragment: PromotionTab3Fragment = pager.adapter!!.instantiateItem(
-                    pager,
-                    pager.currentItem
-                ) as PromotionTab3Fragment
-                fragment.FilterDislplay()
-            }
-        }
-
-
-    }
+//    fun ChooseFragmentToShowingFilterView() {
+//
+//        /*
+//            val promotionTab1Fragment: PromotionTab1Fragment? = fragmentManager?.findFragmentByTag("PromotionTab1Fragment") as PromotionTab1Fragment?
+//                if (promotionTab1Fragment != null && promotionTab1Fragment.isVisible) {
+//                         val fragment: PromotionTab1Fragment = pager.adapter!!.instantiateItem(pager, pager.currentItem) as PromotionTab1Fragment
+//                         fragment.FilterDislplay()}
+//                     */
+//
+//
+//        val tabPosition = tablayout.selectedTabPosition
+//
+//        when (tabPosition) {
+//            0 -> {
+//                val fragment: PromotionTab1Fragment = pager.adapter!!.instantiateItem(
+//                    pager,
+//                    pager.currentItem
+//                ) as PromotionTab1Fragment
+//                fragment.FilterDislplay()
+//            }
+//            1 -> {
+//                val fragment: PromotionTab2Fragment = pager.adapter!!.instantiateItem(
+//                    pager,
+//                    pager.currentItem
+//                ) as PromotionTab2Fragment
+//                fragment.FilterDislplay()
+//            }
+//            2 -> {
+//                val fragment: PromotionTab3Fragment = pager.adapter!!.instantiateItem(
+//                    pager,
+//                    pager.currentItem
+//                ) as PromotionTab3Fragment
+//                fragment.FilterDislplay()
+//            }
+//        }
+//
+//
+//    }
 
 
 }

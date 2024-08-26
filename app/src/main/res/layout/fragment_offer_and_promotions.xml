@@ -4,36 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".ui.OfferAndPromotion.OfferAndPromotionsFragment"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.OfferAndPromotion.OfferAndPromotionsFragment">
 
 
     <LinearLayout
         android:id="@+id/Tab_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_grey"
-        android:elevation="5dp"
         android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="11dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="11dp"
-            android:background="@drawable/oval_shape"
+            android:background="@drawable/yellow_stroke"
             app:tabBackground="@drawable/tab_selector"
-            app:tabIndicator="@drawable/shape_tab_indicator"
             app:tabIndicatorHeight="0dp"
-            app:tabSelectedTextColor="@color/textYello"
+            app:tabRippleColor="@null"
+            app:tabSelectedTextColor="@color/black"
             app:tabTextAppearance="@style/MyCustomTabTextAppearance"
-            app:tabTextColor="@color/textLightWhite">
+            app:tabTextColor="@color/black">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/current_tab"
@@ -57,99 +53,10 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-<!--
-
-        &lt;!&ndash;  filter view  &ndash;&gt;
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/filterDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:cardBackgroundColor="@color/colorPrimary">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <RelativeLayout
-                    android:id="@+id/select_status_relative"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5">
-
-                    <TextView
-                        android:id="@+id/select_status_textview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:drawableEnd="@drawable/ic_arrow_drop_down"
-                        android:drawableTint="@color/white"
-                        android:hint="Select product     "
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/textLightWhite"
-                        android:textSize="17sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@id/select_status_textview"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:background="#CFCFCF" />
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="5">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/filterBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        app:cardCornerRadius="10dp">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/gradiant_button"
-                            android:gravity="center"
-                            android:paddingStart="8dp"
-                            android:paddingTop="7dp"
-                            android:paddingEnd="8dp"
-                            android:paddingBottom="7dp"
-                            android:text="Filter"
-                            android:textColor="@color/black"
-                            android:textSize="14sp" />
-
-
-                    </androidx.cardview.widget.CardView>
-
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
--->
-
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 

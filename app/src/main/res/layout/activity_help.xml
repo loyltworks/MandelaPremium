@@ -54,8 +54,8 @@
         android:padding="15dp">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/query" />
 
         <LinearLayout
@@ -71,7 +71,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Any Queries ?"
                 android:textColor="@color/black"
-                android:textSize="12dp" />
+                android:textSize="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Raise a Query"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="12dp" />
 
 
         </LinearLayout>
@@ -100,8 +100,8 @@
         android:padding="15dp">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/customer_service" />
 
         <TextView
@@ -112,7 +112,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Customer Service"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="12dp" />
 
 
     </LinearLayout>

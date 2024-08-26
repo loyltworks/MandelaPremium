@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context=".ui.OfferAndPromotion.OfferPromotionDetailsActivity">
 
 
@@ -12,252 +11,151 @@
         android:id="@+id/promotion_details_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:visibility="visible">
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/linearLayout2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:cardElevation="3dp"
-            app:cardBackgroundColor="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:elevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_gravity="center"
-                    android:elevation="8dp"
-                    android:gravity="center"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
-
-                    <TextView
-                        android:id="@+id/title_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="Promotions"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/h2"
-                        android:visibility="visible" />
-
-                </androidx.appcompat.widget.Toolbar>
-
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            app:cardBackgroundColor="@color/lightBlack"
-            android:layout_marginTop="13dp"
-            app:cardCornerRadius="3dp">
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/promotion_image"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:scaleType="fitCenter"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:src="@drawable/mandela_product_banner" />
+                android:id="@+id/back"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:src="@drawable/ic_back_arrow"
+                app:tint="@color/orange" />
 
-        </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Promotions"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+        </LinearLayout>
 
 
-        <androidx.cardview.widget.CardView
+        <ImageView
+            android:id="@+id/promotion_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/mandela_product_banner" />
+
+        <TextView
+            android:id="@+id/promotion_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="XXXXXX"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/calendar"
+                app:tint="@color/orange" />
+
+            <TextView
+                android:id="@+id/promotion_valid_till"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="XXXXXX"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="10dp"
-            app:cardBackgroundColor="@color/lightBlack"
-            app:cardCornerRadius="4dp">
+            android:layout_margin="20dp"
+            android:background="@drawable/curve_bg"
+            android:backgroundTint="@color/light_grey1"
+            android:orientation="vertical"
+            android:paddingStart="15dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="25dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="15dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp">
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Offer Details"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Promotion name"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/promotion_offer_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="XXXXXX"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
 
-                <TextView
-                    android:id="@+id/promotion_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-"
-                    android:textColor="@color/textYello"
-                    android:textSize="14sp" />
+        </LinearLayout>
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Claim Code"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
-
-
-                <TextView
-                    android:id="@+id/promotion_claim_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-"
-                    android:textColor="@color/textYello"
-                    android:textSize="14sp" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Validity"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
-
-
-                <TextView
-                    android:id="@+id/promotion_valid_till"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-"
-                    android:textColor="@color/textYello"
-                    android:textSize="14sp" />
-
-
-            </LinearLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="10dp"
-            app:cardBackgroundColor="@color/lightBlack"
-            app:cardCornerRadius="4dp">
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/curve_bg"
+            android:backgroundTint="@color/light_grey1"
+            android:orientation="vertical"
+            android:paddingStart="15dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="25dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="15dp"
-                android:paddingTop="15dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="25dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Offer Details"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Redeemable Outlet"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#9E555555" />
-
-
-                <TextView
-                    android:id="@+id/promotion_offer_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="-"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
-
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="10dp"
-            app:cardBackgroundColor="@color/lightBlack"
-            app:cardCornerRadius="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/redeemable_outlet"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="15dp"
-                android:paddingTop="15dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="25dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Redeemable Outlet"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="XXXXXX"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#9E555555" />
-
-
-                <TextView
-                    android:id="@+id/redeemable_outlet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="-"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
-
-
-            </LinearLayout>
-
-
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
 
     </LinearLayout>

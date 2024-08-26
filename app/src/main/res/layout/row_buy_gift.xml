@@ -3,107 +3,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp">
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/curve_bg"
+    android:backgroundTint="@color/light_grey1"
+    android:orientation="vertical">
 
-
-
-    <androidx.cardview.widget.CardView
+    <ImageView
+        android:id="@+id/gift_card_img"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        app:cardCornerRadius="12dp">
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/curve_bg"
+        android:backgroundTint="@color/light_grey1" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/gift_name"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="10">
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="7.5">
-
-            <ImageView
-                android:id="@+id/gift_card_img"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                android:src="@drawable/temp_offer_promotion" />
-
-        </RelativeLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.5"
-            android:background="@color/lightBlack"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/gift_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Apparel Gift Card"
-                android:textColor="@color/white"
-                android:textSize="21sp"
-                android:gravity="center" />
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
+        android:text="XXXXXX"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginEnd="11dp"
-        android:background="@color/lightBlack">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:backgroundTint="#A9505050"
-            android:background="@drawable/dash_line"
-            android:layerType="software" />
-
-    </RelativeLayout>
-
-
-
-
-    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:cardCornerRadius="12dp"
-        app:cardBackgroundColor="@color/lightBlack">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/dotted_bg_yellow"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
 
         <TextView
             android:id="@+id/buy_gift_btn"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/gradiant_button"
-            android:layout_gravity="center"
+            android:backgroundTint="@color/orange"
+            android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:text="Buy &amp; Gift"
-            android:textColor="@color/btn_text_color"
-            android:textSize="16sp"/>
+            android:textColor="@color/black"
+            android:textSize="12dp" />
 
-    </androidx.cardview.widget.CardView>
 
+    </RelativeLayout>
 
 
 </LinearLayout>

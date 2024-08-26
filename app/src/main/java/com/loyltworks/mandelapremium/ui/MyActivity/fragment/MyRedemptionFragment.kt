@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.fragment_my_earning.view.toDate_tv
 import kotlinx.android.synthetic.main.fragment_my_redemption.*
 import kotlinx.android.synthetic.main.fragment_my_redemption.view.*
 import kotlinx.android.synthetic.main.fragment_promotion_tab1.*
-import kotlinx.android.synthetic.main.fragment_promotion_tab1.filterDisplay
+//import kotlinx.android.synthetic.main.fragment_promotion_tab1.filterDisplay
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -221,17 +221,17 @@ class MyRedemptionFragment : Fragment(), MyRedemptionAdapter.OnItemClickListener
 
     }
 
-    fun FilterDislplay() {
-
-        if (filterDisplay.visibility == View.VISIBLE) {
-            filterDisplay.animation = AnimationUtils.loadAnimation(context, R.anim.slide_out_up)
-            filterDisplay.visibility = View.GONE
-        } else if (filterDisplay.visibility == View.GONE) {
-            filterDisplay.animation = AnimationUtils.loadAnimation(context, R.anim.slide_in_down)
-            filterDisplay.visibility = View.VISIBLE
-        }
-
-    }
+//    fun FilterDislplay() {
+//
+//        if (filterDisplay.visibility == View.VISIBLE) {
+//            filterDisplay.animation = AnimationUtils.loadAnimation(context, R.anim.slide_out_up)
+//            filterDisplay.visibility = View.GONE
+//        } else if (filterDisplay.visibility == View.GONE) {
+//            filterDisplay.animation = AnimationUtils.loadAnimation(context, R.anim.slide_in_down)
+//            filterDisplay.visibility = View.VISIBLE
+//        }
+//
+//    }
 
     override fun onItemClicked(offersPromotions: LstPromotionList?) {
     }

@@ -1,5 +1,6 @@
 package com.loyltworks.mandelapremium.ui.BuyAndGift
 
+import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
@@ -10,6 +11,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.View.OnFocusChangeListener
+import android.view.animation.AnimationUtils
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -35,6 +37,7 @@ import com.loyltworks.mandelapremium.utils.dialogBox.DialogueCallBack
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import kotlinx.android.synthetic.main.activity_buy_gift.*
 import kotlinx.android.synthetic.main.activity_buy_gift_details.*
+import kotlinx.android.synthetic.main.activity_buy_gift_details.back
 import kotlinx.android.synthetic.main.activity_my_voucher_details.*
 import kotlinx.android.synthetic.main.activity_my_voucher_details.offer_details_description_view
 import kotlinx.android.synthetic.main.activity_my_voucher_details.offer_detils
@@ -88,6 +91,9 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
                 if (it.ReturnMessage!!.split(":")[0].toInt() > 0) {
                     merchantID = it.ReturnMessage!!.split(":")[1].toInt()
                     voucher_issue_success_view.visibility = View.VISIBLE
+                    voucher_issue_success_view.animation = AnimationUtils.loadAnimation(this,R.anim.slide_up)
+                    darkBackground.visibility = View.VISIBLE
+                    darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_in)
                 } else {
 
                     Toast.makeText(context, "Voucher issued Failed", Toast.LENGTH_SHORT).show()
@@ -101,6 +107,11 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
         // for this observe call when user click on Voucher issue successfully click on YES
         giftCardsViewModel.getGiftCardListLiveData.observe(this, Observer {
+
+            voucher_issue_success_view.visibility = View.GONE
+            voucher_issue_success_view.animation = AnimationUtils.loadAnimation(this,R.anim.slide_down)
+            darkBackground.visibility = View.GONE
+            darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_out)
 
             if (it != null && !it.lstMerchantinfo.isNullOrEmpty()) {
 
@@ -132,8 +143,10 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buy_gift_details)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
+
+        host.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
 
         //set context
         context = this
@@ -150,6 +163,9 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
 
         voucher_issue_success_view.visibility = View.GONE
+        darkBackground.visibility = View.GONE
+
+
 
         SetUpUi()
 
@@ -163,6 +179,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
         no_gift_voucher.setOnClickListener(this)
         yes_gift_voucher.setOnClickListener(this)
         gift_now_amout_point.setOnClickListener(this)
+        back.setOnClickListener(this)
 
         buyGiftViewModel = ViewModelProvider(this).get(BuyGiftViewModel::class.java)
         giftCardsViewModel = ViewModelProvider(this).get(GiftCardsViewModel::class.java)
@@ -297,7 +314,6 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
 
     override fun onClick(v: View?) {
-        if (BlockMultipleClick.click()) return
 
         when (v!!.id) {
             R.id.offer_detils -> {
@@ -408,6 +424,11 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
             R.id.no_gift_voucher -> {
 
+                voucher_issue_success_view.visibility = View.GONE
+                voucher_issue_success_view.animation = AnimationUtils.loadAnimation(this,R.anim.slide_down)
+                darkBackground.visibility = View.GONE
+                darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_out)
+
                 AlertMessageDialog.showPopUpDialog(this,
                     "This E-gift card added to your account.\n" +
                             "For more info check in the Gift Card section. ",
@@ -436,6 +457,10 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
                 )
 
 
+            }
+
+            R.id.back -> {
+                onBackPressed()
             }
 
 

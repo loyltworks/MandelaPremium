@@ -3,134 +3,153 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:id="@+id/giftCard"
-    android:visibility="visible">
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/colorPrimary"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="6dp"
-        app:cardCornerRadius="8dp">
-
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/curve_bg"
+    android:backgroundTint="@color/light_grey1"
+    android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
-        android:weightSum="10">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="7">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/card_image"
                 android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/curve_bg"
+                android:backgroundTint="@color/light_grey1"
+                android:src="@drawable/dummy_image"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/gift_card_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center_vertical"
+                android:paddingStart="5dp"
+                android:text="XXXXXX"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+
+            <LinearLayout
+                android:id="@+id/rewards_textview_layout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                android:src="@drawable/temp_offer_promotion" />
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/points"
+                    app:tint="@color/orange" />
+
+                <TextView
+                    android:id="@+id/rewards_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="XXXXXX"
+                    android:textColor="@color/black"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/calendar"
+                    app:tint="@color/orange" />
+
+                <TextView
+                    android:id="@+id/valid_till_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="XXXXXX"
+                    android:textColor="@color/black"
+                    android:textSize="12dp" />
+            </LinearLayout>
 
 
             <TextView
-                android:id="@+id/rewards_textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="#BCFFFFFF"
-                android:paddingStart="15dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text=""
-                android:textColor="@color/black" />
+                android:id="@+id/card_number"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center_vertical"
+                android:paddingStart="5dp"
+                android:text="XXXXXX"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
 
         </RelativeLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:background="@color/lightBlack"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-
-                <TextView
-                    android:id="@+id/gift_card_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:text="Birthday Gift card"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:gravity="end"
-                    android:text="Active"
-                    android:textColor="@color/textGreen" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="15dp"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-
-                <TextView
-                    android:id="@+id/valid_till_date"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:text="Valid Till"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:id="@+id/card_number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:gravity="end"
-                    android:text="Card No."
-                    android:textColor="@color/white" />
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
     </LinearLayout>
 
-
-    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/status_bg"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Active"
+        android:textColor="@color/black"
+        android:textSize="12dp" />
 
 
 </RelativeLayout>

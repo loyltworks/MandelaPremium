@@ -8,37 +8,50 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.animation.AnimationUtils
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.*
-import com.loyltworks.mandelapremium.ui.BuyAndGift.adapter.BuyGiftAdapter
-import com.loyltworks.mandelapremium.ui.GiftCards.GiftCardsActivity
+import com.loyltworks.mandelapremium.model.GetCashBackRequest
+import com.loyltworks.mandelapremium.model.GetGiftCardRequest
+import com.loyltworks.mandelapremium.model.GetSaveGiftCardRequest
+import com.loyltworks.mandelapremium.model.GiftCardIssueDetails
+import com.loyltworks.mandelapremium.model.LstVoucherDetails
 import com.loyltworks.mandelapremium.ui.GiftCards.GiftCardsViewModel
-import com.loyltworks.mandelapremium.ui.GiftCards.adapter.MyVoucherAdapter
 import com.loyltworks.mandelapremium.ui.GiftCards.fragment.MyVoucher.MyVoucherDetailsActivity
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
-import com.loyltworks.mandelapremium.utils.AppController
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.AlertMessageDialog
-import com.loyltworks.mandelapremium.utils.dialogBox.DialogueCallBack
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_buy_gift.*
-import kotlinx.android.synthetic.main.activity_buy_gift_details.*
+import kotlinx.android.synthetic.main.activity_buy_gift_details.amout_gift_cards
 import kotlinx.android.synthetic.main.activity_buy_gift_details.back
-import kotlinx.android.synthetic.main.activity_my_voucher_details.*
+import kotlinx.android.synthetic.main.activity_buy_gift_details.current_balance
+import kotlinx.android.synthetic.main.activity_buy_gift_details.darkBackground
+import kotlinx.android.synthetic.main.activity_buy_gift_details.gift_card_image
+import kotlinx.android.synthetic.main.activity_buy_gift_details.gift_card_view1
+import kotlinx.android.synthetic.main.activity_buy_gift_details.gift_now11
+import kotlinx.android.synthetic.main.activity_buy_gift_details.gift_now_amout_point
+import kotlinx.android.synthetic.main.activity_buy_gift_details.giftcard_name
+import kotlinx.android.synthetic.main.activity_buy_gift_details.min_max_points
+import kotlinx.android.synthetic.main.activity_buy_gift_details.no_gift_voucher
+import kotlinx.android.synthetic.main.activity_buy_gift_details.offerDetails
+import kotlinx.android.synthetic.main.activity_buy_gift_details.point_balance_edittext
+import kotlinx.android.synthetic.main.activity_buy_gift_details.point_editext
+import kotlinx.android.synthetic.main.activity_buy_gift_details.point_payOnline_card
+import kotlinx.android.synthetic.main.activity_buy_gift_details.range
+import kotlinx.android.synthetic.main.activity_buy_gift_details.redeemable_outlet_text
+import kotlinx.android.synthetic.main.activity_buy_gift_details.step_to_reteem_voucher
+import kotlinx.android.synthetic.main.activity_buy_gift_details.terms_and_condition
+import kotlinx.android.synthetic.main.activity_buy_gift_details.voucher_issue_success_view
+import kotlinx.android.synthetic.main.activity_buy_gift_details.yes_gift_voucher
+import kotlinx.android.synthetic.main.activity_my_voucher_details.host
 import kotlinx.android.synthetic.main.activity_my_voucher_details.offer_details_description_view
 import kotlinx.android.synthetic.main.activity_my_voucher_details.offer_detils
 import kotlinx.android.synthetic.main.activity_my_voucher_details.radioGroup
@@ -48,7 +61,6 @@ import kotlinx.android.synthetic.main.activity_my_voucher_details.step_to_redeem
 import kotlinx.android.synthetic.main.activity_my_voucher_details.steps_to_redeem_the_voucher
 import kotlinx.android.synthetic.main.activity_my_voucher_details.tc_description_view
 import kotlinx.android.synthetic.main.activity_my_voucher_details.terms_and_conditions
-import kotlinx.android.synthetic.main.fragment_my_voucher.*
 
 
 class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
@@ -246,7 +258,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
         current_balance.text = PreferenceHelper.getStringValue(this, BuildConfig.OverAllPoints)
 
-        Glide.with(this).asBitmap().error(R.drawable.temp_offer_promotion)
+        Glide.with(this).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.placeholder).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + lstVoucherDetails.ImageUrl!!.replace(
                     "~",

@@ -43,7 +43,7 @@ class BuyGiftAdapter(
         holder.offer_tv.text = lstVoucherDetails.CardName
 
         try {
-            Glide.with(holder.itemView).asBitmap().error(R.drawable.temp_offer_promotion)
+            Glide.with(holder.itemView).asBitmap().error(R.drawable.dummy_image)
                 .placeholder(R.drawable.placeholder).load(
                     BuildConfig.GIFTCARD_IMAGE_BASE + lstVoucherDetails.ImageUrl!!.replace(
                         "~",

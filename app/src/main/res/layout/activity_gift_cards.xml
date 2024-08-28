@@ -5,83 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
     tools:context=".ui.GiftCards.GiftCardsActivity">
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/linearLayout2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:cardElevation="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_arrow"
+            app:tint="@color/orange" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:elevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:fontFamily="@font/poppins_medium"
+            android:text="Gift Cards"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_gravity="center"
-                android:elevation="8dp"
-                android:gravity="center"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
-
-                <TextView
-                    android:id="@+id/title_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Gift Cards"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/h2"
-                    android:visibility="visible" />
-
-
-            </androidx.appcompat.widget.Toolbar>
-
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 
     <LinearLayout
         android:id="@+id/Tab_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_grey"
         android:elevation="5dp"
         android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="11dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="11dp"
-            android:background="@drawable/oval_shape"
+            android:background="@drawable/yellow_stroke"
             app:tabBackground="@drawable/tab_selector"
-            app:tabIndicator="@drawable/shape_tab_indicator"
             app:tabIndicatorHeight="0dp"
-            app:tabSelectedTextColor="@color/textYello"
+            app:tabRippleColor="@null"
+            app:tabSelectedTextColor="@color/black"
             app:tabTextAppearance="@style/MyCustomTabTextAppearance"
-            app:tabTextColor="@color/textLightWhite">
+            app:tabTextColor="@color/black">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/current_tab"
@@ -109,7 +82,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 

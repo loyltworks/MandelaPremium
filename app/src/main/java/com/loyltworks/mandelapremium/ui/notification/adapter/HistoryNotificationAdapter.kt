@@ -24,12 +24,12 @@ class HistoryNotificationAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 //        val NReadOrNot = itemView.NReadOrNot
         val NImage = itemView.NImage
+        val NImageLayout = itemView.NImageLayout
 //        val NtitleLL = itemView.NtitleLL
         val Ntitle = itemView.Ntitle
         val Ndate = itemView.Ndate
         val Ndesc = itemView.Ndesc
 //        val NdescExpandable = itemView.NdescExpandable
-        val view = itemView.view
 //        val NReadMore = itemView.NReadMore
         val cardView = itemView.cardView
     }
@@ -51,7 +51,7 @@ class HistoryNotificationAdapter(
             .load(BuildConfig.PROMO_IMAGE_BASE + notificationHistory.ImagesURL)
             .placeholder(R.drawable.placeholder) //                .error(R.drawable.ic_default_img)
             .into(holder.NImage)
-        else holder.NImage.visibility = View.GONE
+        else holder.NImageLayout.visibility = View.GONE
 
         holder.Ntitle.text = notificationHistory.Title
         holder.Ndesc.text = notificationHistory.PushMessage

@@ -12,6 +12,7 @@ import com.loyltworks.mandelapremium.model.lstMerchantinfo
 import com.loyltworks.mandelapremium.ui.GiftCards.GiftCardsActivity
 import com.loyltworks.mandelapremium.ui.GiftCards.adapter.MyVoucherAdapter
 import com.loyltworks.mandelapremium.ui.GiftCards.fragment.MyVoucher.MyVoucherDetailsActivity
+import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import kotlinx.android.synthetic.main.fragment_gift_received.*
 import kotlinx.android.synthetic.main.fragment_my_voucher.*
@@ -37,9 +38,23 @@ class GiftReceivedFragment : Fragment(), MyVoucherAdapter.OnItemClickListener {
             Observer {
                 LoadingDialogue.dismissDialog()
                 if (it != null && !it.lstMerchantinfo.isNullOrEmpty()) {
-                    gift_received_rv.visibility = View.VISIBLE
-                    error_gift_recevied.visibility = View.GONE
-                    gift_received_rv.adapter = MyVoucherAdapter(it.lstMerchantinfo, 1, this)
+
+                    val lstMerchantinfo:MutableList<lstMerchantinfo> = mutableListOf()
+
+                    it.lstMerchantinfo.forEach{
+                        if(it.ReceiverLoyaltyId.equals(PreferenceHelper.getLoginDetails(requireContext())?.UserList!![0].UserName.toString()) && it.IsEncash == false && it.IsGifted == false){
+                            lstMerchantinfo.add(it)
+                        }
+                    }
+                    if(lstMerchantinfo.isNotEmpty()){
+                        gift_received_rv.visibility = View.VISIBLE
+                        error_gift_recevied.visibility = View.GONE
+                        gift_received_rv.adapter = MyVoucherAdapter(it.lstMerchantinfo, this)
+                    }else{
+                        gift_received_rv.visibility = View.GONE
+                        error_gift_recevied.visibility = View.VISIBLE
+                    }
+
                 }else {
                     gift_received_rv.visibility = View.GONE
                     error_gift_recevied.visibility = View.VISIBLE

@@ -38,10 +38,10 @@ class Tab2 : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.myProfileResponse.observe(viewLifecycleOwner, Observer {
-            if(it!=null && !it.GetCustomerDetailsMobileAppResult.lstVehicleJson.isNullOrEmpty()){
+            if(it!=null && !it.GetCustomerDetailsMobileAppResult?.lstVehicleJson.isNullOrEmpty()){
                 error.visibility = View.GONE
                 vehicle_mgr_rv.visibility = View.VISIBLE
-                vehicle_mgr_rv.adapter = VehicleManagerAdapter(it.GetCustomerDetailsMobileAppResult.lstVehicleJson as ArrayList<LstVehicleJson>)
+                vehicle_mgr_rv.adapter = VehicleManagerAdapter(it.GetCustomerDetailsMobileAppResult?.lstVehicleJson as ArrayList<LstVehicleJson>)
             }else{
                 error.visibility = View.VISIBLE
                 vehicle_mgr_rv.visibility = View.GONE

@@ -276,7 +276,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         })
 
 
-        viewModel.loginLiveData.observe(this, {
+        viewModel.loginLiveData.observe(this) {
 
             /**
              *  Result = 1 -> Successful
@@ -286,17 +286,14 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
              */
 
 
-
-
-
             if (it != null) {
 
                 val result: Int? = it.UserList?.get(0)?.Result
-                var Msg:String
+                var Msg: String
 
-                Log.d("jhfkdsjf",result.toString())
+                Log.d("jhfkdsjf", result.toString())
 
-                 when (result) {
+                when (result) {
                     1 -> {
 
                         // set Login successful
@@ -315,23 +312,26 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         startActivity(intent)
 
                         // login message display
-                        Msg =      "Login successful "
+                        Msg = "Login successful "
 
                     }
+
                     -1 -> {
-                        Msg =  "Invalid password"
+                        Msg = "Invalid password"
                     }
+
                     6 -> {
-                        Msg =    "Invalid username Id"
+                        Msg = "Invalid username Id"
                     }
+
                     else -> {
-                        Msg =   "Invalid Username and password"
+                        Msg = "Invalid Username and password"
                     }
                 }
 
                 // display snack bar
                 snackBar(Msg, R.color.blue)
-            }else {
+            } else {
                 snackBar("Something went wrong, please try again.", R.color.red)
 
             }
@@ -339,7 +339,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             LoadingDialogue.dismissDialog();
 
 
-        })
+        }
 
     }
 

@@ -32,7 +32,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         val packageInfo: PackageInfo =  packageManager!!.getPackageInfo(packageName, 0)
 
-        splashScreenViewModel.checkIfUpdateAvailabe(this, packageInfo.versionCode)
+        //splashScreenViewModel.checkIfUpdateAvailabe(this, packageInfo.versionCode)
 
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             when {

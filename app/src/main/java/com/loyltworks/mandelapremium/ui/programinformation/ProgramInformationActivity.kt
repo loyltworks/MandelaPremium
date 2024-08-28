@@ -23,8 +23,8 @@ class ProgramInformationActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program_information)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
         //set context
         context = this
@@ -35,7 +35,7 @@ class ProgramInformationActivity : BaseActivity() {
 
         val toolbarName = intent.getStringExtra("MyActivity")
 
-        title_tv.text = toolbarName
+        toolbarTitle.text = toolbarName
 
         @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
             resources.getDrawable(R.drawable.ic_back_arrow)
@@ -58,10 +58,14 @@ class ProgramInformationActivity : BaseActivity() {
             mWebHost.loadUrl("file:///android_asset/mandela_tc.html")
         } else if (toolbarName.equals("My Benefits")) {
             mWebHost.loadUrl("file:///android_asset/mandela_benefits.html")
-        } else if (toolbarName.equals("About MandelaPremium Club")) {
+        } else if (toolbarName.equals("About Mandela Club")) {
             mWebHost.loadUrl("file:///android_asset/about_mandela.html")
         } else if (toolbarName.equals("FAQ")) {
             mWebHost.loadUrl("file:///android_asset/mandela_faq.html")
+        }
+
+        back.setOnClickListener{
+            onBackPressed()
         }
     }
 

@@ -37,9 +37,23 @@ class MyVoucherFragment : Fragment(), MyVoucherAdapter.OnItemClickListener {
 
             LoadingDialogue.dismissDialog()
             if (it != null && !it.lstMerchantinfo.isNullOrEmpty()) {
-                my_voucher_rv.visibility = View.VISIBLE
-                error_voucher.visibility = View.GONE
-                my_voucher_rv.adapter = MyVoucherAdapter(it.lstMerchantinfo, 0,this)
+
+                val lstMerchantinfo:MutableList<lstMerchantinfo> = mutableListOf()
+
+                it.lstMerchantinfo.forEach{
+                    if(it.IsEncash == true && it.IsGifted == false){
+                        lstMerchantinfo.add(it)
+                    }
+                }
+                if(lstMerchantinfo.isNotEmpty()){
+                    my_voucher_rv.visibility = View.VISIBLE
+                    error_voucher.visibility = View.GONE
+                    my_voucher_rv.adapter = MyVoucherAdapter(lstMerchantinfo, this)
+                }else{
+                    my_voucher_rv.visibility = View.GONE
+                    error_voucher.visibility = View.VISIBLE
+                }
+
             }else {
                 my_voucher_rv.visibility = View.GONE
                 error_voucher.visibility = View.VISIBLE

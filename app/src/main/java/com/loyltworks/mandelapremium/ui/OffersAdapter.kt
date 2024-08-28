@@ -30,7 +30,7 @@ class OffersAdapter(val lstPromotionJsonList: List<LstPromotionList>,val promoti
 
         Glide.with(holder.itemView.context)
             .load(BuildConfig.PROMO_IMAGE_BASE + data.ProImage?.replace("..", ""))
-            .placeholder(R.drawable.placeholder)
+            .placeholder(R.drawable.dummy_image)
             .fitCenter()
             .into(holder.promoImage)
 

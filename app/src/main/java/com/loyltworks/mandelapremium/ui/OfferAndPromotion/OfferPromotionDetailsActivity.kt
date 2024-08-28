@@ -64,8 +64,8 @@ class OfferPromotionDetailsActivity : BaseActivity() {
                 Html.fromHtml(offersPromotions.ProLongDesc, Html.FROM_HTML_MODE_COMPACT)
         else promotion_offer_details.text = Html.fromHtml(offersPromotions.ProLongDesc)
 
-        Glide.with(this).asBitmap().error(R.drawable.temp_offer_promotion)
-            .placeholder(R.drawable.placeholder).load(
+        Glide.with(this).asBitmap().error(R.drawable.dummy_image)
+            .placeholder(R.drawable.dummy_image).load(
                 BuildConfig.PROMO_IMAGE_BASE + offersPromotions.ProImage!!.replace(
                     "..",
                     ""

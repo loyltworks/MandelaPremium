@@ -1,5 +1,6 @@
 package com.loyltworks.mandelapremium.ui.GiftCards.fragment.MyVoucher
 
+import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
@@ -15,10 +16,15 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.*
+import com.loyltworks.mandelapremium.model.GetAlbumsWithImagesRequest
+import com.loyltworks.mandelapremium.model.GetReceiverIDRequest
+import com.loyltworks.mandelapremium.model.GiftCardHolderInfoDetails
+import com.loyltworks.mandelapremium.model.LstPromotions
+import com.loyltworks.mandelapremium.model.MyVoucherGiftCardSubmitRequest
+import com.loyltworks.mandelapremium.model.VGiftCardIssueDetails
+import com.loyltworks.mandelapremium.model.lstMerchantinfo
 import com.loyltworks.mandelapremium.ui.GiftCards.GiftCardsViewModel
 import com.loyltworks.mandelapremium.ui.GiftCards.adapter.MyVoucherDetailsAdapter
 import com.loyltworks.mandelapremium.ui.GiftCards.adapter.MyVoucherDetailsChildAdapter
@@ -26,18 +32,52 @@ import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.AlertMessageDialog
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_buy_gift_details.*
-import kotlinx.android.synthetic.main.activity_my_voucher_details.*
+import com.oneloyalty.goodpack.utils.BlockMultipleClick
+import kotlinx.android.synthetic.main.activity_my_voucher_details.Receiver_name
+import kotlinx.android.synthetic.main.activity_my_voucher_details._gift_now_btn_relative
+import kotlinx.android.synthetic.main.activity_my_voucher_details._gift_to_by
+import kotlinx.android.synthetic.main.activity_my_voucher_details.back
+import kotlinx.android.synthetic.main.activity_my_voucher_details.btn_first_giftNow
+import kotlinx.android.synthetic.main.activity_my_voucher_details.btn_giftNow
+import kotlinx.android.synthetic.main.activity_my_voucher_details.card_description_text
+import kotlinx.android.synthetic.main.activity_my_voucher_details.card_number
+import kotlinx.android.synthetic.main.activity_my_voucher_details.card_numer
+import kotlinx.android.synthetic.main.activity_my_voucher_details.card_top_img
+import kotlinx.android.synthetic.main.activity_my_voucher_details.child_voucher_gift_rv
+import kotlinx.android.synthetic.main.activity_my_voucher_details.details_gift_img
+import kotlinx.android.synthetic.main.activity_my_voucher_details.first_gift_now
+import kotlinx.android.synthetic.main.activity_my_voucher_details.gc_redeemable_outlet
+import kotlinx.android.synthetic.main.activity_my_voucher_details.gc_step_to_redeem
+import kotlinx.android.synthetic.main.activity_my_voucher_details.gc_terms_condition
+import kotlinx.android.synthetic.main.activity_my_voucher_details.gift_card_view
+import kotlinx.android.synthetic.main.activity_my_voucher_details.gift_cards_name
+import kotlinx.android.synthetic.main.activity_my_voucher_details.gifted_by
+import kotlinx.android.synthetic.main.activity_my_voucher_details.gifted_date
+import kotlinx.android.synthetic.main.activity_my_voucher_details.host
+import kotlinx.android.synthetic.main.activity_my_voucher_details.message_for_receiver
 import kotlinx.android.synthetic.main.activity_my_voucher_details.offer_details_description_view
 import kotlinx.android.synthetic.main.activity_my_voucher_details.offer_detils
+import kotlinx.android.synthetic.main.activity_my_voucher_details.parent_img_on_card
+import kotlinx.android.synthetic.main.activity_my_voucher_details.parent_voucher_gift_rv
 import kotlinx.android.synthetic.main.activity_my_voucher_details.radioGroup
+import kotlinx.android.synthetic.main.activity_my_voucher_details.rb_receiver_email
+import kotlinx.android.synthetic.main.activity_my_voucher_details.rb_receiver_mobile_number
+import kotlinx.android.synthetic.main.activity_my_voucher_details.rd_receiver_name
+import kotlinx.android.synthetic.main.activity_my_voucher_details.receiverID
+import kotlinx.android.synthetic.main.activity_my_voucher_details.receiver_id
+import kotlinx.android.synthetic.main.activity_my_voucher_details.receiver_name_email_number
+import kotlinx.android.synthetic.main.activity_my_voucher_details.recyclerview_view
 import kotlinx.android.synthetic.main.activity_my_voucher_details.redeemable_outlet
 import kotlinx.android.synthetic.main.activity_my_voucher_details.redeemable_outlet_description_view
+import kotlinx.android.synthetic.main.activity_my_voucher_details.reward_text
+import kotlinx.android.synthetic.main.activity_my_voucher_details.sender_name
+import kotlinx.android.synthetic.main.activity_my_voucher_details.sent_receiver_view
 import kotlinx.android.synthetic.main.activity_my_voucher_details.step_to_redeem_the_voucher_description_view
 import kotlinx.android.synthetic.main.activity_my_voucher_details.steps_to_redeem_the_voucher
 import kotlinx.android.synthetic.main.activity_my_voucher_details.tc_description_view
 import kotlinx.android.synthetic.main.activity_my_voucher_details.terms_and_conditions
-import kotlinx.android.synthetic.main.fragment_my_voucher.*
+import kotlinx.android.synthetic.main.activity_my_voucher_details.valid_till
+import kotlinx.android.synthetic.main.activity_my_voucher_details.validity_date
 
 
 class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
@@ -143,8 +183,10 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_voucher_details)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
+
+        host.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
 
         //set context
         context = this
@@ -162,6 +204,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
         redeemable_outlet.setOnClickListener(this)
         btn_giftNow.setOnClickListener(this)
         btn_first_giftNow.setOnClickListener(this)
+        back.setOnClickListener(this)
 
         giftCardsViewModel = ViewModelProvider(this).get(GiftCardsViewModel::class.java)
 
@@ -327,7 +370,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
         })
 
 
-        Glide.with(this).asBitmap().error(R.drawable.temp_offer_promotion)
+        Glide.with(this).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.placeholder).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + lstMerchantinfo.Imageurl!!.replace(
                     "~",
@@ -336,7 +379,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
             ).into(details_gift_img)
 
 
-        Glide.with(this).asBitmap().error(R.drawable.temp_offer_promotion)
+        Glide.with(this).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.placeholder).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + lstMerchantinfo.Imageurl!!.replace(
                     "~",
@@ -403,7 +446,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
 
     override fun onItemChildClicked(lstPromotions: LstPromotions) {
 
-        Glide.with(this).asBitmap().error(R.drawable.temp_offer_promotion)
+        Glide.with(this).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.placeholder).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + lstPromotions.ImagePath!!.replace(
                     "~",
@@ -426,9 +469,13 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
 
 
     override fun onClick(v: View?) {
-        if (BlockMultipleClick.click()) return
+
 
         when (v!!.id) {
+
+            R.id.back -> {
+                onBackPressed()
+            }
             R.id.offer_detils -> {
 
                 if (offer_details_description_view.visibility == View.VISIBLE) {

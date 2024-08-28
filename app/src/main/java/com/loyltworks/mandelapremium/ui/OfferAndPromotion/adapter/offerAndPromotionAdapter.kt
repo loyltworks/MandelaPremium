@@ -48,12 +48,10 @@ class offerAndPromotionAdapter(
 
 
         try {
-            Glide.with(holder.itemView).asBitmap().error(R.drawable.temp_offer_promotion)
-                .placeholder(R.drawable.placeholder).load(
-                    BuildConfig.PROMO_IMAGE_BASE + promotionListing.ProImage!!.replace(
-                        "..", ""
-                    )
-                ).into(holder.offers_img)
+            Glide.with(holder.itemView).asBitmap().error(R.drawable.dummy_image)
+                .placeholder(R.drawable.dummy_image)
+                .load(BuildConfig.PROMO_IMAGE_BASE + promotionListing.ProImage!!.replace("..", ""))
+                .into(holder.offers_img)
             holder.offers_img.setPadding(0, 0, 0, 0)
         } catch (e: Exception) {
         }

@@ -13,7 +13,7 @@ class LastItemMarginItemDecoration():RecyclerView.ItemDecoration() {
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         with(outRect) {
             bottom = if (isLastItem(parent, view, state)) {
-                260
+                180
             } else {
                 0
             }

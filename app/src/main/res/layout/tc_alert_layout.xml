@@ -1,79 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    android:weightSum="10">
-
+    android:layout_margin="10dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
+        android:layout_height="match_parent"
+        android:background="@drawable/curve_bg"
+        android:backgroundTint="@color/colorPrimary"
         android:orientation="vertical">
-
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
-            android:padding="15dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
             android:text="Terms and Conditions"
-            android:textColor="@android:color/white"
-            android:textSize="19sp" />
-
+            android:textColor="@color/white"
+            android:textSize="16dp" />
 
         <WebView
             android:id="@+id/feature_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="7"
-            android:background="@color/colorPrimary" />
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="10" />
+
+        <LinearLayout
+            android:id="@+id/accept_decline_ll"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/decline_btn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/black_border_bg"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Decline"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:textSize="14dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/accept_btn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:background="@drawable/gradiant_button"
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Accept"
+                android:textAllCaps="false"
+                android:textSize="14dp" />
+        </LinearLayout>
+
 
     </LinearLayout>
 
+</androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/accept_decline_ll"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="@dimen/h2"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        android:weightSum="2">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/decline_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/h7"
-            android:layout_weight="1"
-            android:background="@drawable/border_yellow_back_white"
-            android:elevation="@dimen/h3"
-            android:text="Decline"
-            android:textColor="@color/textYello" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/accept_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/h7"
-            android:layout_weight="1"
-            android:background="@drawable/gradiant_button"
-            android:elevation="@dimen/h3"
-            android:text="Accept"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
-
-</LinearLayout>

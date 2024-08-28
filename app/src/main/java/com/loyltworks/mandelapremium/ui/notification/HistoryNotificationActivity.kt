@@ -123,8 +123,8 @@ class HistoryNotificationActivity : BaseActivity(), HistoryNotificationAdapter.I
             ViewModelProvider(this).get(HistoryNotificationViewModel::class.java)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history_notification)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
         //set context
         context = this
@@ -141,6 +141,10 @@ class HistoryNotificationActivity : BaseActivity(), HistoryNotificationAdapter.I
 //        history_rv.adapter = historyNotificationAdapter
         no_history_notification_tv.visibility = View.GONE
         history_rv.visibility = View.VISIBLE
+
+        back.setOnClickListener{
+            onBackPressed()
+        }
     }
 
     override fun itemclicks(notificationHistory: LstPushHistory?) {

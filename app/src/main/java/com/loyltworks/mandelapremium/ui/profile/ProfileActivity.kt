@@ -41,12 +41,11 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
     }
 
     var addImage = false
-    private  var fileExtenstion:String = ""
+    private var fileExtenstion: String = ""
     private var mProfileImagePath = ""
 
 
     private lateinit var profileViewModel: ProfileViewModel
-
 
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -66,7 +65,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
         profile_image.setOnClickListener(this)
 
-        back.setOnClickListener{
+        back.setOnClickListener {
             onBackPressed()
         }
 
@@ -85,11 +84,9 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
         points.text =
             PreferenceHelper.getStringValue(context as ProfileActivity, BuildConfig.OverAllPoints)
 
-        Glide.with(this@ProfileActivity)
-            .asBitmap()
-            .load(PreferenceHelper.getStringValue(this,"ProfileImage"))
-            .error(R.drawable.default_person)
-            .placeholder(R.drawable.placeholder)
+        Glide.with(this@ProfileActivity).asBitmap()
+            .load(PreferenceHelper.getStringValue(this, "ProfileImage"))
+            .error(R.drawable.default_person).placeholder(R.drawable.placeholder)
             .into((profile_image))
 
         /** &&&&&&&&&&&&&&&&&&   Tab Items Declared with MyPageAdapter  &&&&&&&&&&&&&&&&&&&&&&  */
@@ -128,33 +125,28 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
                 addImage = true
 //            root.editProfileImage.isEnabled= false
 
-                FileSelector.requiredFileTypes(FileType.IMAGES).open(
-                    this@ProfileActivity,
-                    object : FileSelectorCallBack {
-                        @RequiresApi(Build.VERSION_CODES.M)
+                FileSelector.requiredFileTypes(FileType.IMAGES)
+                    .open(this@ProfileActivity, object : FileSelectorCallBack {
+
                         override fun onResponse(fileSelectorData: FileSelectorData) {
                             mProfileImagePath = fileSelectorData.responseInBase64!!
                             Log.d(TAG, "onProfileResponse: $mProfileImagePath")
                             if (mProfileImagePath.isNotEmpty()) {
                                 LoadingDialogue.showDialog(this@ProfileActivity)
 
-                                Glide.with(this@ProfileActivity)
-                                    .asBitmap()
+                                Glide.with(this@ProfileActivity).asBitmap()
                                     .load(Base64.decode(mProfileImagePath, Base64.DEFAULT))
                                     .into((profile_image))
 
-                                            profileViewModel.setProfileImageUpdate(
+                                profileViewModel.setProfileImageUpdate(
                                     UpdateProfileImageRequest(
-                                        ActorId = PreferenceHelper.getLoginDetails(
-                                            this@ProfileActivity
-                                        )?.UserList!![0].UserId.toString(),
+                                        ActorId = PreferenceHelper.getLoginDetails(this@ProfileActivity)?.UserList!![0].UserId.toString(),
                                         ObjCustomer(
                                             DisplayImage = mProfileImagePath,
-                                            LoyaltyId = PreferenceHelper.getLoginDetails(
-                                                this@ProfileActivity
-                                            )?.UserList!![0].UserName.toString()
+                                            LoyaltyId = PreferenceHelper.getLoginDetails(this@ProfileActivity)?.UserList!![0].UserName.toString()
                                         )
-                                    ))
+                                    )
+                                )
 
                             } else {
                                 LoadingDialogue.dismissDialog()
@@ -177,19 +169,16 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
         profileViewModel.updateProfileImage.observe(this, androidx.lifecycle.Observer {
             if (it != null && it.ReturnMessage!!.length > 0) {
                 snackBar(
-                    getString(R.string.profile_image_updated),
-                    R.color.primaryDark
+                    getString(R.string.profile_image_updated), R.color.primaryDark
                 )
             } else {
                 snackBar(
-                    getString(R.string.faile_to_update_profile_image),
-                    R.color.red
+                    getString(R.string.faile_to_update_profile_image), R.color.red
                 )
             }
             LoadingDialogue.dismissDialog()
         })
     }
-
 
 
 }

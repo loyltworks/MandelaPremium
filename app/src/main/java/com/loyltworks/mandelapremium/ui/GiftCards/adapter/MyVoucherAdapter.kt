@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.row_my_voucher.view.*
 
 class MyVoucherAdapter(
     var lstMerchantinfo: List<lstMerchantinfo>,
-    var GiftCardsType: Int,
-
     var itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<MyVoucherAdapter.ViewHolder>() {
 
@@ -26,10 +24,10 @@ class MyVoucherAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardImage = itemView.card_image
         val rewardTextview = itemView.rewards_textview
+        val rewardTextviewLayout = itemView.rewards_textview_layout
         val giftCardName = itemView.gift_card_name
         val validTillDate = itemView.valid_till_date
         val carNumber = itemView.card_number
-        val GiftCardView = itemView.giftCard
 
     }
 
@@ -55,7 +53,7 @@ class MyVoucherAdapter(
                  GIFTED BY ME
                 GiftedUserId == CURRENT_USER_ID AND IsEncash = 0 AND IsGifted=0   */
 
-        if (merchantinfo.IsEncash == true && merchantinfo.IsGifted == false && GiftCardsType == 0) { // for all MyVoucher
+        /*if (merchantinfo.IsEncash == true && merchantinfo.IsGifted == false && GiftCardsType == 0) { // for all MyVoucher
             holder.itemView.visibility = View.VISIBLE
             holder.itemView.layoutParams =
                 RecyclerView.LayoutParams(
@@ -72,7 +70,7 @@ class MyVoucherAdapter(
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
 
-            holder.rewardTextview.visibility = View.GONE
+            holder.rewardTextviewLayout.visibility = View.GONE
 
 
         } else if (merchantinfo.GiftedUserId.equals(PreferenceHelper.getLoginDetails(holder.itemView.context)?.UserList!![0].UserId.toString()) && merchantinfo.IsEncash == false && merchantinfo.IsGifted == false && GiftCardsType == 2) { // Gift sent
@@ -90,15 +88,15 @@ class MyVoucherAdapter(
 
             holder.itemView.layoutParams = RecyclerView.LayoutParams(0, 0)
 
-        }
+        }*/
 
 
-        holder.rewardTextview.text = merchantinfo.MerchantName!!.split("~")[3] + " Rewards"
+        holder.rewardTextview.text = merchantinfo.MerchantName!!.split("~")[3]
         holder.giftCardName.text = merchantinfo.MerchantName!!.split("~")[1]
         holder.carNumber.text = "Card No. " + merchantinfo.MerchantName!!.split("~")[0]
         holder.validTillDate.text = "Valid Till " + merchantinfo.MerchantName!!.split("~")[6]
 
-        Glide.with(holder.itemView).asBitmap().error(R.drawable.temp_offer_promotion)
+        Glide.with(holder.itemView).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.placeholder).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + merchantinfo.Imageurl!!.replace(
                     "~",

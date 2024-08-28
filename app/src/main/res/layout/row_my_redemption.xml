@@ -44,7 +44,7 @@
                 android:paddingStart="5dp"
                 android:text="XXXXXX"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12dp" />
 
         </LinearLayout>
 
@@ -58,7 +58,7 @@
             android:paddingEnd="5dp"
             android:text="XXXXXX"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12dp" />
 
 
     </LinearLayout>
@@ -97,7 +97,7 @@
                 android:paddingStart="5dp"
                 android:text="XXXXXX"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12dp" />
 
         </LinearLayout>
 
@@ -125,7 +125,7 @@
                 android:paddingStart="5dp"
                 android:text="XXXXXX"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12dp" />
 
         </LinearLayout>
 

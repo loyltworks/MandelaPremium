@@ -31,7 +31,6 @@ class MyVoucherDetailsAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textviews = itemView.textview
         val card_parent_img = itemView.card_parent_img
 
     }
@@ -45,7 +44,7 @@ class MyVoucherDetailsAdapter(
             firstClicked = false
         }
 
-        Glide.with(holder.itemView).asBitmap().error(R.drawable.temp_offer_promotion)
+        Glide.with(holder.itemView).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.placeholder).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + lstPromotion.ImagePath!!.replace(
                     "~",

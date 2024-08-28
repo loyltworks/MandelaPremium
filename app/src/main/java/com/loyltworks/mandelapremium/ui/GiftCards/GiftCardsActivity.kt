@@ -17,7 +17,7 @@ import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.profile.MyPagerAdapter
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_gift_cards.*
 
 class GiftCardsActivity : BaseActivity() {
 
@@ -45,8 +45,8 @@ class GiftCardsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gift_cards)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
         //set context
         context = this
@@ -65,6 +65,10 @@ class GiftCardsActivity : BaseActivity() {
 
         setupViewPager(pager)
         tablayout!!.setupWithViewPager(pager)
+
+        back.setOnClickListener{
+            onBackPressed()
+        }
 
     }
 

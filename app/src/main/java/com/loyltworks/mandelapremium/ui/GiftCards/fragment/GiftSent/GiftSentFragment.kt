@@ -13,9 +13,12 @@ import com.loyltworks.mandelapremium.model.lstMerchantinfo
 import com.loyltworks.mandelapremium.ui.GiftCards.GiftCardsActivity
 import com.loyltworks.mandelapremium.ui.GiftCards.adapter.MyVoucherAdapter
 import com.loyltworks.mandelapremium.ui.GiftCards.fragment.MyVoucher.MyVoucherDetailsActivity
+import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import kotlinx.android.synthetic.main.fragment_gift_received.*
 import kotlinx.android.synthetic.main.fragment_gift_sent.*
+import kotlinx.android.synthetic.main.fragment_my_voucher.error_voucher
+import kotlinx.android.synthetic.main.fragment_my_voucher.my_voucher_rv
 
 
 class GiftSentFragment : Fragment(), MyVoucherAdapter.OnItemClickListener {
@@ -36,9 +39,21 @@ class GiftSentFragment : Fragment(), MyVoucherAdapter.OnItemClickListener {
 
             LoadingDialogue.dismissDialog()
             if (it != null && !it.lstMerchantinfo.isNullOrEmpty()) {
-                gift_sent_rv.visibility = View.VISIBLE
-                error_gift_sent.visibility = View.GONE
-                gift_sent_rv.adapter = MyVoucherAdapter(it.lstMerchantinfo, 2,this)
+                val lstMerchantinfo:MutableList<lstMerchantinfo> = mutableListOf()
+
+                it.lstMerchantinfo.forEach{
+                    if(it.GiftedUserId.equals(PreferenceHelper.getLoginDetails(requireContext())?.UserList!![0].UserId.toString()) && it.IsEncash == false && it.IsGifted == false){
+                        lstMerchantinfo.add(it)
+                    }
+                }
+                if(lstMerchantinfo.isNotEmpty()){
+                    gift_sent_rv.visibility = View.VISIBLE
+                    error_gift_sent.visibility = View.GONE
+                    gift_sent_rv.adapter = MyVoucherAdapter(lstMerchantinfo, this)
+                }else{
+                    gift_sent_rv.visibility = View.GONE
+                    error_gift_sent.visibility = View.VISIBLE
+                }
 
             }else {
                 gift_sent_rv.visibility = View.GONE

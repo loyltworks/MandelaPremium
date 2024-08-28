@@ -25,22 +25,19 @@ object TCDialog {
     fun getTCAlert(context: Context?, tcCallback: TCCallback) {
         if (context == null) return
         if (mDialogTC != null) return
-        mDialogTC = Dialog(context)
+        mDialogTC = Dialog(context,R.style.Theme_Dialog)
         mDialogTC!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         mDialogTC!!.setContentView(R.layout.tc_alert_layout)
         mDialogTC!!.setCanceledOnTouchOutside(false)
         mDialogTC!!.setCancelable(false)
         val window: Window? = mDialogTC!!.window
-        window!!.setLayout(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
-        )
+        window!!.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
         val mDecline: AppCompatButton = mDialogTC!!.findViewById(R.id.decline_btn)
         val mAccept_btn: AppCompatButton = mDialogTC!!.findViewById(R.id.accept_btn)
         val mWebHost: WebView = mDialogTC!!.findViewById<WebView>(R.id.feature_view)
-        val mAcceptDecline: LinearLayout =
-            mDialogTC!!.findViewById<LinearLayout>(R.id.accept_decline_ll)
+        val mAcceptDecline: LinearLayout = mDialogTC!!.findViewById<LinearLayout>(R.id.accept_decline_ll)
         mAcceptDecline.visibility = View.VISIBLE
+
         val webSetting = mWebHost.settings
         webSetting.builtInZoomControls = false
         webSetting.javaScriptEnabled = true

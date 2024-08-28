@@ -66,7 +66,7 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
         viewModel.queryListLiveData.observe(this, androidx.lifecycle.Observer {
             if (it != null && !it.objCustomerAllQueryJsonList.isNullOrEmpty()) {
                 LoadingDialogue.dismissDialog()
-                myQuery_rv?.addItemDecoration(LastItemMarginItemDecoration())
+
                 myQuery_rv?.adapter = MyQueryAdapter(it, this)
                 myQuery_rv?.visibility = View.VISIBLE
                 query_error_hint?.visibility = View.GONE
@@ -118,6 +118,8 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
 
         //set context
         context = this
+
+        myQuery_rv?.addItemDecoration(LastItemMarginItemDecoration())
 
         //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         //supportActionBar!!.setDisplayShowHomeEnabled(true)

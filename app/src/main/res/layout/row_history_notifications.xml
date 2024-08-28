@@ -1,78 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/h7"
-    android:background="@color/colorPrimaryVariant"
-    android:orientation="vertical"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/curve_bg"
+    android:backgroundTint="@color/light_grey1"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingStart="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/ic_mask_group_14" />
 
         <TextView
             android:id="@+id/Ntitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/h7"
-            android:text="title"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="XXXXXX"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/NImage"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/NImageLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/repeat_grid1"
-        android:scaleType="fitCenter"
-        android:src="@drawable/splash_logo"
-        android:visibility="visible" />
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/NImage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/curve_bg"
+            android:backgroundTint="@color/light_grey1"
+            android:src="@drawable/dummy_image"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/Ndesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="fjksdjfksdlkfsdsfdfsdf"
-        android:textColor="@color/textLightWhite" />
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="XXXXXX"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/Ndate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/h2"
-        android:text="20/22/2020"
-        android:paddingBottom="5dp"
-        android:paddingTop="3dp"
-        android:textColor="@color/textLightWhite"
-        android:textSize="12sp" />
-
-    <View
-        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="bottom"
-        android:background="@color/light_grey" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:textSize="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="XXXXXX"
+        android:textColor="@color/black" />
 
 
 </LinearLayout>

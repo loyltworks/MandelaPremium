@@ -2,6 +2,8 @@ package com.loyltworks.mandelapremium.utils.dialogBox
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.view.Window
 import android.widget.EditText
@@ -26,9 +28,10 @@ object ForgotPwd {
     ) {
 
         if (mDailog == null) {
-            mDailog = Dialog(context!!)
+            mDailog = Dialog(context!!,R.style.Theme_Dialog)
             mDailog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
             mDailog!!.setContentView(R.layout.custom_forgot_password_alert)
+            mDailog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             mDailog!!.setCanceledOnTouchOutside(true)
             val window: Window? = mDailog!!.window
             window!!.setLayout(

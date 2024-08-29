@@ -49,7 +49,7 @@ class HistoryNotificationAdapter(
         if (notificationHistory.ImagesURL != null && !notificationHistory.ImagesURL.isNullOrEmpty())
             Glide.with(holder.itemView)
             .load(BuildConfig.PROMO_IMAGE_BASE + notificationHistory.ImagesURL)
-            .placeholder(R.drawable.placeholder) //                .error(R.drawable.ic_default_img)
+            .placeholder(R.drawable.dummy_image) //                .error(R.drawable.ic_default_img)
             .into(holder.NImage)
         else holder.NImageLayout.visibility = View.GONE
 

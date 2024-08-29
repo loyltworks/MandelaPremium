@@ -147,7 +147,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     return
                 } else if (!tc_checkBox.isChecked) {
                     // display snack bar
-                    snackBar("Please accept terms and conditions !", R.color.blue)
+                    Toast.makeText(this,"Please accept terms and conditions !",Toast.LENGTH_SHORT).show()
                     return
                 } else {
                     LoadingDialogue.showDialog(this)
@@ -312,7 +312,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         startActivity(intent)
 
                         // login message display
-                        Msg = "Login successful "
+                        Msg = "Login successful"
 
                     }
 
@@ -330,9 +330,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 }
 
                 // display snack bar
-                snackBar(Msg, R.color.blue)
+                Toast.makeText(this,Msg,Toast.LENGTH_SHORT).show()
             } else {
-                snackBar("Something went wrong, please try again.", R.color.red)
+                Toast.makeText(this,"Something went wrong, please try again.",Toast.LENGTH_SHORT).show()
 
             }
 

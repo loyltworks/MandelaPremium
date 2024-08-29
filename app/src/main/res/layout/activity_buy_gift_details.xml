@@ -634,7 +634,7 @@
         android:background="@drawable/top_curve_white_bg"
         android:elevation="10dp"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -706,8 +706,10 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/gradiant_button"
+                android:backgroundTint="@color/orange"
                 android:gravity="center"
                 android:text="Yes"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
 

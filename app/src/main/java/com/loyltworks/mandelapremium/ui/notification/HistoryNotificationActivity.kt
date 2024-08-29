@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
@@ -59,15 +60,11 @@ class HistoryNotificationActivity : BaseActivity(), HistoryNotificationAdapter.I
 
         viewModel.historyNotificationtDeleteByIDLiveData.observe(this, androidx.lifecycle.Observer {
             if (it != null && it.ReturnValue!! > 0) {
-                snackBar(
-                    "Notification was removed from the list",
-                    R.color.green
-                )
+
+                Toast.makeText(this,"Notification was removed from the list", Toast.LENGTH_SHORT).show()
+
             } else {
-               snackBar(
-                    "Notification failed to remove from the list",
-                    R.color.red
-                )
+                Toast.makeText(this,"Notification failed to remove from the list", Toast.LENGTH_SHORT).show()
             }
         })
 

@@ -259,7 +259,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
         current_balance.text = PreferenceHelper.getStringValue(this, BuildConfig.OverAllPoints)
 
         Glide.with(this).asBitmap().error(R.drawable.dummy_image)
-            .placeholder(R.drawable.placeholder).load(
+            .placeholder(R.drawable.dummy_image).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + lstVoucherDetails.ImageUrl!!.replace(
                     "~",
                     ""

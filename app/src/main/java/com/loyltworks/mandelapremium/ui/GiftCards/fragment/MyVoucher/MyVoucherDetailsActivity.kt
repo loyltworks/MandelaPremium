@@ -371,7 +371,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
 
 
         Glide.with(this).asBitmap().error(R.drawable.dummy_image)
-            .placeholder(R.drawable.placeholder).load(
+            .placeholder(R.drawable.dummy_image).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + lstMerchantinfo.Imageurl!!.replace(
                     "~",
                     ""
@@ -380,7 +380,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
 
 
         Glide.with(this).asBitmap().error(R.drawable.dummy_image)
-            .placeholder(R.drawable.placeholder).load(
+            .placeholder(R.drawable.dummy_image).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + lstMerchantinfo.Imageurl!!.replace(
                     "~",
                     ""
@@ -447,7 +447,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
     override fun onItemChildClicked(lstPromotions: LstPromotions) {
 
         Glide.with(this).asBitmap().error(R.drawable.dummy_image)
-            .placeholder(R.drawable.placeholder).load(
+            .placeholder(R.drawable.dummy_image).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + lstPromotions.ImagePath!!.replace(
                     "~",
                     ""

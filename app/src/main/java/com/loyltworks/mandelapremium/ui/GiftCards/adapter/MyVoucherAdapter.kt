@@ -97,7 +97,7 @@ class MyVoucherAdapter(
         holder.validTillDate.text = "Valid Till " + merchantinfo.MerchantName!!.split("~")[6]
 
         Glide.with(holder.itemView).asBitmap().error(R.drawable.dummy_image)
-            .placeholder(R.drawable.placeholder).load(
+            .placeholder(R.drawable.dummy_image).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + merchantinfo.Imageurl!!.replace(
                     "~",
                     ""

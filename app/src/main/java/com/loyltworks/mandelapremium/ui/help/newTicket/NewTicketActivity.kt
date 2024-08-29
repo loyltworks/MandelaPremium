@@ -114,16 +114,14 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
 //                    view?.findNavController()?.popBackStack()
                     onBackPressed()
                 } else {
-                    snackBar(
-                        "Failed to submit new ticket", R.color.red
-                    )
+                    Toast.makeText(this,"Failed to submit new ticket",Toast.LENGTH_SHORT).show()
+
 //                    onBackPressed()
 //                    view?.findNavController()?.popBackStack()
                 }
             } else {
-                snackBar(
-                    "Something went wrong, please try again later", R.color.blue
-                )
+                Toast.makeText(this,"Something went wrong, please try again later",Toast.LENGTH_SHORT).show()
+
             }
         })
 
@@ -207,7 +205,7 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
             R.id.submit -> {
                 //Validate before submit query :
                 if (mSelectedHelpTopic?.HelpTopicId == -1) {
-                    snackBar("Select any topic.", R.color.red)
+                    Toast.makeText(this,"Select any topic.",Toast.LENGTH_SHORT).show()
                     return
                 } else if (TextUtils.isEmpty(query_details.text.toString())) {
                     query_details.error = "Enter ticket details."

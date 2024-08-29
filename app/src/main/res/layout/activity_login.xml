@@ -37,11 +37,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
                 android:text="Please login to your account."
                 android:textColor="@color/black"
-                android:textSize="12dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -128,15 +128,15 @@
                 android:layout_width="140dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center"
                 android:layout_marginTop="18dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/gradiant_button"
                 android:backgroundTint="@color/orange"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
                 android:text="Login"
                 android:textColor="@color/btn_text_color"
-                android:textSize="16sp" />
+                android:textSize="14dp" />
 
 
         </LinearLayout>

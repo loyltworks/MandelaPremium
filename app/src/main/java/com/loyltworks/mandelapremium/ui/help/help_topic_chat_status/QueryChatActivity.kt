@@ -162,8 +162,8 @@ class QueryChatActivity  : BaseActivity(), View.OnClickListener, QueryChatAdapte
 //        mChatImageOpen.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
         Glide.with(this)
             .load(Url)
-            .placeholder(R.drawable.placeholder)
-            .error(R.drawable.placeholder)
+            .placeholder(R.drawable.dummy_image)
+            .error(R.drawable.dummy_image)
             .into(chatImges)
     }
 

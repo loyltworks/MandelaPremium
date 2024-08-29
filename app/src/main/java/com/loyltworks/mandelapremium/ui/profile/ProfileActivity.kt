@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
@@ -86,7 +87,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
         Glide.with(this@ProfileActivity).asBitmap()
             .load(PreferenceHelper.getStringValue(this, "ProfileImage"))
-            .error(R.drawable.default_person).placeholder(R.drawable.placeholder)
+            .error(R.drawable.default_person).placeholder(R.drawable.default_person)
             .into((profile_image))
 
         /** &&&&&&&&&&&&&&&&&&   Tab Items Declared with MyPageAdapter  &&&&&&&&&&&&&&&&&&&&&&  */
@@ -168,13 +169,10 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
         profileViewModel.updateProfileImage.observe(this, androidx.lifecycle.Observer {
             if (it != null && it.ReturnMessage!!.length > 0) {
-                snackBar(
-                    getString(R.string.profile_image_updated), R.color.primaryDark
-                )
+                Toast.makeText(this,getString(R.string.profile_image_updated),Toast.LENGTH_SHORT).show()
+
             } else {
-                snackBar(
-                    getString(R.string.faile_to_update_profile_image), R.color.red
-                )
+                Toast.makeText(this,getString(R.string.faile_to_update_profile_image),Toast.LENGTH_SHORT).show()
             }
             LoadingDialogue.dismissDialog()
         })

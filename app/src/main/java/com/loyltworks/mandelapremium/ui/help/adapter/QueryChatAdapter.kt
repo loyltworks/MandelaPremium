@@ -109,8 +109,8 @@ class QueryChatAdapter(
                             ""
                         )
                     )
-                    .placeholder(R.drawable.placeholder)
-                    .error(R.drawable.placeholder)
+                    .placeholder(R.drawable.dummy_image)
+                    .error(R.drawable.dummy_image)
                     .apply(RequestOptions().transform(RoundedCorners(50)))
                     .into(holder.chatImage)
             } else {

@@ -46,7 +46,7 @@ class MyVoucherDetailsChildAdapter(
         }
 
         Glide.with(holder.itemView).asBitmap().error(R.drawable.dummy_image)
-            .placeholder(R.drawable.placeholder).load(
+            .placeholder(R.drawable.dummy_image).load(
                 BuildConfig.GIFTCARD_IMAGE_BASE + lstPromotion.ImagePath!!.replace(
                     "~",
                     ""

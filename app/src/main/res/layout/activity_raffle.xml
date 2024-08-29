@@ -32,14 +32,12 @@
 
     </LinearLayout>
 
-    <TextView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/noInternetAnimation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Coming soon..."
-        android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        android:textStyle="bold" />
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="coming_soon.json"
+        app:lottie_loop="true" />
 
 </LinearLayout>

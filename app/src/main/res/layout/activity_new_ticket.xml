@@ -174,7 +174,7 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="Submit Query"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>

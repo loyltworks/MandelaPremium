@@ -237,11 +237,16 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
         giftcard_name.text = lstVoucherDetails.CardName
 
         if (lstVoucherDetails.FixedValue != null && lstVoucherDetails.FixedValue != 0) {
-            range.text = "Value"
-            min_max_points.text = lstVoucherDetails.FixedValue.toString()
+            range.visibility = View.GONE
+            min_max_points.visibility = View.GONE
+            amout_gift_cards.setText(lstVoucherDetails.FixedValue.toString())
+            amout_gift_cards.isEnabled = false
+
         }else {
-            min_max_points.text =
-                lstVoucherDetails.MinValue.toString() + " - " + lstVoucherDetails.MaxValue.toString()
+            range.visibility = View.VISIBLE
+            min_max_points.visibility = View.VISIBLE
+            amout_gift_cards.isEnabled = true
+            min_max_points.text = lstVoucherDetails.MinValue.toString() + " - " + lstVoucherDetails.MaxValue.toString()
         }
 
      /*   if (lstVoucherDetails.CardCatName.equals("Fixed")) {

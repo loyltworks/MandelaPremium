@@ -422,7 +422,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <RadioGroup
                         android:id="@+id/radioGroup"
@@ -548,7 +548,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_regular"
-                                android:text="Your Current Balance is"
+                                android:text="Your current point balance is"
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 
@@ -634,7 +634,7 @@
         android:background="@drawable/top_curve_white_bg"
         android:elevation="10dp"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"

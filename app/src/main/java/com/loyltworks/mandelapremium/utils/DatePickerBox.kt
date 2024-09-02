@@ -63,7 +63,7 @@ object DatePickerBox {
 
         when {
             datecompare.parse(fromDate).after(datecompare.parse(toDate)) -> {
-                Toast.makeText(context, "From date should smaller than To date", Toast.LENGTH_SHORT)
+                Toast.makeText(context, "From date should be less than To date", Toast.LENGTH_SHORT)
                     .show()
                 Val(false)
             }

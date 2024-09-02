@@ -285,9 +285,9 @@ class Tab1 : Fragment(), DatePickerFragment.CalenderCallBack ,View.OnClickListen
 
         viewModel.updateProfileResponse.observe(viewLifecycleOwner, Observer {
             if(it!=null && it.ReturnMessage!!.toInt()>0){
-                Toast.makeText(requireContext(),"Profile updated successfully",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"Profile image uploaded successfully",Toast.LENGTH_SHORT).show()
             }else{
-                Toast.makeText(requireContext(),"Profile failed to updated",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"Failed to upload profile image",Toast.LENGTH_SHORT).show()
             }
             LoadingDialogue.dismissDialog()
         })

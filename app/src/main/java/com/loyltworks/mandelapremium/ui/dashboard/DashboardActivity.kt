@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
@@ -142,10 +143,21 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
     }
 
+    override fun onBackPressed() {
+        if(sideMenu.visibility==View.VISIBLE){
+            sideMenu.visibility = View.GONE
+            sideMenu.animation = AnimationUtils.loadAnimation(this, R.anim.slide_out_left)
+            darkBackground.visibility = View.GONE
+            darkBackground.animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+        }
+        else{
+            super.onBackPressed()
+        }
+
+    }
+
     private fun getProfileDetails() {
-
         LoadingDialogue.showDialog(this)
-
         profileViewModel.getProfile(
             RegistrationRequest(
                 ActionType = "6",
@@ -198,7 +210,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
     override fun callObservers() {
 
         profileViewModel.myProfileResponse.observe(this) {
-
             if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
                 if (it != null && !it.GetCustomerDetailsMobileAppResult?.lstCustomerJson.isNullOrEmpty()) {
 
@@ -220,9 +231,11 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                         .into((navi_profile_image))
 
                 }
-                getDashboardDetails()
-            }
 
+
+
+            }
+            getDashboardDetails()
 
         }
 
@@ -243,6 +256,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
 
                 }
+
                 getDashboardDetails2()
             }
 
@@ -275,6 +289,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         }
 
         promotionViewModel.getPromotionListLiveData.observe(this) {
+
             if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
                 if (it != null && !it.LstPromotionJsonList.isNullOrEmpty()) {
                     _listPromotions = it.LstPromotionJsonList!!
@@ -294,6 +309,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         }
 
         dashBoardViewModel.brandLogos.observe(this) {
+            LoadingDialogue.dismissDialog()
             if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
                 if (it != null && !it.lstAttributesDetails.isNullOrEmpty()) {
 
@@ -303,7 +319,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                     products_rv.adapter = DashboardProductsAdapter(it, this)
 
                 }
-                LoadingDialogue.dismissDialog()
+
             }
 
         }

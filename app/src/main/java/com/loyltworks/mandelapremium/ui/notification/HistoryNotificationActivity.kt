@@ -61,10 +61,10 @@ class HistoryNotificationActivity : BaseActivity(), HistoryNotificationAdapter.I
         viewModel.historyNotificationtDeleteByIDLiveData.observe(this, androidx.lifecycle.Observer {
             if (it != null && it.ReturnValue!! > 0) {
 
-                Toast.makeText(this,"Notification was removed from the list", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Notification removed from the list", Toast.LENGTH_SHORT).show()
 
             } else {
-                Toast.makeText(this,"Notification failed to remove from the list", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Failed to remove the notification from the list", Toast.LENGTH_SHORT).show()
             }
         })
 

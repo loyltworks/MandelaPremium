@@ -154,7 +154,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
 
                 } else {
                     receiver_id.setText("")
-                    Toast.makeText(this, "Receiver Id Not Exist", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Receiver ID does not exist", Toast.LENGTH_SHORT).show()
                 }
 
             }
@@ -167,7 +167,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
             if (it != null && it.ReturnValue == 1) {
                 Toast.makeText(
                     this,
-                    "Congratulations! Your Voucher Transferred Successfully. ",
+                    "Congratulations! Your Voucher Transferred Successfully ",
                     Toast.LENGTH_SHORT
                 ).show()
                 finish()
@@ -651,7 +651,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
         }
 
         if (message_for_receiver.text.isEmpty()) {
-            error += "Please Enter Message for Receiver"
+            error += "Please Enter Message for the Receiver"
             valid = false
         }
 

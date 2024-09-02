@@ -299,7 +299,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
                     if (lstVoucherDetails.FixedValue!!.toInt() != amout_gift_cards.text.toString().toInt()) {
                         point_balance_edittext.setText("")
-                        Toast.makeText(this, "Amount range should be given range", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Amount range should equal the card value", Toast.LENGTH_LONG).show()
                         return@OnFocusChangeListener
                     }
 
@@ -307,7 +307,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
                     if (!amout_gift_cards.text.toString().isNullOrEmpty() && minRange != null && maxRange != null) {
                         if (minRange > amout_gift_cards.text.toString().toInt() || maxRange < amout_gift_cards.text.toString().toInt()) {
                             point_balance_edittext.setText("")
-                            Toast.makeText(this, "Amount range should be given range", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, "Amount range should equal the card value", Toast.LENGTH_LONG).show()
                             return@OnFocusChangeListener
                         }
                     }

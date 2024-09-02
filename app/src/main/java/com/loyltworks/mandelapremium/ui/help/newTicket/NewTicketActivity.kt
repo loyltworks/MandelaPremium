@@ -107,10 +107,10 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
 
                     Toast.makeText(
                         context,
-                        "Support Ticket has been submitted successfully",
+                        "Support ticket submitted successfully",
                         Toast.LENGTH_SHORT
                     ).show()
-//                    snackBar(" Support Ticket has been submitted successfully", R.color.green)
+//                    snackBar(" Support ticket submitted successfully", R.color.green)
 //                    view?.findNavController()?.popBackStack()
                     onBackPressed()
                 } else {
@@ -205,7 +205,7 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
             R.id.submit -> {
                 //Validate before submit query :
                 if (mSelectedHelpTopic?.HelpTopicId == -1) {
-                    Toast.makeText(this,"Select any topic.",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Select Topic",Toast.LENGTH_SHORT).show()
                     return
                 } else if (TextUtils.isEmpty(query_details.text.toString())) {
                     query_details.error = "Enter ticket details."

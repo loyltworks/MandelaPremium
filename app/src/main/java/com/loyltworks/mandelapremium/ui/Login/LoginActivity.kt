@@ -147,7 +147,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     return
                 } else if (!tc_checkBox.isChecked) {
                     // display snack bar
-                    Toast.makeText(this,"Please accept terms and conditions !",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Please accept the terms and conditions !",Toast.LENGTH_SHORT).show()
                     return
                 } else {
                     LoadingDialogue.showDialog(this)
@@ -253,7 +253,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 } else {
                     userName.setText("")
                     userName.requestFocus()
-                    Toast.makeText(context, "Member doesn't exist.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Member does not exist", Toast.LENGTH_SHORT).show()
 
                 }
             }

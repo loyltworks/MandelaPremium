@@ -71,7 +71,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Any Queries ?"
                 android:textColor="@color/black"
-                android:textSize="10dp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Raise a Query"
                 android:textColor="@color/black"
-                android:textSize="12dp" />
+                android:textSize="16dp" />
 
 
         </LinearLayout>
@@ -112,7 +112,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Customer Service"
             android:textColor="@color/black"
-            android:textSize="12dp" />
+            android:textSize="16dp" />
 
 
     </LinearLayout>

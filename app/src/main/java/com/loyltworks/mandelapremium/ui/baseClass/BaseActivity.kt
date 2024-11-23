@@ -15,13 +15,13 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.ui.notification.HistoryNotificationActivity
 import com.loyltworks.mandelapremium.utils.Count.Companion.setCounting
 import com.loyltworks.mandelapremium.utils.dialogBox.NoInternetDialog
 import com.loyltworks.mandelapremium.utils.internet.ConnectivityReceiver
 import com.loyltworks.mandelapremium.utils.internet.ConnectivityReceiverListener
+import com.oneloyalty.goodpack.utils.BlockMultipleClick
 
 /** Created by : aslam
  *  Project : MandelaPremium

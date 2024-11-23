@@ -1,27 +1,10 @@
 package com.loyltworks.mandelapremium.ui.dashboard
 
-import android.app.Dialog
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.view.Gravity
-import android.view.View
-import android.view.Window
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.model.*
 import com.loyltworks.mandelapremium.ui.baseClass.BaseViewModel
-import com.loyltworks.mandelapremium.utils.RegistrationAsyncTask
 import kotlinx.coroutines.launch
-import org.json.JSONException
-import org.json.JSONObject
-import org.xml.sax.SAXException
-import java.io.IOException
-import javax.xml.parsers.ParserConfigurationException
 
 class DashBoardViewModel : BaseViewModel() {
 

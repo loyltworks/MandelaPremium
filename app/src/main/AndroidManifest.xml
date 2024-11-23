@@ -31,41 +31,47 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
-            android:name=".ui.raffle.RaffleActivity"
-            android:label=""
+            android:name=".ui.LocationActivity"
             android:exported="false"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+        <activity
+            android:name=".ui.raffle.RaffleActivity"
+            android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.help.feedback.FeedbackActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.notification.NotificationActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.notification.HistoryNotificationActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.programinformation.ProgramInformationActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.SplashScreen.SplashScreenActivity"
+            android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MandelaPremium.NoActionBar"
-            android:exported="true">
+            android:theme="@style/Theme.MandelaPremium.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -74,8 +80,8 @@
         </activity>
         <activity
             android:name=".ui.scanner.ScannerActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
@@ -85,94 +91,98 @@
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.OfferAndPromotion.OfferAndPromotionActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.BuyAndGift.BuyGiftDetailsActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.BuyAndGift.BuyGiftActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.GiftCards.fragment.GiftReceived.GiftReceivedDetailsActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.GiftCards.fragment.MyVoucher.MyVoucherDetailsActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.GiftCards.GiftCardsActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.OfferAndPromotion.OfferPromotionDetailsActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.Login.LoginActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.help.CustomerServiceActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.help.newTicket.NewTicketActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.help.help_topic_chat_status.QueryChatActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.help.supportLisitng.MyQueryActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.help.HelpActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.profile.ProfileActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
         <activity
             android:name=".ui.dashboard.DashboardActivity"
-            android:label=""
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MandelaPremium.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCYUMJ1is0QOh9j65c5xgJpeULnOMBrdOU" />
     </application>
 
 </manifest>

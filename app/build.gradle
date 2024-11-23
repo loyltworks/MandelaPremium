@@ -146,8 +146,6 @@ dependencies {
     // lottie
     implementation 'com.airbnb.android:lottie:6.0.0'
 
-    implementation 'com.synnapps:carouselview:0.1.5'
-
     implementation 'com.github.vidheyMB:FileSelector:0.1.2'
 
     implementation 'com.github.vidheyMB:MLKitScanner:v0.2.2'
@@ -156,4 +154,5 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
+    implementation 'com.google.maps.android:android-maps-utils:3.8.2'
 }

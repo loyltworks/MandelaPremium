@@ -1,31 +1,23 @@
 package com.loyltworks.mandelapremium.ui.dashboard
 
+
 import android.Manifest
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.AttributeRequest
-import com.loyltworks.mandelapremium.model.CustomerDetails
-import com.loyltworks.mandelapremium.model.DashboardCustomerRequest
-import com.loyltworks.mandelapremium.model.DashboardRequest
-import com.loyltworks.mandelapremium.model.GetWhatsNewRequest
-import com.loyltworks.mandelapremium.model.LstAttributesDetail
-import com.loyltworks.mandelapremium.model.LstPromotionList
-import com.loyltworks.mandelapremium.model.RegistrationRequest
+import com.loyltworks.mandelapremium.model.*
 import com.loyltworks.mandelapremium.ui.BuyAndGift.BuyGiftActivity
 import com.loyltworks.mandelapremium.ui.GiftCards.GiftCardsActivity
+import com.loyltworks.mandelapremium.ui.LocationActivity
 import com.loyltworks.mandelapremium.ui.Login.LoginActivity
 import com.loyltworks.mandelapremium.ui.MyActivity.MyActivity
 import com.loyltworks.mandelapremium.ui.OfferAndPromotion.OfferAndPromotionActivity
@@ -44,43 +36,7 @@ import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.Vibrator
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import com.oneloyalty.goodpack.utils.BlockMultipleClick
-import kotlinx.android.synthetic.main.activity_dashboard.buy_gift
-import kotlinx.android.synthetic.main.activity_dashboard.darkBackground
-import kotlinx.android.synthetic.main.activity_dashboard.dash_earning
-import kotlinx.android.synthetic.main.activity_dashboard.dash_help
-import kotlinx.android.synthetic.main.activity_dashboard.dash_profile
-import kotlinx.android.synthetic.main.activity_dashboard.dash_redemption
-import kotlinx.android.synthetic.main.activity_dashboard.dash_scan
-import kotlinx.android.synthetic.main.activity_dashboard.my_gift_card
-
-
-import kotlinx.android.synthetic.main.activity_dashboard.nav_myProfile
-import kotlinx.android.synthetic.main.activity_dashboard.navi_about_mandela
-
-import kotlinx.android.synthetic.main.activity_dashboard.navi_faq
-import kotlinx.android.synthetic.main.activity_dashboard.navi_gift_card
-import kotlinx.android.synthetic.main.activity_dashboard.navi_help
-import kotlinx.android.synthetic.main.activity_dashboard.navi_logout
-
-import kotlinx.android.synthetic.main.activity_dashboard.navi_mybenefits
-import kotlinx.android.synthetic.main.activity_dashboard.navi_myearing
-import kotlinx.android.synthetic.main.activity_dashboard.navi_profile_image
-
-import kotlinx.android.synthetic.main.activity_dashboard.navi_raffle
-import kotlinx.android.synthetic.main.activity_dashboard.navi_redemption
-import kotlinx.android.synthetic.main.activity_dashboard.navi_terms_and_condition
-
-import kotlinx.android.synthetic.main.activity_dashboard.offer_and_promoions
-import kotlinx.android.synthetic.main.activity_dashboard.offersRV
-import kotlinx.android.synthetic.main.activity_dashboard.openDrawer
-import kotlinx.android.synthetic.main.activity_dashboard.openNotifications
-import kotlinx.android.synthetic.main.activity_dashboard.points
-import kotlinx.android.synthetic.main.activity_dashboard.products_rv
-import kotlinx.android.synthetic.main.activity_dashboard.sideMenu
-import kotlinx.android.synthetic.main.activity_dashboard.userName
-import kotlinx.android.synthetic.main.activity_dashboard.user_mobile_number
-import kotlinx.android.synthetic.main.activity_dashboard.user_name
-import kotlinx.android.synthetic.main.activity_dashboard.user_points
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import java.io.Serializable
 import java.text.DecimalFormat
 
@@ -128,12 +84,13 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         dash_redemption.setOnClickListener(this)
         dash_earning.setOnClickListener(this)
         dash_scan.setOnClickListener(this)
+        ourLocation.setOnClickListener(this)
 
         val gridLayoutManager = GridLayoutManager(this, 3)
         products_rv.layoutManager = gridLayoutManager
 
         getProfileDetails()
-
+        observers()
 
         // Request camera and location permission
         ActivityCompat.requestPermissions(
@@ -193,13 +150,13 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
 
     override fun callInitialServices() {}
-
-
     override fun callObservers() {
+    }
+
+    fun observers() {
 
         profileViewModel.myProfileResponse.observe(this) {
-
-            if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
+            getDashboardDetails()
                 if (it != null && !it.GetCustomerDetailsMobileAppResult?.lstCustomerJson.isNullOrEmpty()) {
 
                     PreferenceHelper.setStringValue(
@@ -220,19 +177,13 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                         .into((navi_profile_image))
 
                 }
-                getDashboardDetails()
-            }
-
-
         }
 
         dashBoardViewModel.dashboardLiveData.observe(this) {
-            if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
+            getDashboardDetails2()
                 if (it != null && !it.lstCustomerFeedBackJson.isNullOrEmpty()) {
 
-                    PreferenceHelper.setStringValue(
-                        this, BuildConfig.LoyaltyID, it.lstCustomerFeedBackJson[0].LoyaltyId!!
-                    )
+                    PreferenceHelper.setStringValue(this, BuildConfig.LoyaltyID, it.lstCustomerFeedBackJson[0].LoyaltyId!!)
                     PreferenceHelper.setDashboardDetails(this, it)
 
                     user_mobile_number.text = it.lstCustomerFeedBackJson[0].CustomerMobile
@@ -243,15 +194,12 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
 
                 }
-                getDashboardDetails2()
-            }
-
 
         }
 
         dashBoardViewModel.dashboardLiveData2.observe(this) {
-            if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
-                if (it != null && !it.ObjCustomerDashboardList.isNullOrEmpty()) {
+            getOffersAndPromotions()
+               if (it != null && !it.ObjCustomerDashboardList.isNullOrEmpty()) {
 
                     // display dashboard data
                     currencyFormat(it.ObjCustomerDashboardList[0].RedeemablePointsBalance.toString())?.let { it1 ->
@@ -268,33 +216,24 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
                 }
 
-                getOffersAndPromotions()
-            }
-
-
         }
 
         promotionViewModel.getPromotionListLiveData.observe(this) {
-            if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
-                if (it != null && !it.LstPromotionJsonList.isNullOrEmpty()) {
+            getBrands()
+               if (it != null && !it.LstPromotionJsonList.isNullOrEmpty()) {
                     _listPromotions = it.LstPromotionJsonList!!
 
                     offersRV.layoutManager =
                         LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
                     offersRV.adapter = OffersAdapter(it.LstPromotionJsonList!!, this)
 
-
                 } else {
 
-
                 }
-                getBrands()
-            }
 
         }
 
         dashBoardViewModel.brandLogos.observe(this) {
-            if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
                 if (it != null && !it.lstAttributesDetails.isNullOrEmpty()) {
 
                     _attributesDetailsList = it.lstAttributesDetails
@@ -304,8 +243,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
                 }
                 LoadingDialogue.dismissDialog()
-            }
-
         }
 
 
@@ -588,7 +525,11 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                 startActivity(Intent(applicationContext, LoginActivity::class.java))
                 finish()
             }
-
+            R.id.ourLocation -> {
+                if (BlockMultipleClick.click()) return
+                startActivity(Intent(context, LocationActivity::class.java))
+                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+            }
         }
     }
 

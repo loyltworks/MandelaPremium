@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityCustomerServiceBinding
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
-import kotlinx.android.synthetic.main.activity_customer_service.*
 
 class CustomerServiceActivity : BaseActivity() {
 
+    lateinit var binding: ActivityCustomerServiceBinding
     override fun callInitialServices() {
     }
 
@@ -19,9 +19,8 @@ class CustomerServiceActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_customer_service)
-//        val toolbar: Toolbar = findViewById(R.id.toolbar)
-//        setSupportActionBar(toolbar)
+        binding = ActivityCustomerServiceBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //set context
         context = this
@@ -34,7 +33,7 @@ class CustomerServiceActivity : BaseActivity() {
         //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
 
-        email_btn.setOnClickListener {
+        binding.emailBtn.setOnClickListener {
             val intent = Intent(
                 Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto", "help@mandelaclubpremium.com", null
@@ -46,7 +45,7 @@ class CustomerServiceActivity : BaseActivity() {
         }
 
 
-        call_btn.setOnClickListener {
+        binding.callBtn.setOnClickListener {
             startActivity(
                 Intent(
                     Intent.ACTION_DIAL, Uri.fromParts("tel", "+ 25699000000", null)
@@ -54,7 +53,7 @@ class CustomerServiceActivity : BaseActivity() {
             )
         }
 
-        back.setOnClickListener {
+        binding.back.setOnClickListener {
             onBackPressed()
         }
 

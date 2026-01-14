@@ -42,7 +42,7 @@
         app:lottie_loop="true" />
 
     <LinearLayout
-        android:id="@+id/my_query"
+        android:id="@+id/myQuery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -88,7 +88,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/contact_us"
+        android:id="@+id/contactUs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

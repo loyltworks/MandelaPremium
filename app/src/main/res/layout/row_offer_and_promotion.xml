@@ -17,7 +17,7 @@
         android:layout_margin="10dp">
 
         <ImageView
-            android:id="@+id/offers_img"
+            android:id="@+id/offerImg"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/border_yellow_back_white"
@@ -31,7 +31,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/offer_tv"
+        android:id="@+id/offerTv"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
@@ -64,7 +64,7 @@
                 app:tint="@color/orange" />
 
             <TextView
-                android:id="@+id/offer_validity"
+                android:id="@+id/offerValidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -75,7 +75,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/offer_view"
+            android:id="@+id/offerView"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"

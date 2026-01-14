@@ -7,7 +7,7 @@
     tools:context=".ui.GiftCards.fragment.GiftReceived.GiftReceivedFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/gift_received_rv"
+        android:id="@+id/giftReceivedRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"
@@ -16,7 +16,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <TextView
-        android:id="@+id/error_gift_recevied"
+        android:id="@+id/errorGiftRecevied"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/poppins_bold"

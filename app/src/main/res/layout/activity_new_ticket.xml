@@ -54,7 +54,7 @@
         android:textSize="12dp" />
 
     <Spinner
-        android:id="@+id/help_topic_spinner"
+        android:id="@+id/helpTopicSpinner"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="15dp"
@@ -72,7 +72,7 @@
         android:textSize="12dp" />
 
     <EditText
-        android:id="@+id/query_details"
+        android:id="@+id/queryDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -89,7 +89,7 @@
 
 
     <ImageView
-        android:id="@+id/browse_Img"
+        android:id="@+id/browseImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -119,7 +119,7 @@
             android:elevation="5dp">
 
             <LinearLayout
-                android:id="@+id/browse_image"
+                android:id="@+id/browseImage"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"

@@ -5,28 +5,28 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.*
+import com.loyltworks.mandelapremium.databinding.FragmentMyEarningBinding
+import com.loyltworks.mandelapremium.model.LstAttributesDetail
+import com.loyltworks.mandelapremium.model.LstPromotionList
+import com.loyltworks.mandelapremium.model.TransactionHistoryRequest
+import com.loyltworks.mandelapremium.model.WishPointRequest
 import com.loyltworks.mandelapremium.ui.MyActivity.MyActivityViewModel
 import com.loyltworks.mandelapremium.ui.MyActivity.adapter.MyEarningAdapter
 import com.loyltworks.mandelapremium.utils.AppController
 import com.loyltworks.mandelapremium.utils.DatePickerBox
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_my.*
-import kotlinx.android.synthetic.main.fragment_my_earning.*
-import kotlinx.android.synthetic.main.fragment_my_earning.view.*
-import kotlinx.android.synthetic.main.fragment_my_redemption.*
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 
 class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
+
+    lateinit var binding: FragmentMyEarningBinding
 
     var FromDate = ""
     var ToDate = ""
@@ -46,25 +46,23 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-
-        val root = inflater.inflate(R.layout.fragment_my_earning, container, false)
+        binding = FragmentMyEarningBinding.inflate(layoutInflater)
 
         /*    FromDate = currentDate.toString()
             ToDate = currentDate.toString()*/
 
-//        root.fromDate_tv.text = AppController.dateFormat(FromDate)
-//        root.toDate_tv.text = AppController.dateFormat(ToDate)
+//        root.binding.fromDateTv.text = AppController.dateFormat(FromDate)
+//        root.binding.toDateTv.text = AppController.dateFormat(ToDate)
 
 
-        root.fromDate.setOnClickListener {
+        binding.fromDate.setOnClickListener {
             DatePickerBox.date(activity) {
-                root.fromDate_tv.text = it
+                binding.fromDateTv.text = it
                 FromDate = it
                 try {
                     DatePickerBox.dateCompare(activity, FromDate, ToDate) {
                         if (!it) {
-                            fromDate_tv.text = "DD/MM/YYYY"
+                            binding.fromDateTv.text = "DD/MM/YYYY"
                             FromDate = ""
                         }
                     }
@@ -74,13 +72,13 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
         }
 
 
-        root.toDate.setOnClickListener {
+        binding.toDate.setOnClickListener {
             DatePickerBox.date(activity) {
-                root.toDate_tv.text = it
+                binding.toDateTv.text = it
                 ToDate = it
                 DatePickerBox.dateCompare(activity, FromDate, ToDate) {
                     if (!it) {
-                        toDate_tv.text = "DD/MM/YYYY"
+                        binding.toDateTv.text = "DD/MM/YYYY"
                         ToDate = ""
                     }
                 }
@@ -88,23 +86,23 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
         }
 
 
-        root.earning_filterBtn.setOnClickListener { v ->
+        binding.earningFilterBtn.setOnClickListener { v ->
 
-            if(root.btnText.text == "Filter"){
+            if(binding.btnText.text == "Filter"){
                 if (!TextUtils.isEmpty(FromDate) && !TextUtils.isEmpty(ToDate)) {
-                    FromDate = fromDate_tv.text.toString()
-                    ToDate = toDate_tv.text.toString()
+                    FromDate = binding.fromDateTv.text.toString()
+                    ToDate = binding.toDateTv.text.toString()
                     getTransactionHistory(
                         filterBy,
                         AppController.dateAPIFormats(FromDate).toString(),
                         AppController.dateAPIFormats(ToDate).toString()
                     )
-                    root.btnText.text = "Reset"
+                    binding.btnText.text = "Reset"
                 } else Toast.makeText(activity, "Please select date range", Toast.LENGTH_SHORT).show()
             }else{
-                root.btnText.text = "Filter"
-                root.fromDate_tv.text = ""
-                root.toDate_tv.text = ""
+                binding.btnText.text = "Filter"
+                binding.fromDateTv.text = ""
+                binding.toDateTv.text = ""
                 FromDate = ""
                 ToDate = ""
                 getTransactionHistory(
@@ -117,7 +115,7 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
         }
 
 
-        return root
+        return binding.root
     }
 
     lateinit var lstAttributesDetail: ArrayList<LstAttributesDetail>
@@ -179,7 +177,7 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
 //
 //        }
 
-//        myearing_rv.adapter = MyEarningAdapter(null, this)
+//        binding.myearingRv.adapter = MyEarningAdapter(null, this)
     }
 
     fun GetWishePoint(locationAttributeID: Int) {
@@ -242,14 +240,14 @@ class MyEarningFragment : Fragment(), MyEarningAdapter.OnItemClickListener {
                 LoadingDialogue.dismissDialog()
                 if (it != null && !it.lstRewardTransJsonDetails.isNullOrEmpty()) {
 
-                    myearing_rv.adapter = MyEarningAdapter(it, this)
-                    earning_error.visibility = View.GONE
-                    myearing_rv.visibility = View.VISIBLE
+                    binding.myearingRv.adapter = MyEarningAdapter(it, this)
+                    binding.earningError.visibility = View.GONE
+                    binding.myearingRv.visibility = View.VISIBLE
 
                 } else {
 
-                    earning_error.visibility = View.VISIBLE
-                    myearing_rv.visibility = View.GONE
+                    binding.earningError.visibility = View.VISIBLE
+                    binding.myearingRv.visibility = View.GONE
 
 //                FromDate = ""
 //                ToDate = ""

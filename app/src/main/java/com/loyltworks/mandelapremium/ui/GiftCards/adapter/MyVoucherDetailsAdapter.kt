@@ -1,17 +1,13 @@
 package com.loyltworks.mandelapremium.ui.GiftCards.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.GetPromotionResponse
-import com.loyltworks.mandelapremium.model.LstPromotionList
+import com.loyltworks.mandelapremium.databinding.RowMyVoucherDetailsBinding
 import com.loyltworks.mandelapremium.model.LstPromotions
-import kotlinx.android.synthetic.main.row_my_voucher_details.view.*
-import kotlinx.android.synthetic.main.row_offer_and_promotion.view.*
 
 class MyVoucherDetailsAdapter(
     var lstPromotions: List<LstPromotions>,
@@ -25,13 +21,13 @@ class MyVoucherDetailsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_my_voucher_details, parent, false)
-        return ViewHolder(view)
+        val binding =
+            RowMyVoucherDetailsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val card_parent_img = itemView.card_parent_img
+    class ViewHolder(binding: RowMyVoucherDetailsBinding) : RecyclerView.ViewHolder(binding.root) {
+        val card_parent_img = binding.cardParentImg
 
     }
 

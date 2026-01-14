@@ -299,7 +299,7 @@
 
                             <!-- Offer Details -->
                             <LinearLayout
-                                android:id="@+id/offer_detils"
+                                android:id="@+id/offerDetils"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="3dp"
@@ -347,7 +347,7 @@
 
 
                             <LinearLayout
-                                android:id="@+id/offer_details_description_view"
+                                android:id="@+id/offerDetailsDescriptionView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
@@ -379,7 +379,7 @@
                             <!-- Steps to redeem the voucher  -->
 
                             <LinearLayout
-                                android:id="@+id/steps_to_redeem_the_voucher"
+                                android:id="@+id/stepsToRedeemTheVoucher"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="3dp"
@@ -428,7 +428,7 @@
 
 
                             <LinearLayout
-                                android:id="@+id/step_to_redeem_the_voucher_description_view"
+                                android:id="@+id/stepToRedeemTheVoucherDescriptionView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
@@ -514,7 +514,7 @@
 
                             <!-- Terms and Condition -->
                             <LinearLayout
-                                android:id="@+id/terms_and_conditions"
+                                android:id="@+id/termsAndConditions"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="3dp"
@@ -563,7 +563,7 @@
 
 
                             <LinearLayout
-                                android:id="@+id/tc_description_view"
+                                android:id="@+id/tcDescriptionView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
@@ -594,7 +594,7 @@
 
                             <!-- Redeemable outlet -->
                             <LinearLayout
-                                android:id="@+id/redeemable_outlet"
+                                android:id="@+id/redeemableOutlet"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="3dp"
@@ -635,7 +635,7 @@
 
 
                             <LinearLayout
-                                android:id="@+id/redeemable_outlet_description_view"
+                                android:id="@+id/redeemableOutletDescriptionView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"

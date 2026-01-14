@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/row_query_time"
+            android:id="@+id/rowQueryTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
@@ -48,7 +48,7 @@
 
 
     <TextView
-        android:id="@+id/row_query_pdf_other"
+        android:id="@+id/pdf"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="left"
@@ -64,7 +64,7 @@
 
 
     <TextView
-        android:id="@+id/row_query_text"
+        android:id="@+id/rowQueryText"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginRight="@dimen/noraml_btn_height"
@@ -78,7 +78,7 @@
         android:visibility="visible" />
 
     <ImageView
-        android:id="@+id/row_query_missed_call"
+        android:id="@+id/rowQueryMissedCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -86,7 +86,7 @@
         app:srcCompat="@drawable/ic_phone_missed" />
 
     <TextView
-        android:id="@+id/row_query_sender"
+        android:id="@+id/rowQuerySender"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="2dp"

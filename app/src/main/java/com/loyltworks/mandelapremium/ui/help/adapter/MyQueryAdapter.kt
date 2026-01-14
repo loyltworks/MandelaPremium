@@ -1,16 +1,14 @@
 package com.loyltworks.mandelapremium.ui.help.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.MyQueryListingElementBinding
 import com.loyltworks.mandelapremium.model.ObjCustomerAllQueryList
 import com.loyltworks.mandelapremium.model.QueryListingResponse
-import com.loyltworks.mandelapremium.ui.help.help_topic_chat_status.QueryChatActivity
 import com.loyltworks.mandelapremium.utils.AppController
-import kotlinx.android.synthetic.main.my_query_listing_element.view.*
 
 class MyQueryAdapter(var queryListingResponse : QueryListingResponse?, var onItemClickListener: OnClickCallBack) : RecyclerView.Adapter<MyQueryAdapter.ViewHolder>() {
 
@@ -19,12 +17,12 @@ class MyQueryAdapter(var queryListingResponse : QueryListingResponse?, var onIte
         fun onClickFeedback(feedbackType: Int, position: Int, productList: List<ObjCustomerAllQueryList?>?)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val row_query_ref_no = itemView.row_query_ref_no
-        val row_query_date = itemView.row_query_date
-        val row_query_text = itemView.row_query_text
-        val row_query_status = itemView.row_query_status
-        val status_icon = itemView.status_icon
+    class ViewHolder(binding: MyQueryListingElementBinding) : RecyclerView.ViewHolder(binding.root) {
+        val row_query_ref_no = binding.rowQueryRefNo
+        val row_query_date = binding.rowQueryDate
+        val row_query_text = binding.rowQueryText
+        val row_query_status = binding.rowQueryStatus
+        val status_icon = binding.statusIcon
 
 
         //val row_query = itemView.row_query
@@ -34,8 +32,9 @@ class MyQueryAdapter(var queryListingResponse : QueryListingResponse?, var onIte
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.my_query_listing_element, parent, false)
-        return ViewHolder(view)
+        val binding =
+            MyQueryListingElementBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

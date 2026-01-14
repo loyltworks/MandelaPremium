@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityBuyGiftDetailsBinding
 import com.loyltworks.mandelapremium.model.GetCashBackRequest
 import com.loyltworks.mandelapremium.model.GetGiftCardRequest
 import com.loyltworks.mandelapremium.model.GetSaveGiftCardRequest
@@ -30,41 +31,11 @@ import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.AlertMessageDialog
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_buy_gift_details.amout_gift_cards
-import kotlinx.android.synthetic.main.activity_buy_gift_details.back
-import kotlinx.android.synthetic.main.activity_buy_gift_details.current_balance
-import kotlinx.android.synthetic.main.activity_buy_gift_details.darkBackground
-import kotlinx.android.synthetic.main.activity_buy_gift_details.gift_card_image
-import kotlinx.android.synthetic.main.activity_buy_gift_details.gift_card_view1
-import kotlinx.android.synthetic.main.activity_buy_gift_details.gift_now11
-import kotlinx.android.synthetic.main.activity_buy_gift_details.gift_now_amout_point
-import kotlinx.android.synthetic.main.activity_buy_gift_details.giftcard_name
-import kotlinx.android.synthetic.main.activity_buy_gift_details.min_max_points
-import kotlinx.android.synthetic.main.activity_buy_gift_details.no_gift_voucher
-import kotlinx.android.synthetic.main.activity_buy_gift_details.offerDetails
-import kotlinx.android.synthetic.main.activity_buy_gift_details.point_balance_edittext
-import kotlinx.android.synthetic.main.activity_buy_gift_details.point_editext
-import kotlinx.android.synthetic.main.activity_buy_gift_details.point_payOnline_card
-import kotlinx.android.synthetic.main.activity_buy_gift_details.range
-import kotlinx.android.synthetic.main.activity_buy_gift_details.redeemable_outlet_text
-import kotlinx.android.synthetic.main.activity_buy_gift_details.step_to_reteem_voucher
-import kotlinx.android.synthetic.main.activity_buy_gift_details.terms_and_condition
-import kotlinx.android.synthetic.main.activity_buy_gift_details.voucher_issue_success_view
-import kotlinx.android.synthetic.main.activity_buy_gift_details.yes_gift_voucher
-import kotlinx.android.synthetic.main.activity_my_voucher_details.host
-import kotlinx.android.synthetic.main.activity_my_voucher_details.offer_details_description_view
-import kotlinx.android.synthetic.main.activity_my_voucher_details.offer_detils
-import kotlinx.android.synthetic.main.activity_my_voucher_details.radioGroup
-import kotlinx.android.synthetic.main.activity_my_voucher_details.redeemable_outlet
-import kotlinx.android.synthetic.main.activity_my_voucher_details.redeemable_outlet_description_view
-import kotlinx.android.synthetic.main.activity_my_voucher_details.step_to_redeem_the_voucher_description_view
-import kotlinx.android.synthetic.main.activity_my_voucher_details.steps_to_redeem_the_voucher
-import kotlinx.android.synthetic.main.activity_my_voucher_details.tc_description_view
-import kotlinx.android.synthetic.main.activity_my_voucher_details.terms_and_conditions
 
 
 class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
+    lateinit var binding: ActivityBuyGiftDetailsBinding
 
     lateinit var buyGiftViewModel: BuyGiftViewModel
 
@@ -86,9 +57,9 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
         buyGiftViewModel.getBuyGiftCaseBackValueListLiveData.observe(this, Observer {
             LoadingDialogue.dismissDialog()
             if (it != null) {
-                gift_now_amout_point.visibility = View.VISIBLE
+                binding.giftNowAmoutPoint.visibility = View.VISIBLE
                 AmountConvertPoints = it.CashBack_Value!!.toInt()
-                point_balance_edittext.setText(it.CashBack_Value.toString())
+                binding.pointBalanceEdittext.setText(it.CashBack_Value.toString())
             } else {
 //                Toast.makeText(context, "Something went wrong, please try again.", Toast.LENGTH_SHORT).show()
             }
@@ -102,10 +73,10 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
                 if (it.ReturnMessage!!.split(":")[0].toInt() > 0) {
                     merchantID = it.ReturnMessage!!.split(":")[1].toInt()
-                    voucher_issue_success_view.visibility = View.VISIBLE
-                    voucher_issue_success_view.animation = AnimationUtils.loadAnimation(this,R.anim.slide_up)
-                    darkBackground.visibility = View.VISIBLE
-                    darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_in)
+                    binding.voucherIssueSuccessView.visibility = View.VISIBLE
+                    binding.voucherIssueSuccessView.animation = AnimationUtils.loadAnimation(this,R.anim.slide_up)
+                    binding.darkBackground.visibility = View.VISIBLE
+                    binding.darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_in)
                 } else {
 
                     Toast.makeText(context, "Voucher issued Failed", Toast.LENGTH_SHORT).show()
@@ -120,10 +91,10 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
         // for this observe call when user click on Voucher issue successfully click on YES
         giftCardsViewModel.getGiftCardListLiveData.observe(this, Observer {
 
-            voucher_issue_success_view.visibility = View.GONE
-            voucher_issue_success_view.animation = AnimationUtils.loadAnimation(this,R.anim.slide_down)
-            darkBackground.visibility = View.GONE
-            darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_out)
+            binding.voucherIssueSuccessView.visibility = View.GONE
+            binding.voucherIssueSuccessView.animation = AnimationUtils.loadAnimation(this,R.anim.slide_down)
+            binding.darkBackground.visibility = View.GONE
+            binding.darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_out)
 
             if (it != null && !it.lstMerchantinfo.isNullOrEmpty()) {
 
@@ -154,11 +125,13 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_buy_gift_details)
+        binding = ActivityBuyGiftDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
 //        val toolbar: Toolbar = findViewById(R.id.toolbar)
 //        setSupportActionBar(toolbar)
 
-        host.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.host.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
 
         //set context
         context = this
@@ -174,8 +147,8 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
             lstVoucherDetails = intent.getSerializableExtra("BuyGiftDetails") as LstVoucherDetails
 
 
-        voucher_issue_success_view.visibility = View.GONE
-        darkBackground.visibility = View.GONE
+        binding.voucherIssueSuccessView.visibility = View.GONE
+        binding.darkBackground.visibility = View.GONE
 
 
 
@@ -183,15 +156,15 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
 
 
-        offer_detils.setOnClickListener(this)
-        steps_to_redeem_the_voucher.setOnClickListener(this)
-        terms_and_conditions.setOnClickListener(this)
-        redeemable_outlet.setOnClickListener(this)
-        gift_now11.setOnClickListener(this)
-        no_gift_voucher.setOnClickListener(this)
-        yes_gift_voucher.setOnClickListener(this)
-        gift_now_amout_point.setOnClickListener(this)
-        back.setOnClickListener(this)
+        binding.offerDetils.setOnClickListener(this)
+        binding.stepsToRedeemTheVoucher.setOnClickListener(this)
+        binding.termsAndConditions.setOnClickListener(this)
+        binding.redeemableOutlet.setOnClickListener(this)
+        binding.giftNow11.setOnClickListener(this)
+        binding.noGiftVoucher.setOnClickListener(this)
+        binding.yesGiftVoucher.setOnClickListener(this)
+        binding.giftNowAmoutPoint.setOnClickListener(this)
+        binding.back.setOnClickListener(this)
 
         buyGiftViewModel = ViewModelProvider(this).get(BuyGiftViewModel::class.java)
         giftCardsViewModel = ViewModelProvider(this).get(GiftCardsViewModel::class.java)
@@ -199,14 +172,14 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
 
 
-        point_payOnline_card.visibility = View.GONE
-        gift_card_view1.visibility = View.VISIBLE
+        binding.pointPayOnlineCard.visibility = View.GONE
+        binding.giftCardView1.visibility = View.VISIBLE
 
 
 
-        amout_gift_cards.addTextChangedListener(object : TextWatcher {
+        binding.amoutGiftCards.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                point_balance_edittext.setText("")
+                binding.pointBalanceEdittext.setText("")
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -217,16 +190,16 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
         })
 
 
-        radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId -> // checkedId is the RadioButton selected
+        binding.radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId -> // checkedId is the RadioButton selected
             val rb = findViewById<View>(checkedId) as RadioButton
 //            Toast.makeText(applicationContext, rb.text, Toast.LENGTH_SHORT).show()
 
             if (rb.text == "Pay by Points") {
-                point_editext.visibility = View.VISIBLE
-                gift_now_amout_point.visibility = View.VISIBLE
+                binding.pointEditext.visibility = View.VISIBLE
+                binding.giftNowAmoutPoint.visibility = View.VISIBLE
             } else {
-                point_editext.visibility = View.GONE
-                gift_now_amout_point.visibility = View.GONE
+                binding.pointEditext.visibility = View.GONE
+                binding.giftNowAmoutPoint.visibility = View.GONE
             }
         })
     }
@@ -234,34 +207,34 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
     @SuppressLint("SetTextI18n")
     private fun SetUpUi() {
 
-        giftcard_name.text = lstVoucherDetails.CardName
+        binding.giftcardName.text = lstVoucherDetails.CardName
 
         if (lstVoucherDetails.FixedValue != null && lstVoucherDetails.FixedValue != 0) {
-            range.visibility = View.GONE
-            min_max_points.visibility = View.GONE
-            amout_gift_cards.setText(lstVoucherDetails.FixedValue.toString())
-            amout_gift_cards.isEnabled = false
+            binding.range.visibility = View.GONE
+            binding.minMaxPoints.visibility = View.GONE
+            binding.amoutGiftCards.setText(lstVoucherDetails.FixedValue.toString())
+            binding.amoutGiftCards.isEnabled = false
 
         }else {
-            range.visibility = View.VISIBLE
-            min_max_points.visibility = View.VISIBLE
-            amout_gift_cards.isEnabled = true
-            min_max_points.text = lstVoucherDetails.MinValue.toString() + " - " + lstVoucherDetails.MaxValue.toString()
+            binding.range.visibility = View.VISIBLE
+            binding.minMaxPoints.visibility = View.VISIBLE
+            binding.amoutGiftCards.isEnabled = true
+            binding.minMaxPoints.text = lstVoucherDetails.MinValue.toString() + " - " + lstVoucherDetails.MaxValue.toString()
         }
 
      /*   if (lstVoucherDetails.CardCatName.equals("Fixed")) {
 
-            range.text = "Value"
-            min_max_points.text = lstVoucherDetails.FixedValue.toString()
+            binding.range.text = "Value"
+            binding.minMaxPoints.text = lstVoucherDetails.FixedValue.toString()
 
         } else {
-            min_max_points.text =
+            binding.minMaxPoints.text =
                 lstVoucherDetails.MinValue.toString() + " - " + lstVoucherDetails.MaxValue.toString()
         }
 */
 
 
-        current_balance.text = PreferenceHelper.getStringValue(this, BuildConfig.OverAllPoints)
+        binding.currentBalance.text = PreferenceHelper.getStringValue(this, BuildConfig.OverAllPoints)
 
         Glide.with(this).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.dummy_image).load(
@@ -269,27 +242,27 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
                     "~",
                     ""
                 )
-            ).into(gift_card_image)
+            ).into(binding.giftCardImage)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            offerDetails.text =
+            binding.offerDetails.text =
                 Html.fromHtml(lstVoucherDetails.Message, Html.FROM_HTML_MODE_COMPACT);
-            step_to_reteem_voucher.text =
+            binding.stepToReteemVoucher.text =
                 Html.fromHtml(lstVoucherDetails.Instruction, Html.FROM_HTML_MODE_COMPACT);
-            terms_and_condition.text =
+            binding.termsAndCondition.text =
                 Html.fromHtml(lstVoucherDetails.TermsAndConditions, Html.FROM_HTML_MODE_COMPACT);
-            redeemable_outlet_text.text =
+            binding.redeemableOutletText.text =
                 Html.fromHtml(lstVoucherDetails.LocationName, Html.FROM_HTML_MODE_COMPACT);
         } else {
-            offerDetails.text = Html.fromHtml(lstVoucherDetails.Message);
-            step_to_reteem_voucher.text = Html.fromHtml(lstVoucherDetails.Instruction);
-            terms_and_condition.text = Html.fromHtml(lstVoucherDetails.TermsAndConditions);
-            redeemable_outlet_text.text = Html.fromHtml(lstVoucherDetails.LocationName);
+            binding.offerDetails.text = Html.fromHtml(lstVoucherDetails.Message);
+            binding.stepToReteemVoucher.text = Html.fromHtml(lstVoucherDetails.Instruction);
+            binding.termsAndCondition.text = Html.fromHtml(lstVoucherDetails.TermsAndConditions);
+            binding.redeemableOutletText.text = Html.fromHtml(lstVoucherDetails.LocationName);
         }
 
 
         // Request call when focus change amount for getting point
-        amout_gift_cards.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+        binding.amoutGiftCards.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
 
                 val minRange = lstVoucherDetails.MinValue
@@ -297,17 +270,17 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
                 if (lstVoucherDetails.CardCatName.equals("Fixed")) {
 
-                    if (lstVoucherDetails.FixedValue!!.toInt() != amout_gift_cards.text.toString().toInt()) {
-                        point_balance_edittext.setText("")
-                        Toast.makeText(this, "Amount range should be given range", Toast.LENGTH_LONG).show()
+                    if (lstVoucherDetails.FixedValue!!.toInt() != binding.amoutGiftCards.text.toString().toInt()) {
+                        binding.pointBalanceEdittext.setText("")
+                        Toast.makeText(this, "Amount binding.range should be given binding.range", Toast.LENGTH_LONG).show()
                         return@OnFocusChangeListener
                     }
 
                 }else {
-                    if (!amout_gift_cards.text.toString().isNullOrEmpty() && minRange != null && maxRange != null) {
-                        if (minRange > amout_gift_cards.text.toString().toInt() || maxRange < amout_gift_cards.text.toString().toInt()) {
-                            point_balance_edittext.setText("")
-                            Toast.makeText(this, "Amount range should be given range", Toast.LENGTH_LONG).show()
+                    if (!binding.amoutGiftCards.text.toString().isNullOrEmpty() && minRange != null && maxRange != null) {
+                        if (minRange > binding.amoutGiftCards.text.toString().toInt() || maxRange < binding.amoutGiftCards.text.toString().toInt()) {
+                            binding.pointBalanceEdittext.setText("")
+                            Toast.makeText(this, "Amount binding.range should be given binding.range", Toast.LENGTH_LONG).show()
                             return@OnFocusChangeListener
                         }
                     }
@@ -318,7 +291,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
                 LoadingDialogue.showDialog(this)
                 buyGiftViewModel.getBuyGiftCaseBackValue(
                     GetCashBackRequest(
-                        amout_gift_cards.text.toString(),
+                        binding.amoutGiftCards.text.toString(),
                         BuildConfig.MerchantID,
                         BuildConfig.MerchantName
                     )
@@ -333,71 +306,71 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
 
         when (v!!.id) {
-            R.id.offer_detils -> {
+            R.id.offerDetils -> {
 
-                if (offer_details_description_view.visibility == View.VISIBLE) {
-                    offer_details_description_view.visibility = View.GONE
+                if (binding.offerDetailsDescriptionView.visibility == View.VISIBLE) {
+                    binding.offerDetailsDescriptionView.visibility = View.GONE
                     return
                 }
 
-                offer_details_description_view.visibility = View.VISIBLE
-                step_to_redeem_the_voucher_description_view.visibility = View.GONE
-                tc_description_view.visibility = View.GONE
-                redeemable_outlet_description_view.visibility = View.GONE
+                binding.offerDetailsDescriptionView.visibility = View.VISIBLE
+                binding.stepToRedeemTheVoucherDescriptionView.visibility = View.GONE
+                binding.tcDescriptionView.visibility = View.GONE
+                binding.redeemableOutletDescriptionView.visibility = View.GONE
             }
 
-            R.id.steps_to_redeem_the_voucher -> {
+            R.id.stepsToRedeemTheVoucher -> {
 
-                if (step_to_redeem_the_voucher_description_view.visibility == View.VISIBLE) {
-                    step_to_redeem_the_voucher_description_view.visibility = View.GONE
+                if (binding.stepToRedeemTheVoucherDescriptionView.visibility == View.VISIBLE) {
+                    binding.stepToRedeemTheVoucherDescriptionView.visibility = View.GONE
                     return
                 }
 
-                offer_details_description_view.visibility = View.GONE
-                step_to_redeem_the_voucher_description_view.visibility = View.VISIBLE
-                tc_description_view.visibility = View.GONE
-                redeemable_outlet_description_view.visibility = View.GONE
+                binding.offerDetailsDescriptionView.visibility = View.GONE
+                binding.stepToRedeemTheVoucherDescriptionView.visibility = View.VISIBLE
+                binding.tcDescriptionView.visibility = View.GONE
+                binding.redeemableOutletDescriptionView.visibility = View.GONE
             }
 
-            R.id.terms_and_conditions -> {
+            R.id.termsAndConditions -> {
 
-                if (tc_description_view.visibility == View.VISIBLE) {
-                    tc_description_view.visibility = View.GONE
+                if (binding.tcDescriptionView.visibility == View.VISIBLE) {
+                    binding.tcDescriptionView.visibility = View.GONE
                     return
                 }
 
-                offer_details_description_view.visibility = View.GONE
-                step_to_redeem_the_voucher_description_view.visibility = View.GONE
-                tc_description_view.visibility = View.VISIBLE
-                redeemable_outlet_description_view.visibility = View.GONE
+                binding.offerDetailsDescriptionView.visibility = View.GONE
+                binding.stepToRedeemTheVoucherDescriptionView.visibility = View.GONE
+                binding.tcDescriptionView.visibility = View.VISIBLE
+                binding.redeemableOutletDescriptionView.visibility = View.GONE
             }
-            R.id.redeemable_outlet -> {
+            R.id.redeemableOutlet -> {
 
-                if (redeemable_outlet_description_view.visibility == View.VISIBLE) {
-                    redeemable_outlet_description_view.visibility = View.GONE
+                if (binding.redeemableOutletDescriptionView.visibility == View.VISIBLE) {
+                    binding.redeemableOutletDescriptionView.visibility = View.GONE
                     return
                 }
 
-                offer_details_description_view.visibility = View.GONE
-                step_to_redeem_the_voucher_description_view.visibility = View.GONE
-                tc_description_view.visibility = View.GONE
-                redeemable_outlet_description_view.visibility = View.VISIBLE
+                binding.offerDetailsDescriptionView.visibility = View.GONE
+                binding.stepToRedeemTheVoucherDescriptionView.visibility = View.GONE
+                binding.tcDescriptionView.visibility = View.GONE
+                binding.redeemableOutletDescriptionView.visibility = View.VISIBLE
             }
-            R.id.gift_now11 -> {
+            R.id.giftNow11 -> {
 
-                point_payOnline_card.visibility = View.VISIBLE
-                gift_now11.visibility = View.GONE
-                gift_card_view1.visibility = View.GONE
+                binding.pointPayOnlineCard.visibility = View.VISIBLE
+                binding.giftNow11.visibility = View.GONE
+                binding.giftCardView1.visibility = View.GONE
 
             }
-            R.id.gift_now_amout_point -> {
+            R.id.giftNowAmoutPoint -> {
 
                 var rewardPoint = PreferenceHelper.getStringValue(this, BuildConfig.OverAllPoints)
                     .replace(",", "")
 
-                if (amout_gift_cards.text.toString().isEmpty()) {
+                if (binding.amoutGiftCards.text.toString().isEmpty()) {
                     Toast.makeText(this, "Please enter amount", Toast.LENGTH_LONG).show()
-                } else if (point_balance_edittext.text.toString().isNullOrEmpty()) {
+                } else if (binding.pointBalanceEdittext.text.toString().isNullOrEmpty()) {
                     Toast.makeText(this, "Please add points value", Toast.LENGTH_LONG).show()
                 } else if (AmountConvertPoints > rewardPoint.toInt()) {
                     Toast.makeText(
@@ -418,7 +391,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
                                             BuildConfig.LoyaltyID
                                         ),
 //                                        CardNumber = ,
-                                        TopUpAmount = amout_gift_cards.text.toString().toInt(),
+                                        TopUpAmount = binding.amoutGiftCards.text.toString().toInt(),
                                         IssuedEncashBalance = true,
                                         Is_Active = false,
                                         IsUsingLoyaltyPoints = false,
@@ -434,24 +407,24 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
                 }
 
-//                voucher_issue_success_view.visibility = View.VISIBLE
+//                binding.voucherIssueSuccessView.visibility = View.VISIBLE
 
             }
 
 
-            R.id.no_gift_voucher -> {
+            R.id.noGiftVoucher -> {
 
-                voucher_issue_success_view.visibility = View.GONE
-                voucher_issue_success_view.animation = AnimationUtils.loadAnimation(this,R.anim.slide_down)
-                darkBackground.visibility = View.GONE
-                darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_out)
+                binding.voucherIssueSuccessView.visibility = View.GONE
+                binding.voucherIssueSuccessView.animation = AnimationUtils.loadAnimation(this,R.anim.slide_down)
+                binding.darkBackground.visibility = View.GONE
+                binding.darkBackground.animation = AnimationUtils.loadAnimation(this,R.anim.fade_out)
 
                 AlertMessageDialog.showPopUpDialog(this,
                     "This E-gift card added to your account.\n" +
                             "For more info check in the Gift Card section. ",
                     object : AlertMessageDialog.ForgotCallBackAlert {
                         override fun OK() {
-                            point_payOnline_card.visibility = View.GONE
+                            binding.pointPayOnlineCard.visibility = View.GONE
                             onBackPressed()
 
                         }
@@ -459,7 +432,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
 
             }
-            R.id.yes_gift_voucher -> {
+            R.id.yesGiftVoucher -> {
 
                 /*   startActivity(Intent(context, MyVoucherDetailsActivity::class.java))
                    overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
@@ -495,15 +468,15 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
     override fun onBackPressed() {
 
-        if (point_payOnline_card.visibility == View.VISIBLE) {
-            amout_gift_cards.setText("")
-            point_balance_edittext.setText("")
+        if (binding.pointPayOnlineCard.visibility == View.VISIBLE) {
+            binding.amoutGiftCards.setText("")
+            binding.pointBalanceEdittext.setText("")
 
-            point_payOnline_card.visibility = View.GONE
-            gift_now11.visibility = View.VISIBLE
-            gift_card_view1.visibility = View.VISIBLE
+            binding.pointPayOnlineCard.visibility = View.GONE
+            binding.giftNow11.visibility = View.VISIBLE
+            binding.giftCardView1.visibility = View.VISIBLE
 
-        } else/* if (voucher_issue_success_view.visibility != View.VISIBLE) */ {
+        } else/* if (binding.voucherIssueSuccessView.visibility != View.VISIBLE) */ {
             super.onBackPressed()
             overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right)
         }

@@ -1,6 +1,5 @@
 package com.loyltworks.mandelapremium.ui.help.newTicket
 
-import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
@@ -9,38 +8,27 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.CityList
-import com.loyltworks.mandelapremium.model.CityRequest
-import com.loyltworks.mandelapremium.model.GenderSpinner
+import com.loyltworks.mandelapremium.databinding.ActivityNewTicketBinding
 import com.loyltworks.mandelapremium.model.GetHelpTopicRetrieveRequest
 import com.loyltworks.mandelapremium.model.HelpTopicRetrieveRequest
-import com.loyltworks.mandelapremium.model.LstAttributesDetail
-import com.loyltworks.mandelapremium.model.LstCountryDetail
 import com.loyltworks.mandelapremium.model.ObjHelpTopicList
 import com.loyltworks.mandelapremium.model.SaveNewTicketQueryRequest
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
-import com.loyltworks.mandelapremium.ui.dashboard.DashboardActivity
 import com.loyltworks.mandelapremium.ui.help.HelpViewModel
 import com.loyltworks.mandelapremium.ui.help.adapter.HelptopicsAdapter
-import com.loyltworks.mandelapremium.ui.help.newTicket.SelectQueryBottomSheet.SelectQueryOption.selectPaymentMode
-import com.loyltworks.mandelapremium.ui.profile.adapter.CountryAdapter
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
+import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.vmb.fileSelect.FileSelector
 import com.vmb.fileSelect.FileSelectorCallBack
 import com.vmb.fileSelect.FileSelectorData
-import com.vmb.fileSelect.ProgressDialogue
-import kotlinx.android.synthetic.main.activity_new_ticket.*
-import kotlinx.android.synthetic.main.fragment_tab1.country_spinner
-import kotlinx.android.synthetic.main.row_history_notifications.*
-import kotlin.collections.ArrayList
 
 class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
+
+    lateinit var binding: ActivityNewTicketBinding
+
     private lateinit var viewModel: HelpViewModel
     var __PaymentmethodList = ArrayList<ObjHelpTopicList>()
 
@@ -77,7 +65,7 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
                     0,
                     ObjHelpTopicList(HelpTopicId = -1, HelpTopicName = "Select topic")
                 )
-                help_topic_spinner.adapter = HelptopicsAdapter(
+                binding.helpTopicSpinner.adapter = HelptopicsAdapter(
                     this,
                     android.R.layout.simple_spinner_item,
                     helpTopicList as ArrayList<ObjHelpTopicList>
@@ -89,7 +77,7 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
                     0,
                     ObjHelpTopicList(HelpTopicId = -1, HelpTopicName = "Select topic")
                 )
-                help_topic_spinner.adapter = HelptopicsAdapter(
+                binding.helpTopicSpinner.adapter = HelptopicsAdapter(
                     this,
                     android.R.layout.simple_spinner_item,
                     helpTopicList as ArrayList<ObjHelpTopicList>
@@ -134,18 +122,17 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this).get(HelpViewModel::class.java)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_ticket)
-
+        binding = ActivityNewTicketBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //set context
         context = this
 
+        binding.helpTopicSpinner.onItemSelectedListener = this
 
-        help_topic_spinner.onItemSelectedListener = this
-
-        browse_image.setOnClickListener(this)
-        submit.setOnClickListener(this)
-        back.setOnClickListener(this)
+        binding.browseImage.setOnClickListener(this)
+        binding.submit.setOnClickListener(this)
+        binding.back.setOnClickListener(this)
 
 
     }
@@ -171,7 +158,7 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
                 onBackPressed()
             }
 
-            R.id.browse_image -> this.let {
+            R.id.browseImage -> this.let {
 
                 // Browse Image or Files
                 FileSelector.open(this, object : FileSelectorCallBack {
@@ -179,20 +166,20 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
                         mProfileImagePath = fileSelectorData.responseInBase64!!
                         fileExtenstion = fileSelectorData.extension!!
 
-                        browse_Img.visibility = View.VISIBLE
+                        binding.browseImg.visibility = View.VISIBLE
 
-                        browse_Img.setImageBitmap(fileSelectorData.thumbnail)
+                        binding.browseImg.setImageBitmap(fileSelectorData.thumbnail)
 
 
                         /* if(fileExtenstion.equals("png",true)) {
-                                     browse_Img.visibility = View.VISIBLE
+                                     binding.browseImg.visibility = View.VISIBLE
                                      file_name.visibility = View.GONE
                                      Glide.with(requireContext())
                                          .asBitmap()
                                          .load(Base64.decode(mProfileImagePath, Base64.DEFAULT))
-                                         .into(browse_Img)
+                                         .into(binding.browseImg)
                                  }else{
-                                     browse_Img.visibility = View.GONE
+                                     binding.browseImg.visibility = View.GONE
                                      file_name.visibility = View.VISIBLE
 
                                      file_name.text = fileName
@@ -207,9 +194,9 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
                 if (mSelectedHelpTopic?.HelpTopicId == -1) {
                     Toast.makeText(this,"Select any topic.",Toast.LENGTH_SHORT).show()
                     return
-                } else if (TextUtils.isEmpty(query_details.text.toString())) {
-                    query_details.error = "Enter ticket details."
-                    query_details.requestFocus()
+                } else if (TextUtils.isEmpty(binding.queryDetails.text.toString())) {
+                    binding.queryDetails.error = "Enter ticket details."
+                    binding.queryDetails.requestFocus()
                     return
                 } else {
 
@@ -226,8 +213,8 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
                                 IsQueryFromMobile = "true",
                                 LoyaltyID = PreferenceHelper.getLoginDetails(this)?.UserList!![0].UserName.toString(),
                                 Mobile = PreferenceHelper.getLoginDetails(this)?.UserList!![0].Mobile.toString(),
-                                QueryDetails = query_details.text.toString(),
-                                QuerySummary = query_details.text.toString(),
+                                QueryDetails = binding.queryDetails.text.toString(),
+                                QuerySummary = binding.queryDetails.text.toString(),
                                 SourceType = "1",
 //                                FileType = fileExtenstion,
                                 ImageUrl = mProfileImagePath
@@ -245,7 +232,7 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when (parent!!.id) {
 
-            R.id.help_topic_spinner -> {
+            R.id.helpTopicSpinner -> {
                 mSelectedHelpTopic = parent.getItemAtPosition(position) as ObjHelpTopicList
             }
 

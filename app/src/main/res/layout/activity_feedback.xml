@@ -74,7 +74,7 @@
         android:background="@drawable/bottom_corner_radius">
 
         <TextView
-            android:id="@+id/feedback_description"
+            android:id="@+id/feedbackDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -85,8 +85,8 @@
             android:textColor="@color/white" />
 
         <TextView
-            android:id="@+id/feeback_description_bottom_title"
-            android:layout_below="@id/feedback_description"
+            android:id="@+id/feebackDescriptionBottomTitle"
+            android:layout_below="@id/feedbackDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -131,7 +131,7 @@
                 android:layout_gravity="start">
 
                 <RatingBar
-                    android:id="@+id/feedback_rating_bar"
+                    android:id="@+id/feedbackRatingBar"
                     style="@style/RatingBar"
                     android:layout_width="wrap_content"
                     android:progressTint="@color/textYello"
@@ -149,7 +149,7 @@
 
 
             <EditText
-                android:id="@+id/feedback_text"
+                android:id="@+id/feedbackText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
@@ -168,7 +168,7 @@
 
 
             <TextView
-                android:id="@+id/feedback_submit"
+                android:id="@+id/feedbackSubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -198,11 +198,11 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.50dp"
-        android:layout_above="@+id/success_message"
+        android:layout_above="@+id/successMessage"
         android:background="#7E7E7E"/>
 
         <LinearLayout
-            android:id="@+id/success_message"
+            android:id="@+id/successMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

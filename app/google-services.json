@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "379978430822",
+    "project_id": "mandela-premium-club",
+    "storage_bucket": "mandela-premium-club.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379978430822:android:6e389b67086ec69c2e70a7",
+        "android_client_info": {
+          "package_name": "com.loyltworks.mandelapremium"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVcAzVpAWkH34Bf6jy7LTT1BVJOyTryeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379978430822:android:3632431cb2e4a3082e70a7",
+        "android_client_info": {
+          "package_name": "com.oneloyalty.mandela"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVcAzVpAWkH34Bf6jy7LTT1BVJOyTryeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

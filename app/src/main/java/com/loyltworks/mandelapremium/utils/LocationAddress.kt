@@ -13,15 +13,15 @@ object LocationAddress {
         var add = ""
         try {
             val addresses = geocoder.getFromLocation(lat, lng, 1)
-            val obj = addresses[0]
+            val obj = addresses!![0]
             add = obj.getAddressLine(0)
-            add = add + ":" + obj.getCountryName();
-            add = add + ":" + obj.getCountryCode();
-            add = add + ":" + obj.getAdminArea();
-            add = add + ":" + obj.getPostalCode();
-            add = add + ":" + obj.getSubAdminArea();
-            add = add + ":" + obj.getLocality();
-            add = add + ":" + obj.getSubThoroughfare();
+            add = add + ":" + obj.getCountryName()
+            add = add + ":" + obj.getCountryCode()
+            add = add + ":" + obj.getAdminArea()
+            add = add + ":" + obj.getPostalCode()
+            add = add + ":" + obj.getSubAdminArea()
+            add = add + ":" + obj.getLocality()
+            add = add + ":" + obj.getSubThoroughfare()
             Log.v("IGA", "Address$add")
 
         } catch (e: IOException) {

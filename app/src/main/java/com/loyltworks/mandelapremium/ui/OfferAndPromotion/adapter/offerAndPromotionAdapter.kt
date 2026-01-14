@@ -1,16 +1,13 @@
 package com.loyltworks.mandelapremium.ui.OfferAndPromotion.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.RowOfferAndPromotionBinding
 import com.loyltworks.mandelapremium.model.LstPromotionList
-import kotlinx.android.synthetic.main.row_offer_and_promotion.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class offerAndPromotionAdapter(
     var lstPromotionJsonList: MutableList<LstPromotionList>,
@@ -21,19 +18,20 @@ class offerAndPromotionAdapter(
         fun onItemClicked(offersPromotions: LstPromotionList?)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val offer_tv = itemView.offer_tv
-        val offers_img = itemView.offers_img
-        val offer_view = itemView.offer_view
-        val offer_validity = itemView.offer_validity
+    class ViewHolder(binding: RowOfferAndPromotionBinding) : RecyclerView.ViewHolder(binding.root) {
+        val offer_tv = binding.offerTv
+        val offers_img = binding.offerImg
+        val offer_view = binding.offerView
+        val offer_validity = binding.offerValidity
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_offer_and_promotion, parent, false)
-        return ViewHolder(view)
+        val binding =
+            RowOfferAndPromotionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val promotionListing = lstPromotionJsonList[position]

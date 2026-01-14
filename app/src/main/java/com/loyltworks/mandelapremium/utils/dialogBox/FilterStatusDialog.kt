@@ -1,18 +1,5 @@
 package com.loyltworks.mandelapremium.utils.dialogBox
 
-import android.app.AlertDialog
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.view.Gravity
-import android.view.View
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.FilterStatus
-import java.util.*
-
 object FilterStatusDialog {
 
   /*  interface FilterStatusCallBack {

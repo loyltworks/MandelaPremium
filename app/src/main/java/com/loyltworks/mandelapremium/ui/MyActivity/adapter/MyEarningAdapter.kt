@@ -1,19 +1,12 @@
 package com.loyltworks.mandelapremium.ui.MyActivity.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.loyltworks.mandelapremium.BuildConfig
-import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.GetPromotionResponse
+import com.loyltworks.mandelapremium.databinding.RowMyEarningBinding
 import com.loyltworks.mandelapremium.model.LstPromotionList
 import com.loyltworks.mandelapremium.model.TransactionHistoryResponse
 import com.loyltworks.mandelapremium.utils.AppController
-import kotlinx.android.synthetic.main.row_my_earning.view.*
-import kotlinx.android.synthetic.main.row_offer_and_promotion.view.*
 
 class MyEarningAdapter(
     var whatsNewResponse: TransactionHistoryResponse?,
@@ -24,19 +17,19 @@ class MyEarningAdapter(
         fun onItemClicked(offersPromotions: LstPromotionList?)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val points = itemView.points
-        val transactionType = itemView.transactionType
-        val location = itemView.location
-        val date = itemView.date
-        val invoiceNumber = itemView.invoiceNumber
+    class ViewHolder(binding: RowMyEarningBinding) : RecyclerView.ViewHolder(binding.root) {
+        val points = binding.points
+        val transactionType = binding.transactionType
+        val location = binding.location
+        val date = binding.date
+        val invoiceNumber = binding.invoiceNumber
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_my_earning, parent, false)
-        return ViewHolder(view)
+        val binding =
+            RowMyEarningBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -53,11 +46,9 @@ class MyEarningAdapter(
             itemClickListener.onItemClicked(null)
 
         }
-
     }
 
     override fun getItemCount(): Int {
         return whatsNewResponse!!.lstRewardTransJsonDetails?.size!!
     }
-
 }

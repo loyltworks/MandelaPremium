@@ -1,27 +1,27 @@
 package com.loyltworks.mandelapremium.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.RowOffersBinding
 import com.loyltworks.mandelapremium.model.LstPromotionList
-import kotlinx.android.synthetic.main.row_offers.view.promoImage
 
 class OffersAdapter(val lstPromotionJsonList: List<LstPromotionList>,val promotionClickListener: PromotionClickListener) : RecyclerView.Adapter<OffersAdapter.ViewHolder>() {
 
     interface PromotionClickListener{
         fun onPromotionClicked(lstPromotionJson: LstPromotionList)
     }
-    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        val promoImage = itemView.promoImage
+    class ViewHolder(binding: RowOffersBinding) : RecyclerView.ViewHolder(binding.root) {
+        val promoImage = binding.promoImage
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.row_offers, parent, false)
-        return ViewHolder(view)
+        val binding =
+            RowOffersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

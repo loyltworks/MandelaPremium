@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils.split
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
@@ -14,11 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.easywaylocation.EasyWayLocation
 import com.example.easywaylocation.Listener
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityScannerBinding
 import com.loyltworks.mandelapremium.model.QRCodeSaveRequestLists
 import com.loyltworks.mandelapremium.model.ScanRequest
-import com.loyltworks.mandelapremium.model.ValidateScratchCodeRequest
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
-import com.loyltworks.mandelapremium.utils.AppController
 import com.loyltworks.mandelapremium.utils.LocationAddress
 import com.loyltworks.mandelapremium.utils.MediaPlayerPool
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
@@ -29,20 +27,21 @@ import com.vmb.scanner.Scanner
 import com.vmb.scanner.Scanner.Already_Code_Scanned
 import com.vmb.scanner.Scanner.resumeScan
 import com.vmb.scanner.ScannerListener
-import kotlinx.android.synthetic.main.activity_scanner.*
-import kotlinx.android.synthetic.main.scan_success_below_popup_layout.*
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+
 @RequiresApi(Build.VERSION_CODES.M)
 class ScannerActivity : BaseActivity(), ScannerListener , Listener {
+    
+    lateinit var binding: ActivityScannerBinding
 
-    public var latitude: String = ""
-    public var longitude: String = ""
-    public var address: String = ""
-    public var city: String = ""
-    public var country: String = ""
-    public var state: String = ""
-    public var pincode: String = ""
+    var latitude: String = ""
+    var longitude: String = ""
+    var address: String = ""
+    var city: String = ""
+    var country: String = ""
+    var state: String = ""
+    var pincode: String = ""
 
     private lateinit var mediaPlayer: MediaPlayerPool
     private lateinit var scanCodes: String
@@ -98,33 +97,34 @@ class ScannerActivity : BaseActivity(), ScannerListener , Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this).get(ScannerViewModel::class.java)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scanner)
+        binding = ActivityScannerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // initialize scanner
         scannerCameraInit()
 
-        back_arrow.setOnClickListener {
+        binding.backArrow.setOnClickListener {
             onBackPressed()
         }
 
-        productQRCode.setOnClickListener{
-            productQRCode.background = ContextCompat.getDrawable(this,R.drawable.tab_selected)
-            productQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.black))
-            toolbarTitle.setTextColor(ContextCompat.getColor(this,R.color.white))
-            raffleQRCode.background = null
-            raffleQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.white))
-            productQRCodeLayout.visibility = View.VISIBLE
-            raffleQRCodeLayout.visibility = View.GONE
+        binding.productQRCode.setOnClickListener{
+            binding.productQRCode.background = ContextCompat.getDrawable(this,R.drawable.tab_selected)
+            binding.productQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.black))
+            binding.toolbarTitle.setTextColor(ContextCompat.getColor(this,R.color.white))
+            binding.raffleQRCode.background = null
+            binding.raffleQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.white))
+            binding.productQRCodeLayout.visibility = View.VISIBLE
+            binding.raffleQRCodeLayout.visibility = View.GONE
         }
 
-        raffleQRCode.setOnClickListener{
-            raffleQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.black))
-            raffleQRCode.background = ContextCompat.getDrawable(this,R.drawable.tab_selected)
-            productQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.black))
-            toolbarTitle.setTextColor(ContextCompat.getColor(this,R.color.black))
-            productQRCode.background = null
-            productQRCodeLayout.visibility = View.GONE
-            raffleQRCodeLayout.visibility = View.VISIBLE
+        binding.raffleQRCode.setOnClickListener{
+            binding.raffleQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.black))
+            binding.raffleQRCode.background = ContextCompat.getDrawable(this,R.drawable.tab_selected)
+            binding.productQRCodeText.setTextColor(ContextCompat.getColor(this,R.color.black))
+            binding.toolbarTitle.setTextColor(ContextCompat.getColor(this,R.color.black))
+            binding.productQRCode.background = null
+            binding.productQRCodeLayout.visibility = View.GONE
+            binding.raffleQRCodeLayout.visibility = View.VISIBLE
         }
 
 
@@ -143,7 +143,7 @@ class ScannerActivity : BaseActivity(), ScannerListener , Listener {
             .scanDelayTime(1000)*/
 
 
-        Scanner.startScanner(this, scannerPreView, this)
+        Scanner.startScanner(this, binding.scannerPreView, this)
             .checkCodeExists(false)
             .setResolution(Scanner.Low_Resolution)
             .logPrint(true)

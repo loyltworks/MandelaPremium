@@ -2,29 +2,27 @@ package com.loyltworks.mandelapremium.ui.notification
 
 import android.annotation.SuppressLint
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.oneloyalty.goodpack.ui.history_notifiation.adapter.HistoryNotificationAdapter
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityHistoryNotificationBinding
 import com.loyltworks.mandelapremium.model.HistoryNotificationDetailsRequest
 import com.loyltworks.mandelapremium.model.HistoryNotificationRequest
 import com.loyltworks.mandelapremium.model.LstPushHistory
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
-import com.loyltworks.mandelapremium.ui.dashboard.DashboardActivity
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.SwipeToDeleteCallback
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_history_notification.*
-import java.util.Observer
+import com.oneloyalty.goodpack.ui.history_notifiation.adapter.HistoryNotificationAdapter
 
 class HistoryNotificationActivity : BaseActivity(), HistoryNotificationAdapter.ItemClicked {
+   
+    lateinit var binding: ActivityHistoryNotificationBinding
 
     private lateinit var viewModel: HistoryNotificationViewModel
     private lateinit var historyNotificationAdapter: HistoryNotificationAdapter
@@ -94,7 +92,7 @@ class HistoryNotificationActivity : BaseActivity(), HistoryNotificationAdapter.I
         }
 
         val itemTouchhelper = ItemTouchHelper(swipeToDeleteCallback)
-        itemTouchhelper.attachToRecyclerView(history_rv)
+        itemTouchhelper.attachToRecyclerView(binding.historyRv)
     }
 
     override fun callObservers() {
@@ -102,13 +100,13 @@ class HistoryNotificationActivity : BaseActivity(), HistoryNotificationAdapter.I
         viewModel.historyNotificationtLiveData.observe(this, androidx.lifecycle.Observer {
             if (it != null && !it.lstPushHistoryJson.isNullOrEmpty()) {
                 historyNotificationAdapter =  HistoryNotificationAdapter(it, this)
-                history_rv.adapter = historyNotificationAdapter
-                no_history_notification_tv.visibility = View.GONE
-                history_rv.visibility = View.VISIBLE
+                binding.historyRv.adapter = historyNotificationAdapter
+                binding.noHistoryNotificationTv.visibility = View.GONE
+                binding.historyRv.visibility = View.VISIBLE
                 LoadingDialogue.dismissDialog()
             } else {
-                no_history_notification_tv.visibility = View.VISIBLE
-                history_rv.visibility = View.GONE
+                binding.noHistoryNotificationTv.visibility = View.VISIBLE
+                binding.historyRv.visibility = View.GONE
                 LoadingDialogue.dismissDialog()
             }
         })
@@ -116,10 +114,11 @@ class HistoryNotificationActivity : BaseActivity(), HistoryNotificationAdapter.I
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        viewModel =
-            ViewModelProvider(this).get(HistoryNotificationViewModel::class.java)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_history_notification)
+        viewModel = ViewModelProvider(this).get(HistoryNotificationViewModel::class.java)
+        binding = ActivityHistoryNotificationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
 //        val toolbar: Toolbar = findViewById(R.id.toolbar)
 //        setSupportActionBar(toolbar)
 
@@ -135,11 +134,11 @@ class HistoryNotificationActivity : BaseActivity(), HistoryNotificationAdapter.I
         //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
 //        historyNotificationAdapter = HistoryNotificationAdapter(null, this)
-//        history_rv.adapter = historyNotificationAdapter
-        no_history_notification_tv.visibility = View.GONE
-        history_rv.visibility = View.VISIBLE
+//        binding.historyRv.adapter = historyNotificationAdapter
+        binding.noHistoryNotificationTv.visibility = View.GONE
+        binding.historyRv.visibility = View.VISIBLE
 
-        back.setOnClickListener{
+        binding.back.setOnClickListener{
             onBackPressed()
         }
     }

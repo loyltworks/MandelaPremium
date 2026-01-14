@@ -34,7 +34,7 @@
 
 
     <TextView
-        android:id="@+id/query_summary"
+        android:id="@+id/querySummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_orange"
@@ -55,7 +55,7 @@
         android:weightSum="10">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/query_chat_recycler"
+            android:id="@+id/queryChatRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="10"
@@ -64,7 +64,7 @@
 
 
         <TextView
-            android:id="@+id/chatlist_closet_text"
+            android:id="@+id/chatlistClosetText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -78,7 +78,7 @@
             android:visibility="gone" />
 
         <LinearLayout
-            android:id="@+id/edittext_block_linear"
+            android:id="@+id/edittextBlockLinear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -105,7 +105,7 @@
 
 
                 <EditText
-                    android:id="@+id/query_details_fld"
+                    android:id="@+id/queryDetailsFld"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="10"
@@ -124,7 +124,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/send_query_btn"
+                android:id="@+id/sendQueryBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="@dimen/small_padding"

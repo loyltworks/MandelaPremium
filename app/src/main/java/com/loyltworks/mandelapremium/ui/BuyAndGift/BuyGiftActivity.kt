@@ -2,34 +2,21 @@ package com.loyltworks.mandelapremium.ui.BuyAndGift
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityBuyGiftBinding
 import com.loyltworks.mandelapremium.model.GetBuyGiftRequest
-import com.loyltworks.mandelapremium.model.GetWhatsNewRequest
-import com.loyltworks.mandelapremium.model.LstPromotionList
 import com.loyltworks.mandelapremium.model.LstVoucherDetails
 import com.loyltworks.mandelapremium.ui.BuyAndGift.adapter.BuyGiftAdapter
-import com.loyltworks.mandelapremium.ui.GiftCards.adapter.MyVoucherAdapter
-import com.loyltworks.mandelapremium.ui.GiftCards.fragment.MyVoucher.MyVoucherDetailsActivity
-import com.loyltworks.mandelapremium.ui.OfferAndPromotion.OfferPromotionDetailsActivity
-import com.loyltworks.mandelapremium.ui.OfferAndPromotion.PromotionViewModel
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
-import com.loyltworks.mandelapremium.ui.dashboard.DashboardProductsAdapter
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_buy_gift.*
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.content_dashboard.*
-import kotlinx.android.synthetic.main.fragment_my_voucher.*
-import kotlinx.android.synthetic.main.fragment_my_voucher.my_voucher_rv
 
 class BuyGiftActivity : BaseActivity(), BuyGiftAdapter.OnItemClickListener {
 
+    lateinit var binding: ActivityBuyGiftBinding
     lateinit var buyGiftViewModel: BuyGiftViewModel
 
 
@@ -42,20 +29,16 @@ class BuyGiftActivity : BaseActivity(), BuyGiftAdapter.OnItemClickListener {
                 "262", PreferenceHelper.getLoginDetails(this)?.UserList!![0].UserId.toString()
             )
         )
-
     }
 
     override fun callObservers() {
 
-
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_buy_gift)
-//        val toolbar: Toolbar = findViewById(R.id.toolbar)
-//        setSupportActionBar(toolbar)
+        binding = ActivityBuyGiftBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //set context
         context = this
@@ -75,11 +58,11 @@ class BuyGiftActivity : BaseActivity(), BuyGiftAdapter.OnItemClickListener {
         buyGiftViewModel.getBuyGiftListLiveData.observe(this, Observer {
             LoadingDialogue.dismissDialog()
             if (it != null && !it.lstVoucherDetails.isNullOrEmpty()) {
-                buy_gift_rv.adapter = BuyGiftAdapter(it.lstVoucherDetails, this)
+                binding.buyGiftRv.adapter = BuyGiftAdapter(it.lstVoucherDetails, this)
             }
         })
 
-        back.setOnClickListener{
+        binding.back.setOnClickListener{
             onBackPressed()
         }
 

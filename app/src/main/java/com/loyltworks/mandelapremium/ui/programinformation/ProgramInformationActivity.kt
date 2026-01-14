@@ -1,18 +1,17 @@
 package com.loyltworks.mandelapremium.ui.programinformation
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.appcompat.widget.Toolbar
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityProgramInformationBinding
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
-import kotlinx.android.synthetic.main.activity_program_information.*
 
 class ProgramInformationActivity : BaseActivity() {
 
+    lateinit var binding: ActivityProgramInformationBinding
 
     override fun callInitialServices() {
     }
@@ -22,9 +21,8 @@ class ProgramInformationActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_program_information)
-//        val toolbar: Toolbar = findViewById(R.id.toolbar)
-//        setSupportActionBar(toolbar)
+        binding = ActivityProgramInformationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //set context
         context = this
@@ -35,15 +33,15 @@ class ProgramInformationActivity : BaseActivity() {
 
         val toolbarName = intent.getStringExtra("MyActivity")
 
-        toolbarTitle.text = toolbarName
+        binding.toolbarTitle.text = toolbarName
 
         @SuppressLint("UseCompatLoadingForDrawables") val upArrow =
             resources.getDrawable(R.drawable.ic_back_arrow)
         //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
 
-        val mWebHost: WebView = findViewById<WebView>(R.id.feature_view)
-        val webSetting = feature_view.settings
+        val mWebHost: WebView = findViewById<WebView>(R.id.featureView)
+        val webSetting = binding.featureView.settings
         webSetting.builtInZoomControls = false
         webSetting.javaScriptEnabled = true
         webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH)
@@ -64,7 +62,7 @@ class ProgramInformationActivity : BaseActivity() {
             mWebHost.loadUrl("file:///android_asset/mandela_faq.html")
         }
 
-        back.setOnClickListener{
+        binding.back.setOnClickListener{
             onBackPressed()
         }
     }

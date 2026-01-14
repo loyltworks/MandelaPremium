@@ -18,7 +18,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/row_query_ref_no"
+            android:id="@+id/rowQueryRefNo"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -38,7 +38,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/row_query_date"
+                android:id="@+id/rowQueryDate"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
@@ -74,7 +74,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/row_query_text"
+            android:id="@+id/rowQueryText"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -96,14 +96,14 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/status_icon"
+                android:id="@+id/statusIcon"
                 android:layout_width="15dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="5dp"
                 android:src="@drawable/ic_mask_group_9" />
 
             <TextView
-                android:id="@+id/row_query_status"
+                android:id="@+id/rowQueryStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"

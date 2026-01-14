@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.FragmentPromotionTab1Binding
 import com.loyltworks.mandelapremium.model.GetWhatsNewRequest
 import com.loyltworks.mandelapremium.model.LstAttributesDetail
 import com.loyltworks.mandelapremium.model.LstPromotionList
@@ -19,14 +20,13 @@ import com.loyltworks.mandelapremium.ui.OfferAndPromotion.OfferPromotionDetailsA
 import com.loyltworks.mandelapremium.ui.OfferAndPromotion.adapter.offerAndPromotionAdapter
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.fragment_promotion_tab1.promotion_error
-import kotlinx.android.synthetic.main.fragment_promotion_tab1.promotion_rv
 import java.text.SimpleDateFormat
 import java.util.Date
 
 
 class PromotionTab1Fragment : Fragment(), offerAndPromotionAdapter.OnItemClickListener {
 
+    lateinit var binding: FragmentPromotionTab1Binding
     var filterBy: Int = -1
 
     private lateinit var viewModel: MyActivityViewModel
@@ -36,7 +36,7 @@ class PromotionTab1Fragment : Fragment(), offerAndPromotionAdapter.OnItemClickLi
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_promotion_tab1, container, false)
+        binding = FragmentPromotionTab1Binding.inflate(layoutInflater)
 
 //        root.filterBtn.setOnClickListener { v ->
 //           if (filterBy != -1) {
@@ -47,7 +47,7 @@ class PromotionTab1Fragment : Fragment(), offerAndPromotionAdapter.OnItemClickLi
 //        }
 
 
-        return root
+        return binding.root
     }
 
     lateinit var parentFrag: OfferAndPromotionsFragment
@@ -82,17 +82,17 @@ class PromotionTab1Fragment : Fragment(), offerAndPromotionAdapter.OnItemClickLi
                         }
                     }
                     if(lstPromotionJsonList.isNotEmpty()){
-                        promotion_rv.adapter = offerAndPromotionAdapter(lstPromotionJsonList,  this)
-                        promotion_rv.visibility = View.VISIBLE
-                        promotion_error.visibility = View.GONE
+                        binding.promotionRv.adapter = offerAndPromotionAdapter(lstPromotionJsonList,  this)
+                        binding.promotionRv.visibility = View.VISIBLE
+                        binding.promotionError.visibility = View.GONE
                     }else{
-                        promotion_rv.visibility = View.GONE
-                        promotion_error.visibility = View.VISIBLE
+                        binding.promotionRv.visibility = View.GONE
+                        binding.promotionError.visibility = View.VISIBLE
                     }
 
                 } else {
-                    promotion_rv.visibility = View.GONE
-                    promotion_error.visibility = View.VISIBLE
+                    binding.promotionRv.visibility = View.GONE
+                    binding.promotionError.visibility = View.VISIBLE
                 }
             })
 

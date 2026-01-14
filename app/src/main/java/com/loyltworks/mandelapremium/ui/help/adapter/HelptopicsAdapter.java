@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.loyltworks.mandelapremium.R;
-import com.loyltworks.mandelapremium.model.LstCountryDetail;
 import com.loyltworks.mandelapremium.model.ObjHelpTopicList;
 
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ public class HelptopicsAdapter extends ArrayAdapter<ObjHelpTopicList> {
             convertView = inf.inflate(R.layout.spinner_row, null);
         }
 
-        TextView category = (TextView) convertView.findViewById(R.id.item_spinner);
+        TextView category = convertView.findViewById(R.id.item_spinner);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)category.getLayoutParams();
         layoutParams.setMargins(8, 0, 0, 0);
         category.setLayoutParams(layoutParams);
@@ -66,7 +65,7 @@ public class HelptopicsAdapter extends ArrayAdapter<ObjHelpTopicList> {
                     .getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inf.inflate(R.layout.spinner_popup_row, null);
         }
-        TextView category = (TextView) convertView.findViewById(R.id.item_spinner);
+        TextView category = convertView.findViewById(R.id.item_spinner);
         category.setText(this.getItem(position).getHelpTopicName());
         //AppController.hideProgressDialog(context);
 

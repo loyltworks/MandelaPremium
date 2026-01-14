@@ -17,7 +17,7 @@
         android:layout_margin="10dp">
 
         <ImageView
-            android:id="@+id/gift_card_img"
+            android:id="@+id/giftCardImg"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/border_yellow_back_white"
@@ -38,7 +38,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/gift_name"
+            android:id="@+id/giftName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -51,7 +51,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/buy_gift_btn"
+            android:id="@+id/buyGiftBtn"
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"

@@ -8,7 +8,7 @@
     tools:context=".ui.GiftCards.fragment.MyVoucher.MyVoucherFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_voucher_rv"
+        android:id="@+id/myVoucherRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="8dp"
@@ -18,7 +18,7 @@
         tools:listitem="@layout/row_my_voucher" />
 
     <TextView
-        android:id="@+id/error_voucher"
+        android:id="@+id/errorVoucher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/poppins_bold"

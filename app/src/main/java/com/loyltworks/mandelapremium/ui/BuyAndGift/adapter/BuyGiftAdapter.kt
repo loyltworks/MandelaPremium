@@ -1,17 +1,13 @@
 package com.loyltworks.mandelapremium.ui.BuyAndGift.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.GetPromotionResponse
-import com.loyltworks.mandelapremium.model.LstPromotionList
+import com.loyltworks.mandelapremium.databinding.RowBuyGiftBinding
 import com.loyltworks.mandelapremium.model.LstVoucherDetails
-import kotlinx.android.synthetic.main.row_buy_gift.view.*
-import kotlinx.android.synthetic.main.row_offer_and_promotion.view.*
 
 class BuyGiftAdapter(
     var lstVoucherDetails: List<LstVoucherDetails>,
@@ -22,23 +18,21 @@ class BuyGiftAdapter(
         fun onItemClicked(lstVoucherDetails: LstVoucherDetails?)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val offer_tv = itemView.gift_name
-        val gift_card_img = itemView.gift_card_img
-        val buy_gift_btn = itemView.buy_gift_btn
-
+    class ViewHolder(binding: RowBuyGiftBinding) : RecyclerView.ViewHolder(binding.root) {
+        val offer_tv = binding.giftName
+        val gift_card_img = binding.giftCardImg
+        val buy_gift_btn = binding.buyGiftBtn
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_buy_gift, parent, false)
-        return ViewHolder(view)
+        val binding =
+            RowBuyGiftBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val lstVoucherDetails = lstVoucherDetails[position]
-
 
         holder.offer_tv.text = lstVoucherDetails.CardName
 
@@ -50,16 +44,13 @@ class BuyGiftAdapter(
                         ""
                     )
                 ).into(holder.gift_card_img)
-//            holder.gift_card_img.setPadding(0, 0, 0, 0)
         } catch (e: Exception) {
         }
-
 
         holder.buy_gift_btn.setOnClickListener {
             itemClickListener.onItemClicked(lstVoucherDetails)
 
         }
-
     }
 
     override fun getItemCount(): Int {

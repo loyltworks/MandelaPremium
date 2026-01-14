@@ -34,7 +34,7 @@
 
 
     <WebView
-        android:id="@+id/feature_view"
+        android:id="@+id/featureView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/h7"

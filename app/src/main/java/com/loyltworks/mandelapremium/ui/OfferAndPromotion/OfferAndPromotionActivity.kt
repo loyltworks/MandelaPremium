@@ -1,20 +1,15 @@
 package com.loyltworks.mandelapremium.ui.OfferAndPromotion
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.GetWhatsNewRequest
+import com.loyltworks.mandelapremium.databinding.ActivityOfferAndPromotionBinding
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
-import com.loyltworks.mandelapremium.utils.PreferenceHelper
-import kotlinx.android.synthetic.main.activity_offer_and_promotion.*
 
 class OfferAndPromotionActivity: BaseActivity() {
 
+    lateinit var binding: ActivityOfferAndPromotionBinding
 
     override fun callInitialServices() {
     }
@@ -24,7 +19,8 @@ class OfferAndPromotionActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_offer_and_promotion)
+        binding = ActivityOfferAndPromotionBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //set context
         context = this
@@ -38,7 +34,7 @@ class OfferAndPromotionActivity: BaseActivity() {
             .replace(R.id.frameLayout, mFragment).commit()
 
 
-        back.setOnClickListener{
+        binding.back.setOnClickListener{
             onBackPressed()
         }
 

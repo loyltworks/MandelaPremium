@@ -1,14 +1,13 @@
 package com.loyltworks.mandelapremium.ui.profile
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.RowVehicleManagerLayoutBinding
 import com.loyltworks.mandelapremium.model.LstProductsList
 import com.loyltworks.mandelapremium.model.LstVehicleJson
-import kotlinx.android.synthetic.main.row_vehicle_manager_layout.view.*
 import java.lang.String
+import kotlin.Int
 
 class VehicleManagerAdapter(val lstVehicleJson: ArrayList<LstVehicleJson>) : RecyclerView.Adapter<VehicleManagerAdapter.ViewHolder>() {
 
@@ -16,21 +15,19 @@ class VehicleManagerAdapter(val lstVehicleJson: ArrayList<LstVehicleJson>) : Rec
         fun onItemClicked(lstProductsList: LstProductsList)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val vehicle_brand = itemView.vehicle_brand
-        val fuel_type = itemView.fuel_type
-        val model_no = itemView.model_no
-        val registration_number = itemView.registration_number
+    class ViewHolder(binding: RowVehicleManagerLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+        val vehicle_brand = binding.vehicleBrand
+        val fuel_type = binding.fuelType
+        val model_no = binding.modelNo
+        val registration_number = binding.registrationNumber
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.row_vehicle_manager_layout,
-            parent,
-            false
-        )
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
+        val binding =
+            RowVehicleManagerLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val lstVehicleJson = lstVehicleJson[position]

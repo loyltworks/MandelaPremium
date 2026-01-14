@@ -2,12 +2,10 @@ package com.loyltworks.mandelapremium.ui.SplashScreen
 
 import android.content.Intent
 import android.content.pm.PackageInfo
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R

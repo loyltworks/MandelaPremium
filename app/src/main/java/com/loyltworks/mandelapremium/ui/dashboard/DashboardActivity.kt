@@ -7,14 +7,21 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.*
+import com.loyltworks.mandelapremium.databinding.ActivityDashboardBinding
+import com.loyltworks.mandelapremium.model.AttributeRequest
+import com.loyltworks.mandelapremium.model.CustomerDetails
+import com.loyltworks.mandelapremium.model.DashboardCustomerRequest
+import com.loyltworks.mandelapremium.model.DashboardRequest
+import com.loyltworks.mandelapremium.model.GetWhatsNewRequest
+import com.loyltworks.mandelapremium.model.LstAttributesDetail
+import com.loyltworks.mandelapremium.model.LstPromotionList
+import com.loyltworks.mandelapremium.model.RegistrationRequest
 import com.loyltworks.mandelapremium.ui.BuyAndGift.BuyGiftActivity
 import com.loyltworks.mandelapremium.ui.GiftCards.GiftCardsActivity
 import com.loyltworks.mandelapremium.ui.LocationActivity
@@ -36,13 +43,14 @@ import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.Vibrator
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import com.oneloyalty.goodpack.utils.BlockMultipleClick
-import kotlinx.android.synthetic.main.activity_dashboard.*
 import java.io.Serializable
 import java.text.DecimalFormat
 
 
 class DashboardActivity : BaseActivity(), View.OnClickListener,
     DashboardProductsAdapter.OnItemClickListener, OffersAdapter.PromotionClickListener {
+  
+    lateinit var binding: ActivityDashboardBinding
 
     private lateinit var dashBoardViewModel: DashBoardViewModel
     private lateinit var promotionViewModel: PromotionViewModel
@@ -53,7 +61,9 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         context = this
 
         dashBoardViewModel = ViewModelProvider(this).get(DashBoardViewModel::class.java)
@@ -62,32 +72,32 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
 
 
-        openDrawer.setOnClickListener(this)
-        openNotifications.setOnClickListener(this)
-        darkBackground.setOnClickListener(this)
-        nav_myProfile.setOnClickListener(this)
-        navi_myearing.setOnClickListener(this)
-        navi_redemption.setOnClickListener(this)
-        navi_about_mandela.setOnClickListener(this)
-        navi_mybenefits.setOnClickListener(this)
-        navi_terms_and_condition.setOnClickListener(this)
-        navi_faq.setOnClickListener(this)
-        navi_help.setOnClickListener(this)
-        navi_gift_card.setOnClickListener(this)
-        navi_raffle.setOnClickListener(this)
-        navi_logout.setOnClickListener(this)
-        dash_profile.setOnClickListener(this)
-        dash_help.setOnClickListener(this)
-        offer_and_promoions.setOnClickListener(this)
-        my_gift_card.setOnClickListener(this)
-        buy_gift.setOnClickListener(this)
-        dash_redemption.setOnClickListener(this)
-        dash_earning.setOnClickListener(this)
-        dash_scan.setOnClickListener(this)
-        ourLocation.setOnClickListener(this)
+        binding.openDrawer.setOnClickListener(this)
+        binding.openNotifications.setOnClickListener(this)
+        binding.darkBackground.setOnClickListener(this)
+        binding.navMyProfile.setOnClickListener(this)
+        binding.naviMyearing.setOnClickListener(this)
+        binding.naviRedemption.setOnClickListener(this)
+        binding.naviAboutMandela.setOnClickListener(this)
+        binding.naviMybenefits.setOnClickListener(this)
+        binding.naviTermsAndCondition.setOnClickListener(this)
+        binding.naviFaq.setOnClickListener(this)
+        binding.naviHelp.setOnClickListener(this)
+        binding.naviGiftCard.setOnClickListener(this)
+        binding.naviRaffle.setOnClickListener(this)
+        binding.naviLogout.setOnClickListener(this)
+        binding.dashProfile.setOnClickListener(this)
+        binding.dashHelp.setOnClickListener(this)
+        binding.offerAndPromoions.setOnClickListener(this)
+        binding.myGiftCard.setOnClickListener(this)
+        binding.buyGift.setOnClickListener(this)
+        binding.dashRedemption.setOnClickListener(this)
+        binding.dashEarning.setOnClickListener(this)
+        binding.dashScan.setOnClickListener(this)
+        binding.ourLocation.setOnClickListener(this)
 
         val gridLayoutManager = GridLayoutManager(this, 3)
-        products_rv.layoutManager = gridLayoutManager
+        binding.productsRv.layoutManager = gridLayoutManager
 
         getProfileDetails()
         observers()
@@ -168,13 +178,13 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                     Glide.with(this).asBitmap()
                         .load(BuildConfig.PROMO_IMAGE_BASE + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture)
                         .error(R.drawable.default_person).placeholder(R.drawable.default_person)
-                        .into((dash_profile))
+                        .into((binding.dashProfile))
 
 
                     Glide.with(this).asBitmap()
                         .load(BuildConfig.PROMO_IMAGE_BASE + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture)
                         .error(R.drawable.default_person).placeholder(R.drawable.default_person)
-                        .into((navi_profile_image))
+                        .into((binding.naviProfileImage))
 
                 }
         }
@@ -186,9 +196,9 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                     PreferenceHelper.setStringValue(this, BuildConfig.LoyaltyID, it.lstCustomerFeedBackJson[0].LoyaltyId!!)
                     PreferenceHelper.setDashboardDetails(this, it)
 
-                    user_mobile_number.text = it.lstCustomerFeedBackJson[0].CustomerMobile
-                    userName.text = it.lstCustomerFeedBackJson[0].FirstName
-                    user_name.text = it.lstCustomerFeedBackJson[0].FirstName
+                    binding.userMobileNumber.text = it.lstCustomerFeedBackJson[0].CustomerMobile
+                    binding.userName.text = it.lstCustomerFeedBackJson[0].FirstName
+                    binding.UserName.text = it.lstCustomerFeedBackJson[0].FirstName
 
                 } else {
 
@@ -206,9 +216,9 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                         PreferenceHelper.setStringValue(this, BuildConfig.OverAllPoints, it1)
                     }
 
-                    points.text =
+                    binding.points.text =
                         currencyFormat(it.ObjCustomerDashboardList[0].RedeemablePointsBalance.toString())
-                    user_points.text =
+                    binding.userPoints.text =
                         currencyFormat(it.ObjCustomerDashboardList[0].RedeemablePointsBalance.toString())
 
                 } else {
@@ -223,9 +233,9 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                if (it != null && !it.LstPromotionJsonList.isNullOrEmpty()) {
                     _listPromotions = it.LstPromotionJsonList!!
 
-                    offersRV.layoutManager =
+                    binding.offersRV.layoutManager =
                         LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-                    offersRV.adapter = OffersAdapter(it.LstPromotionJsonList!!, this)
+                    binding.offersRV.adapter = OffersAdapter(it.LstPromotionJsonList!!, this)
 
                 } else {
 
@@ -239,7 +249,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                     _attributesDetailsList = it.lstAttributesDetails
 
 
-                    products_rv.adapter = DashboardProductsAdapter(it, this)
+                    binding.productsRv.adapter = DashboardProductsAdapter(it, this)
 
                 }
                 LoadingDialogue.dismissDialog()
@@ -257,17 +267,17 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
 
     fun openDrawer() {
-        sideMenu.visibility = View.VISIBLE
-        sideMenu.animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_right)
-        darkBackground.visibility = View.VISIBLE
-        darkBackground.animation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        binding.sideMenu.visibility = View.VISIBLE
+        binding.sideMenu.animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_right)
+        binding.darkBackground.visibility = View.VISIBLE
+        binding.darkBackground.animation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
     }
 
     fun closeDrawer() {
-        sideMenu.visibility = View.GONE
-        sideMenu.animation = AnimationUtils.loadAnimation(this, R.anim.slide_out_left)
-        darkBackground.visibility = View.GONE
-        darkBackground.animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+        binding.sideMenu.visibility = View.GONE
+        binding.sideMenu.animation = AnimationUtils.loadAnimation(this, R.anim.slide_out_left)
+        binding.darkBackground.visibility = View.GONE
+        binding.darkBackground.animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
     }
 
     override fun onClick(v: View) {
@@ -291,14 +301,14 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                 openDrawer()
             }
 
-            R.id.nav_myProfile -> {
+            R.id.navMyProfile -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, ProfileActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
-            R.id.navi_help -> {
+            R.id.naviHelp -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, HelpActivity::class.java))
@@ -306,7 +316,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }
 
 
-            R.id.navi_myearing -> {
+            R.id.naviMyearing -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
 
@@ -330,7 +340,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
 
-            R.id.navi_redemption -> {
+            R.id.naviRedemption -> {
                 if (BlockMultipleClick.click()) return
 
                 closeDrawer()
@@ -354,7 +364,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
 
-            R.id.navi_about_mandela -> {
+            R.id.naviAboutMandela -> {
                 if (BlockMultipleClick.click()) return
 
                 closeDrawer()
@@ -365,7 +375,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
 
-            R.id.navi_mybenefits -> {
+            R.id.naviMybenefits -> {
                 if (BlockMultipleClick.click()) return
 
                 closeDrawer()
@@ -376,7 +386,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
 
-            R.id.navi_terms_and_condition -> {
+            R.id.naviTermsAndCondition -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 val intent = Intent(context, ProgramInformationActivity::class.java)
@@ -387,7 +397,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }
 
 
-            R.id.navi_faq -> {
+            R.id.naviFaq -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 val intent = Intent(context, ProgramInformationActivity::class.java)
@@ -396,7 +406,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
-            R.id.dash_profile -> {
+            R.id.dashProfile -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, ProfileActivity::class.java))
@@ -404,42 +414,42 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
 
-            R.id.my_gift_card -> {
+            R.id.myGiftCard -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, GiftCardsActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
-            R.id.navi_gift_card -> {
+            R.id.naviGiftCard -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, GiftCardsActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
-            R.id.navi_raffle -> {
+            R.id.naviRaffle -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, RaffleActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
-            R.id.buy_gift -> {
+            R.id.buyGift -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, BuyGiftActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
-            R.id.dash_help -> {
+            R.id.dashHelp -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 startActivity(Intent(context, HelpActivity::class.java))
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
-            R.id.offer_and_promoions -> {
+            R.id.offerAndPromoions -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
@@ -461,7 +471,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             }
 
 
-            R.id.dash_redemption -> {
+            R.id.dashRedemption -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
 
@@ -486,7 +496,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
 
-            R.id.dash_earning -> {
+            R.id.dashEarning -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 val _attributesDetailsLis_ = ArrayList(_attributesDetailsList)
@@ -509,7 +519,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
             }
 
-            R.id.dash_scan -> {
+            R.id.dashScan -> {
                 if (BlockMultipleClick.click()) return
                 closeDrawer()
                 val intent = Intent(context, ScannerActivity::class.java)
@@ -517,7 +527,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
             }
 
-            R.id.navi_logout -> {
+            R.id.naviLogout -> {
                 if (BlockMultipleClick.click()) return
                 // Logout
                 closeDrawer()

@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -13,17 +11,17 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.loyltworks.mandelapremium.ApplicationClass
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityLocationBinding
 import com.loyltworks.mandelapremium.model.GenderSpinner
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.profile.adapter.GenderAdapter
-import kotlinx.android.synthetic.main.activity_location.*
-import kotlinx.android.synthetic.main.activity_profile.back
-import kotlinx.android.synthetic.main.fragment_tab1.gender_spinner
 
 class LocationActivity: BaseActivity(), GoogleMap.OnMarkerClickListener, OnMapReadyCallback ,
     AdapterView.OnItemSelectedListener {
+
+    lateinit var binding: ActivityLocationBinding
+
     private val PERTH = LatLng(0.3131384, 32.498325)
     private val SYDNEY = LatLng(0.3183364,32.5099587)
     private val BRISBANE = LatLng(0.3367545,32.538498)
@@ -49,9 +47,10 @@ class LocationActivity: BaseActivity(), GoogleMap.OnMarkerClickListener, OnMapRe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_location)
+        binding = ActivityLocationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        back.setOnClickListener {
+        binding.back.setOnClickListener {
             onBackPressed()
         }
 
@@ -59,7 +58,7 @@ class LocationActivity: BaseActivity(), GoogleMap.OnMarkerClickListener, OnMapRe
             supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(this)
 
-        gender_spinner.onItemSelectedListener = this
+        binding.genderSpinner.onItemSelectedListener = this
 
         val defaultstatus = GenderSpinner()
         defaultstatus.setId(-1)
@@ -102,7 +101,7 @@ class LocationActivity: BaseActivity(), GoogleMap.OnMarkerClickListener, OnMapRe
         genderList.add(genderSpinner6)
         genderList.add(genderSpinner7)
 
-        gender_spinner.setAdapter(
+        binding.genderSpinner.setAdapter(
             GenderAdapter(
                 this,
                 android.R.layout.simple_spinner_item,
@@ -114,12 +113,12 @@ class LocationActivity: BaseActivity(), GoogleMap.OnMarkerClickListener, OnMapRe
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
         when(parent!!.id){
-            R.id.gender_spinner ->{
+            R.id.genderSpinner ->{
                 mSelectedGender = parent.getItemAtPosition(position) as GenderSpinner
                 if(mSelectedGender!!.id == 1){
-                    mapLayout.visibility = View.VISIBLE
+                    binding.mapLayout.visibility = View.VISIBLE
                 }else if(mSelectedGender!!.id > 0 ){
-                    mapLayout.visibility = View.GONE
+                    binding.mapLayout.visibility = View.GONE
                     Toast.makeText(this, "Coming Soon.", Toast.LENGTH_SHORT).show()
                 }
             }

@@ -9,32 +9,29 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityFeedbackBinding
 import com.loyltworks.mandelapremium.model.FeedbackRequest
 import com.loyltworks.mandelapremium.model.ObjCustomerAllQueryList
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.help.HelpViewModel
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_feedback.feeback_description_bottom_title
-import kotlinx.android.synthetic.main.activity_feedback.feedback_description
-import kotlinx.android.synthetic.main.activity_feedback.feedback_rating_bar
-import kotlinx.android.synthetic.main.activity_feedback.feedback_submit
-import kotlinx.android.synthetic.main.activity_feedback.feedback_text
-import kotlinx.android.synthetic.main.activity_feedback.success_message
 import kotlin.math.roundToInt
 
 class FeedbackActivity : BaseActivity() {
+
+    lateinit var binding: ActivityFeedbackBinding
+    private lateinit var viewModel: HelpViewModel
 
     override fun callInitialServices() {
     }
 
     override fun callObservers() {
-
-
+        
         viewModel.postFeedbackResponseLiveData.observe(this, Observer {
                 LoadingDialogue.dismissDialog()
             if (it.ReturnMessage.equals("1")) {
-                success_message.visibility = View.VISIBLE
+                binding.successMessage.visibility = View.VISIBLE
             }else{
                 Toast.makeText(this, "Something went wrong, please try again later.", Toast.LENGTH_SHORT).show()
             }
@@ -45,18 +42,14 @@ class FeedbackActivity : BaseActivity() {
     var customerTicketId: Int = -1
     var mRating = "0"
 
-
-
-    private lateinit var viewModel: HelpViewModel
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feedback)
+        binding = ActivityFeedbackBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        success_message.visibility = View.GONE
+        binding.successMessage.visibility = View.GONE
 
         viewModel = ViewModelProvider(this).get(HelpViewModel::class.java)
 
@@ -78,24 +71,24 @@ class FeedbackActivity : BaseActivity() {
             val FeedbackType = bundle.getInt("FeedbackType", 1)
 
             if (dataholder!!.Rating != null && dataholder.Rating != "0") {
-                feedback_text.setText(dataholder.Comments)
-                feedback_rating_bar.rating = dataholder.Rating.toString().toFloat()
+                binding.feedbackText.setText(dataholder.Comments)
+                binding.feedbackRatingBar.rating = dataholder.Rating.toString().toFloat()
                 mRating =   dataholder.Rating.toString()
             }
 
 
 
             if (FeedbackType == 1) {
-                feedback_description.text =
+                binding.feedbackDescription.text =
                     "We would love to hear your thoughts, \nSuggestions on our query response!"
-                feeback_description_bottom_title.text = "Please share your experience with us!"
+                binding.feebackDescriptionBottomTitle.text = "Please share your experience with us!"
             } else if (FeedbackType == 0) {
-                feedback_description.text = "We would like your feedback to improve our service."
-                feeback_description_bottom_title.text =
+                binding.feedbackDescription.text = "We would like your feedback to improve our service."
+                binding.feebackDescriptionBottomTitle.text =
                     "what is your opinion of the response provided?"
             } else {
-                feedback_description.text = "We would like your feedback to improve our service."
-                feeback_description_bottom_title.text =
+                binding.feedbackDescription.text = "We would like your feedback to improve our service."
+                binding.feebackDescriptionBottomTitle.text =
                     "what is your opinion of the response provided?"
             }
 
@@ -103,7 +96,7 @@ class FeedbackActivity : BaseActivity() {
                 customerTicketId = dataholder.CustomerTicketID!!
             }
 
-            feedback_rating_bar.onRatingBarChangeListener =
+            binding.feedbackRatingBar.onRatingBarChangeListener =
                 OnRatingBarChangeListener { ratingBar: RatingBar?, rating: Float, fromUser: Boolean ->
                     val rat = rating.roundToInt()
                     mRating = rat.toString()
@@ -112,7 +105,7 @@ class FeedbackActivity : BaseActivity() {
 
 
 
-        success_message.setOnClickListener {
+        binding.successMessage.setOnClickListener {
             onBackPressed()
         }
 
@@ -122,11 +115,11 @@ class FeedbackActivity : BaseActivity() {
 
     private fun SumbitBtn() {
 
-        feedback_submit.setOnClickListener {
+        binding.feedbackSubmit.setOnClickListener {
 
-            if (feedback_text.text.isNullOrEmpty()) {
-                feedback_text.error = "Enter feedback"
-                feedback_text.requestFocus()
+            if (binding.feedbackText.text.isNullOrEmpty()) {
+                binding.feedbackText.error = "Enter feedback"
+                binding.feedbackText.requestFocus()
             }else if (mRating == "0") {
                 Toast.makeText(context,"Please give us rating", Toast.LENGTH_SHORT).show()
             }else {
@@ -135,7 +128,7 @@ class FeedbackActivity : BaseActivity() {
                     FeedbackRequest(
                         ActorId = PreferenceHelper.getLoginDetails(this)?.UserList!![0].UserId.toString(),
                         ActionType = "1",
-                        Comments = feedback_text.text.toString(),
+                        Comments = binding.feedbackText.text.toString(),
                         CustomerTicketId = customerTicketId.toString(),
                         Rating = mRating
                     )

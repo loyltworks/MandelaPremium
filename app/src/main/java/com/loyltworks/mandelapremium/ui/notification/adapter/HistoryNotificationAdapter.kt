@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.RowHistoryNotificationsBinding
 import com.loyltworks.mandelapremium.model.HistoryNotificationResponse
 import com.loyltworks.mandelapremium.model.LstPushHistory
-import kotlinx.android.synthetic.main.row_history_notifications.view.*
-import java.util.*
 
 class HistoryNotificationAdapter(
     var hisotryListingResponse: HistoryNotificationResponse?,
@@ -21,26 +20,24 @@ class HistoryNotificationAdapter(
         fun itemclicks(notificationHistory: LstPushHistory?)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        val NReadOrNot = itemView.NReadOrNot
-        val NImage = itemView.NImage
-        val NImageLayout = itemView.NImageLayout
-//        val NtitleLL = itemView.NtitleLL
-        val Ntitle = itemView.Ntitle
-        val Ndate = itemView.Ndate
-        val Ndesc = itemView.Ndesc
-//        val NdescExpandable = itemView.NdescExpandable
-//        val NReadMore = itemView.NReadMore
-        val cardView = itemView.cardView
+    class ViewHolder(binding: RowHistoryNotificationsBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        //        val NReadOrNot = binding.NReadOrNot
+        val NImage = binding.NImage
+        val NImageLayout = binding.NImageLayout
+//        val NtitleLL = binding.NtitleLL
+        val Ntitle = binding.Ntitle
+        val Ndate = binding.Ndate
+        val Ndesc = binding.Ndesc
+//        val NdescExpandable = binding.NdescExpandable
+//        val NReadMore = binding.NReadMore
+        val cardView = binding.cardView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.row_history_notifications,
-            parent,
-            false
-        )
-        return ViewHolder(view)
+        val binding =
+            RowHistoryNotificationsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

@@ -1,13 +1,16 @@
 package com.loyltworks.mandelapremium.ui.GiftCards
 
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.loyltworks.mandelapremium.model.*
+import com.loyltworks.mandelapremium.model.GetAlbumsWithImagesRequest
+import com.loyltworks.mandelapremium.model.GetAlbumsWithImagesResponse
+import com.loyltworks.mandelapremium.model.GetGiftCardRequest
+import com.loyltworks.mandelapremium.model.GetGiftCardResponse
+import com.loyltworks.mandelapremium.model.GetReceiverIDRequest
+import com.loyltworks.mandelapremium.model.GetReceiverIDResponse
+import com.loyltworks.mandelapremium.model.MyVoucherGiftCardSubmitRequest
+import com.loyltworks.mandelapremium.model.MyVoucherGiftCardSubmitResponse
 import com.loyltworks.mandelapremium.ui.baseClass.BaseViewModel
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
 import kotlinx.coroutines.launch
 
 class GiftCardsViewModel : BaseViewModel() {

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityMyQueryBinding
 import com.loyltworks.mandelapremium.model.GenderSpinner
 import com.loyltworks.mandelapremium.model.GetHelpTopicRetrieveRequest
 import com.loyltworks.mandelapremium.model.HelpTopicRetrieveRequest
@@ -21,12 +22,10 @@ import com.loyltworks.mandelapremium.ui.help.newTicket.NewTicketActivity
 import com.loyltworks.mandelapremium.utils.LastItemMarginItemDecoration
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_my_query.add_query
-import kotlinx.android.synthetic.main.activity_my_query.back
-import kotlinx.android.synthetic.main.activity_my_query.myQuery_rv
-import kotlinx.android.synthetic.main.activity_my_query.query_error_hint
 
 class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
+
+    lateinit var binding: ActivityMyQueryBinding
 
     var FromDate = ""
     var ToDate = ""
@@ -67,14 +66,14 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
             if (it != null && !it.objCustomerAllQueryJsonList.isNullOrEmpty()) {
                 LoadingDialogue.dismissDialog()
 
-                myQuery_rv?.adapter = MyQueryAdapter(it, this)
-                myQuery_rv?.visibility = View.VISIBLE
-                query_error_hint?.visibility = View.GONE
+                binding.myQueryRv?.adapter = MyQueryAdapter(it, this)
+                binding.myQueryRv?.visibility = View.VISIBLE
+                binding.queryErrorHint?.visibility = View.GONE
 
             } else {
                 LoadingDialogue.dismissDialog()
-                myQuery_rv?.visibility = View.GONE
-                query_error_hint?.visibility = View.VISIBLE
+                binding.myQueryRv?.visibility = View.GONE
+                binding.queryErrorHint?.visibility = View.VISIBLE
             }
         })
 
@@ -112,14 +111,16 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this).get(HelpViewModel::class.java)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_query)
+        binding = ActivityMyQueryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
 //        val toolbar: Toolbar = findViewById(R.id.toolbar)
 //        setSupportActionBar(toolbar)
 
         //set context
         context = this
 
-        myQuery_rv?.addItemDecoration(LastItemMarginItemDecoration())
+        binding.myQueryRv?.addItemDecoration(LastItemMarginItemDecoration())
 
         //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         //supportActionBar!!.setDisplayShowHomeEnabled(true)
@@ -137,7 +138,7 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
             ""
         )
 
-        add_query.setOnClickListener {
+        binding.addQuery.setOnClickListener {
             startActivity(Intent(this@MyQueryActivity, NewTicketActivity::class.java))
             overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
         }
@@ -155,7 +156,7 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
 //            }
 //        }
 
-//        myQuery_rv.adapter = MyQueryAdapter(null, this)
+//        binding.myQueryRv.adapter = MyQueryAdapter(null, this)
 
 
         /*fromDate.setOnClickListener {
@@ -217,7 +218,7 @@ class MyQueryActivity : BaseActivity(), MyQueryAdapter.OnClickCallBack {
 
         }*/
 
-        back.setOnClickListener { 
+        binding.back.setOnClickListener {
             onBackPressed()
         }
         

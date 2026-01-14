@@ -46,7 +46,7 @@
             android:layout_margin="10dp">
 
             <ImageView
-                android:id="@+id/promotion_image"
+                android:id="@+id/promotionImage"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@drawable/border_yellow_back_white"
@@ -60,7 +60,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/promotion_name"
+            android:id="@+id/promotionName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -86,7 +86,7 @@
                 app:tint="@color/orange" />
 
             <TextView
-                android:id="@+id/promotion_valid_till"
+                android:id="@+id/promotionValidTill"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -120,7 +120,7 @@
 
 
             <TextView
-                android:id="@+id/promotion_offer_details"
+                android:id="@+id/promotionOfferDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -157,7 +157,7 @@
 
 
             <TextView
-                android:id="@+id/redeemable_outlet"
+                android:id="@+id/redeemableOutlet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"

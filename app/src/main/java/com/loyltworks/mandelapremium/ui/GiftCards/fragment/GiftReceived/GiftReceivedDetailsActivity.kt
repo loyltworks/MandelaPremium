@@ -4,14 +4,15 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityGiftReceivedDetailsBinding
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
-import kotlinx.android.synthetic.main.activity_my_voucher_details.*
+import com.oneloyalty.goodpack.utils.BlockMultipleClick
 
 
 class GiftReceivedDetailsActivity : BaseActivity(), View.OnClickListener {
 
+    lateinit var binding: ActivityGiftReceivedDetailsBinding
 
     override fun callInitialServices() {
     }
@@ -21,7 +22,9 @@ class GiftReceivedDetailsActivity : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_gift_received_details)
+        binding = ActivityGiftReceivedDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -35,10 +38,10 @@ class GiftReceivedDetailsActivity : BaseActivity(), View.OnClickListener {
             resources.getDrawable(R.drawable.ic_back_arrow)
         //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
-        offer_detils.setOnClickListener(this)
-        steps_to_redeem_the_voucher.setOnClickListener(this)
-        terms_and_conditions.setOnClickListener(this)
-        redeemable_outlet.setOnClickListener(this)
+        binding.offerDetils.setOnClickListener(this)
+        binding.stepsToRedeemTheVoucher.setOnClickListener(this)
+        binding.termsAndConditions.setOnClickListener(this)
+        binding.redeemableOutlet.setOnClickListener(this)
 
     }
 
@@ -46,55 +49,55 @@ class GiftReceivedDetailsActivity : BaseActivity(), View.OnClickListener {
         if (BlockMultipleClick.click()) return
 
         when (v!!.id) {
-            R.id.offer_detils -> {
+            R.id.offerDetils -> {
 
-                if (offer_details_description_view.visibility == View.VISIBLE) {
-                    offer_details_description_view.visibility = View.GONE
+                if (binding.offerDetailsDescriptionView.visibility == View.VISIBLE) {
+                    binding.offerDetailsDescriptionView.visibility = View.GONE
                     return
                 }
 
-                offer_details_description_view.visibility = View.VISIBLE
-                step_to_redeem_the_voucher_description_view.visibility = View.GONE
-                tc_description_view.visibility = View.GONE
-                redeemable_outlet_description_view.visibility = View.GONE
+                binding.offerDetailsDescriptionView.visibility = View.VISIBLE
+                binding.stepToRedeemTheVoucherDescriptionView.visibility = View.GONE
+                binding.tcDescriptionView.visibility = View.GONE
+                binding.redeemableOutletDescriptionView.visibility = View.GONE
             }
 
-            R.id.steps_to_redeem_the_voucher -> {
+            R.id.stepsToRedeemTheVoucher -> {
 
-                if (step_to_redeem_the_voucher_description_view.visibility == View.VISIBLE) {
-                    step_to_redeem_the_voucher_description_view.visibility = View.GONE
+                if (binding.stepToRedeemTheVoucherDescriptionView.visibility == View.VISIBLE) {
+                    binding.stepToRedeemTheVoucherDescriptionView.visibility = View.GONE
                     return
                 }
 
-                offer_details_description_view.visibility = View.GONE
-                step_to_redeem_the_voucher_description_view.visibility = View.VISIBLE
-                tc_description_view.visibility = View.GONE
-                redeemable_outlet_description_view.visibility = View.GONE
+                binding.offerDetailsDescriptionView.visibility = View.GONE
+                binding.stepToRedeemTheVoucherDescriptionView.visibility = View.VISIBLE
+                binding.tcDescriptionView.visibility = View.GONE
+                binding.redeemableOutletDescriptionView.visibility = View.GONE
             }
 
-            R.id.terms_and_conditions -> {
+            R.id.termsAndConditions -> {
 
-                if (tc_description_view.visibility == View.VISIBLE) {
-                    tc_description_view.visibility = View.GONE
+                if (binding.tcDescriptionView.visibility == View.VISIBLE) {
+                    binding.tcDescriptionView.visibility = View.GONE
                     return
                 }
 
-                offer_details_description_view.visibility = View.GONE
-                step_to_redeem_the_voucher_description_view.visibility = View.GONE
-                tc_description_view.visibility = View.VISIBLE
-                redeemable_outlet_description_view.visibility = View.GONE
+                binding.offerDetailsDescriptionView.visibility = View.GONE
+                binding.stepToRedeemTheVoucherDescriptionView.visibility = View.GONE
+                binding.tcDescriptionView.visibility = View.VISIBLE
+                binding.redeemableOutletDescriptionView.visibility = View.GONE
             }
-            R.id.redeemable_outlet -> {
+            R.id.redeemableOutlet -> {
 
-                if (redeemable_outlet_description_view.visibility == View.VISIBLE) {
-                    redeemable_outlet_description_view.visibility = View.GONE
+                if (binding.redeemableOutletDescriptionView.visibility == View.VISIBLE) {
+                    binding.redeemableOutletDescriptionView.visibility = View.GONE
                     return
                 }
 
-                offer_details_description_view.visibility = View.GONE
-                step_to_redeem_the_voucher_description_view.visibility = View.GONE
-                tc_description_view.visibility = View.GONE
-                redeemable_outlet_description_view.visibility = View.VISIBLE
+                binding.offerDetailsDescriptionView.visibility = View.GONE
+                binding.stepToRedeemTheVoucherDescriptionView.visibility = View.GONE
+                binding.tcDescriptionView.visibility = View.GONE
+                binding.redeemableOutletDescriptionView.visibility = View.VISIBLE
             }
 
 

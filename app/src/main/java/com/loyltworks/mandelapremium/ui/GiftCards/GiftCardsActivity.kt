@@ -2,25 +2,22 @@ package com.loyltworks.mandelapremium.ui.GiftCards
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityGiftCardsBinding
 import com.loyltworks.mandelapremium.model.GetGiftCardRequest
-import com.loyltworks.mandelapremium.model.GetGiftCardResponse
-import com.loyltworks.mandelapremium.model.GetWhatsNewRequest
 import com.loyltworks.mandelapremium.ui.GiftCards.fragment.GiftReceived.GiftReceivedFragment
 import com.loyltworks.mandelapremium.ui.GiftCards.fragment.GiftSent.GiftSentFragment
 import com.loyltworks.mandelapremium.ui.GiftCards.fragment.MyVoucher.MyVoucherFragment
-import com.loyltworks.mandelapremium.ui.OfferAndPromotion.PromotionViewModel
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.profile.MyPagerAdapter
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.activity_gift_cards.*
 
 class GiftCardsActivity : BaseActivity() {
 
+    lateinit var binding: ActivityGiftCardsBinding
 
     lateinit var giftCardsViewModel: GiftCardsViewModel
 
@@ -44,7 +41,9 @@ class GiftCardsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_gift_cards)
+        binding = ActivityGiftCardsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
 //        val toolbar: Toolbar = findViewById(R.id.toolbar)
 //        setSupportActionBar(toolbar)
 
@@ -63,10 +62,10 @@ class GiftCardsActivity : BaseActivity() {
 
         /** &&&&&&&&&&&&&&&&&&   Tab Items Declared with MyPageAdapter  &&&&&&&&&&&&&&&&&&&&&&  */
 
-        setupViewPager(pager)
-        tablayout!!.setupWithViewPager(pager)
+        setupViewPager(binding.pager)
+        binding.tablayout.setupWithViewPager(binding.pager)
 
-        back.setOnClickListener{
+        binding.back.setOnClickListener{
             onBackPressed()
         }
 

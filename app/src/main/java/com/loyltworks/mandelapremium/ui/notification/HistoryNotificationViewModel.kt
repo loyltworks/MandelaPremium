@@ -1,6 +1,5 @@
 package com.loyltworks.mandelapremium.ui.notification
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.loyltworks.mandelapremium.model.HistoryNotificationDetailsRequest

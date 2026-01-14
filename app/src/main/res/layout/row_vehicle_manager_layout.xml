@@ -35,7 +35,7 @@
                 android:textSize="12dp" />
 
             <TextView
-                android:id="@+id/vehicle_brand"
+                android:id="@+id/vehicleBrand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
@@ -73,7 +73,7 @@
                 android:textSize="12dp" />
 
             <TextView
-                android:id="@+id/fuel_type"
+                android:id="@+id/fuelType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
@@ -142,7 +142,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/model_no"
+                android:id="@+id/modelNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/h3"
@@ -156,7 +156,7 @@
                 android:textSize="@dimen/h4" />
 
             <TextView
-                android:id="@+id/registration_number"
+                android:id="@+id/registrationNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/h3"

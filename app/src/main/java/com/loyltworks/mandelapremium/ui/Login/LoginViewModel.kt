@@ -2,8 +2,12 @@ package com.loyltworks.mandelapremium.ui.Login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.loyltworks.mandelapremium.model.*
+import com.loyltworks.mandelapremium.model.EmailCheckRequest
+import com.loyltworks.mandelapremium.model.EmailCheckResponse
+import com.loyltworks.mandelapremium.model.ForgotPasswordRequest
+import com.loyltworks.mandelapremium.model.ForgotPasswordResponse
+import com.loyltworks.mandelapremium.model.LoginRequest
+import com.loyltworks.mandelapremium.model.LoginResponse
 import com.loyltworks.mandelapremium.ui.baseClass.BaseViewModel
 import kotlinx.coroutines.launch
 

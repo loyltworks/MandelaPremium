@@ -2,40 +2,31 @@ package com.loyltworks.mandelapremium.ui.MyActivity.fragment
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.loyltworks.mandelapremium.R
-import com.loyltworks.mandelapremium.model.*
-import com.loyltworks.mandelapremium.ui.MyActivity.MyActivity
+import com.loyltworks.mandelapremium.databinding.FragmentMyRedemptionBinding
+import com.loyltworks.mandelapremium.model.LstAttributesDetail
+import com.loyltworks.mandelapremium.model.LstPromotionList
+import com.loyltworks.mandelapremium.model.RedemptionRequest
+import com.loyltworks.mandelapremium.model.WishPointRequest
 import com.loyltworks.mandelapremium.ui.MyActivity.MyActivityViewModel
-import com.loyltworks.mandelapremium.ui.MyActivity.adapter.MyEarningAdapter
 import com.loyltworks.mandelapremium.ui.MyActivity.adapter.MyRedemptionAdapter
 import com.loyltworks.mandelapremium.utils.AppController
 import com.loyltworks.mandelapremium.utils.DatePickerBox
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.fragment_my_earning.*
-import kotlinx.android.synthetic.main.fragment_my_earning.view.btnText
-import kotlinx.android.synthetic.main.fragment_my_earning.view.fromDate_tv
-import kotlinx.android.synthetic.main.fragment_my_earning.view.toDate_tv
-import kotlinx.android.synthetic.main.fragment_my_redemption.*
-import kotlinx.android.synthetic.main.fragment_my_redemption.view.*
-import kotlinx.android.synthetic.main.fragment_promotion_tab1.*
-//import kotlinx.android.synthetic.main.fragment_promotion_tab1.filterDisplay
 import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Date
 
 
 class MyRedemptionFragment : Fragment(), MyRedemptionAdapter.OnItemClickListener {
+
+    lateinit var binding: FragmentMyRedemptionBinding
 
     var FromDate = ""
     var ToDate = ""
@@ -55,21 +46,21 @@ class MyRedemptionFragment : Fragment(), MyRedemptionAdapter.OnItemClickListener
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_my_redemption, container, false)
+        binding = FragmentMyRedemptionBinding.inflate(layoutInflater)
 
 
-//        root.r_fromDate_tv.text = AppController.dateFormat(FromDate)
+//        root.binding.rFromDateTv.text = AppController.dateFormat(FromDate)
 //        root.toDate_tv.text = AppController.dateFormat(ToDate)
 
 
-        root.r_fromDate.setOnClickListener {
+        binding.rFromDate.setOnClickListener {
             DatePickerBox.date(activity) {
-                root.r_fromDate_tv.text = it
+                binding.rFromDateTv.text = it
                 FromDate = it
                 try {
                     DatePickerBox.dateCompare(activity, FromDate, ToDate) {
                         if (!it) {
-                            r_fromDate_tv.text = "DD/MM/YYYY"
+                            binding.rFromDateTv.text = "DD/MM/YYYY"
                             FromDate = ""
                         }
                     }
@@ -79,13 +70,13 @@ class MyRedemptionFragment : Fragment(), MyRedemptionAdapter.OnItemClickListener
         }
 
 
-        root.r_toDate.setOnClickListener {
+        binding.rToDate.setOnClickListener {
             DatePickerBox.date(activity) {
-                root.r_toDate_tv.text = it
+                binding.rToDateTv.text = it
                 ToDate = it
                 DatePickerBox.dateCompare(activity, FromDate, ToDate) {
                     if (!it) {
-                        r_toDate_tv.text = "DD/MM/YYYY"
+                        binding.rToDateTv.text = "DD/MM/YYYY"
                         ToDate = ""
                     }
                 }
@@ -93,24 +84,24 @@ class MyRedemptionFragment : Fragment(), MyRedemptionAdapter.OnItemClickListener
         }
 
 
-        root.r_filterBtn.setOnClickListener { v ->
+        binding.rFilterBtn.setOnClickListener { v ->
 
-            if(root.btnText.text == "Filter"){
+            if(binding.btnText.text == "Filter"){
 
                 if (!TextUtils.isEmpty(FromDate) && !TextUtils.isEmpty(ToDate)) {
-                    FromDate = r_fromDate_tv.text.toString()
-                    ToDate = r_toDate_tv.text.toString()
+                    FromDate = binding.rFromDateTv.text.toString()
+                    ToDate = binding.rToDateTv.text.toString()
                     getTransactionHistory(
                         filterBy,
                         AppController.dateAPIFormats(FromDate).toString(),
                         AppController.dateAPIFormats(ToDate).toString()
                     )
-                    root.btnText.text = "Reset"
+                    binding.btnText.text = "Reset"
                 } else Toast.makeText(activity, "Please select date range", Toast.LENGTH_SHORT).show()
             }else{
-                root.btnText.text = "Filter"
-                root.r_fromDate_tv.text = ""
-                root.r_toDate_tv.text = ""
+                binding.btnText.text = "Filter"
+                binding.rFromDateTv.text = ""
+                binding.rToDateTv.text = ""
                 FromDate = ""
                 ToDate = ""
                 getTransactionHistory(
@@ -121,7 +112,7 @@ class MyRedemptionFragment : Fragment(), MyRedemptionAdapter.OnItemClickListener
             }
 
         }
-        return root
+        return binding.root
     }
 
 
@@ -260,13 +251,13 @@ class MyRedemptionFragment : Fragment(), MyRedemptionAdapter.OnItemClickListener
             LoadingDialogue.dismissDialog()
 
             if (it != null && !it.LstGiftCardIssueDetailsJson.isNullOrEmpty()) {
-                MyRedemption_rv.adapter = MyRedemptionAdapter(it, this)
-                redemption_error.visibility = View.GONE
-                MyRedemption_rv.visibility = View.VISIBLE
+                binding.MyRedemptionRv.adapter = MyRedemptionAdapter(it, this)
+                binding.redemptionError.visibility = View.GONE
+                binding.MyRedemptionRv.visibility = View.VISIBLE
 
             } else {
-                redemption_error.visibility = View.VISIBLE
-                MyRedemption_rv.visibility = View.GONE
+                binding.redemptionError.visibility = View.VISIBLE
+                binding.MyRedemptionRv.visibility = View.GONE
 //                FromDate = ""
 //                ToDate = ""
 

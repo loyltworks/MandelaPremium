@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/card_parent_img"
+            android:id="@+id/cardParentImg"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/curve_bg"

@@ -10,7 +10,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/promotion_rv"
+        android:id="@+id/promotionRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"
@@ -21,7 +21,7 @@
         tools:listitem="@layout/row_offer_and_promotion" />
 
     <TextView
-        android:id="@+id/promotion_error"
+        android:id="@+id/promotionError"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/poppins_bold"

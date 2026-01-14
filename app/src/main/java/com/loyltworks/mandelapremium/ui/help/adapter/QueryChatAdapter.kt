@@ -4,24 +4,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.RowLeftChatCellBinding
+import com.loyltworks.mandelapremium.databinding.RowRightChatCellBinding
 import com.loyltworks.mandelapremium.model.QueryChatElementResponse
 import com.vmb.fileSelect.FileSelector
-import kotlinx.android.synthetic.main.row_left_chat_cell.view.*
 
 
-class QueryChatAdapter(
-    var queryListingResponse: QueryChatElementResponse?,
-    var chatImageDisplay: ChatImageDisplay,
-) : RecyclerView.Adapter<QueryChatAdapter.ViewHolder>() {
+class QueryChatAdapter(var queryListingResponse: QueryChatElementResponse?, var chatImageDisplay: ChatImageDisplay, ) : RecyclerView.Adapter<QueryChatAdapter.ViewHolder>() {
 
-    var leftItemView: View? = null
-    var rightItemView: View? = null
+    var leftItemView: RowLeftChatCellBinding? = null
+    var rightItemView: RowRightChatCellBinding? = null
 
     val LEFT_CELL = 1
     val RIGHT_CELL = 2
@@ -30,37 +31,43 @@ class QueryChatAdapter(
         fun onClickChatImage(Url: String?)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
+        var row_query_sender: TextView? = null
+        var row_query_missed_call: ImageView?= null
+        var row_query_time: TextView?= null
+        var row_query_text: TextView?= null
+        var row_query_text_pdf: TextView?= null
+        var chatImage: ImageView?= null
 
-        val row_query_sender = itemView.row_query_sender
-        val row_query_missed_call = itemView.row_query_missed_call
-        val row_query_text = itemView.row_query_text
-        val row_query_text_pdf = itemView.row_query_pdf_other
-        val chatImage = itemView.chatImage
-        val row_query_time = itemView.row_query_time
-
+        init {
+            if (binding is RowRightChatCellBinding){
+                row_query_sender = binding.rowQuerySender
+                row_query_missed_call = binding.rowQueryMissedCall
+                row_query_time = binding.rowQueryTime
+                row_query_text = binding.rowQueryText
+                row_query_text_pdf = binding.pdf
+                chatImage = binding.chatImage
+            }else if (binding is RowLeftChatCellBinding){
+                row_query_sender = binding.rowQuerySender
+                row_query_missed_call = binding.rowQueryMissedCall
+                row_query_time = binding.rowQueryTime
+                row_query_text = binding.rowQueryText
+                row_query_text_pdf = binding.pdf
+                chatImage = binding.chatImage
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         return if (viewType == LEFT_CELL) {
-            //if (leftItemView == null)
-            leftItemView = LayoutInflater.from(parent.context).inflate(
-                R.layout.row_left_chat_cell,
-                parent,
-                false
-            )
+            leftItemView = RowLeftChatCellBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             ViewHolder(leftItemView!!)
-            //itemView=leftItemView;
         } else {
-            //if(rightItemView==null)
-            rightItemView = LayoutInflater.from(parent.context).inflate(
-                R.layout.row_right_chat_cell,
-                parent,
-                false
-            )
+            rightItemView = RowRightChatCellBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return ViewHolder(rightItemView!!)
-            //itemView=rightItemView;
         }
+
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -69,7 +76,7 @@ class QueryChatAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // initial hide
-        holder.row_query_text_pdf.visibility = View.GONE
+        holder.row_query_text_pdf?.visibility = View.GONE
 
         val lstQueryDetail = queryListingResponse!!.objQueryResponseJsonList!![position]
         holder.row_query_sender?.text = lstQueryDetail.RepliedBy.toString()
@@ -83,25 +90,25 @@ class QueryChatAdapter(
 
                     Log.d("fjksdjfksdl", lstQueryDetail.ImageUrl.toString())
 
-                    holder.chatImage.visibility = View.GONE
-                    holder.row_query_text_pdf.visibility = View.VISIBLE
+                    holder.chatImage?.visibility = View.GONE
+                    holder.row_query_text_pdf?.visibility = View.VISIBLE
 
 
-                    holder.row_query_text_pdf.text =
+                    holder.row_query_text_pdf?.text =
                         lstQueryDetail.ImageUrl.toString().substringAfterLast("/")
 
                 } else {
-                    holder.chatImage.visibility = View.VISIBLE
-                        holder.row_query_text_pdf.visibility = View.GONE
+                    holder.chatImage?.visibility = View.VISIBLE
+                        holder.row_query_text_pdf?.visibility = View.GONE
 
                 }
 
 
                 if (!lstQueryDetail.QueryResponseInfo.isNullOrEmpty()) {
-                    holder.row_query_text.visibility = View.VISIBLE
-                    holder.row_query_text.text = lstQueryDetail.QueryResponseInfo.toString()
-                } else holder.row_query_text.visibility = View.GONE
-                holder.row_query_missed_call.visibility = View.GONE
+                    holder.row_query_text?.visibility = View.VISIBLE
+                    holder.row_query_text?.text = lstQueryDetail.QueryResponseInfo.toString()
+                } else holder.row_query_text?.visibility = View.GONE
+                holder.row_query_missed_call?.visibility = View.GONE
                 Glide.with(holder.itemView)
                     .load(
                         BuildConfig.PROMO_IMAGE_BASE + lstQueryDetail.ImageUrl!!.replace(
@@ -112,20 +119,20 @@ class QueryChatAdapter(
                     .placeholder(R.drawable.dummy_image)
                     .error(R.drawable.dummy_image)
                     .apply(RequestOptions().transform(RoundedCorners(50)))
-                    .into(holder.chatImage)
+                    .into(holder.chatImage!!)
             } else {
-                holder.row_query_text.visibility = View.VISIBLE
-                holder.chatImage.visibility = View.GONE
-                holder.row_query_missed_call.visibility = View.GONE
-                holder.row_query_text.text = lstQueryDetail.QueryResponseInfo.toString()
+                holder.row_query_text?.visibility = View.VISIBLE
+                holder.chatImage?.visibility = View.GONE
+                holder.row_query_missed_call?.visibility = View.GONE
+                holder.row_query_text?.text = lstQueryDetail.QueryResponseInfo.toString()
             }
         } else {
-            holder.chatImage.visibility = View.GONE
-            holder.row_query_text.visibility = View.GONE
-            holder.row_query_missed_call.visibility = View.VISIBLE
+            holder.chatImage?.visibility = View.GONE
+            holder.row_query_text?.visibility = View.GONE
+            holder.row_query_missed_call?.visibility = View.VISIBLE
         }
 
-        holder.chatImage.setOnClickListener(View.OnClickListener {
+        holder.chatImage?.setOnClickListener(View.OnClickListener {
             chatImageDisplay.onClickChatImage(
                 BuildConfig.PROMO_IMAGE_BASE + lstQueryDetail.ImageUrl!!
                     .replace("~", "")

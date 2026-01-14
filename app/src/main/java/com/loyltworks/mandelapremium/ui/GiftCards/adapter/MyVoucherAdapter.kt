@@ -2,15 +2,13 @@ package com.loyltworks.mandelapremium.ui.GiftCards.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.RowMyVoucherBinding
 import com.loyltworks.mandelapremium.model.lstMerchantinfo
-import com.loyltworks.mandelapremium.utils.PreferenceHelper
-import kotlinx.android.synthetic.main.row_my_voucher.view.*
 
 class MyVoucherAdapter(
     var lstMerchantinfo: List<lstMerchantinfo>,
@@ -21,22 +19,21 @@ class MyVoucherAdapter(
         fun onItemClicked(lstMerchantinfo: lstMerchantinfo?)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val cardImage = itemView.card_image
-        val rewardTextview = itemView.rewards_textview
-        val rewardTextviewLayout = itemView.rewards_textview_layout
-        val giftCardName = itemView.gift_card_name
-        val validTillDate = itemView.valid_till_date
-        val carNumber = itemView.card_number
-
+    class ViewHolder(binding: RowMyVoucherBinding) : RecyclerView.ViewHolder(binding.root) {
+        val cardImage = binding.cardImage
+        val rewardTextview = binding.rewardsTextview
+        val rewardTextviewLayout = binding.rewardsTextviewLayout
+        val giftCardName = binding.giftCardName
+        val validTillDate = binding.validTillDate
+        val carNumber = binding.cardNumber
     }
 
     var value : Int = 0;
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_my_voucher, parent, false)
-        return ViewHolder(view)
+        val binding =
+            RowMyVoucherBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     @SuppressLint("SetTextI18n")

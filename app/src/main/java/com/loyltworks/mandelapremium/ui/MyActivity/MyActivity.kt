@@ -5,19 +5,17 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityMyBinding
 import com.loyltworks.mandelapremium.ui.MyActivity.fragment.MyEarningFragment
 import com.loyltworks.mandelapremium.ui.MyActivity.fragment.MyRedemptionFragment
 import com.loyltworks.mandelapremium.ui.OfferAndPromotion.OfferAndPromotionsFragment
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.profile.MyPagerAdapter
-import kotlinx.android.synthetic.main.activity_my.back
-import kotlinx.android.synthetic.main.activity_my.toolbarTitle
-import kotlinx.android.synthetic.main.activity_profile.pager
-import kotlinx.android.synthetic.main.activity_profile.tablayout
 
 
 class MyActivity : BaseActivity() {
-
+    
+    lateinit var binding: ActivityMyBinding
 
     override fun callInitialServices() {
     }
@@ -31,23 +29,24 @@ class MyActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my)
+        binding = ActivityMyBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         context = this
         viewModel = ViewModelProvider(this).get(MyActivityViewModel::class.java)
 
-        setupViewPager(pager)
-        tablayout!!.setupWithViewPager(pager)
+        setupViewPager(binding.pager)
+        binding.tablayout!!.setupWithViewPager(binding.pager)
 
-        pager.currentItem = intent.extras!!.getInt("MyActivity")
+        binding.pager.currentItem = intent.extras!!.getInt("MyActivity")
 
-        if(pager.currentItem == 0){
-            toolbarTitle.text = "My Earnings"
+        if(binding.pager.currentItem == 0){
+            binding.toolbarTitle.text = "My Earnings"
         }else{
-            toolbarTitle.text = "My Redemptions"
+            binding.toolbarTitle.text = "My Redemptions"
         }
 
-        back.setOnClickListener{
+        binding.back.setOnClickListener{
             onBackPressed()
         }
 

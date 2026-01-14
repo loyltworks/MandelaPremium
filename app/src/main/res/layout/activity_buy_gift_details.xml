@@ -56,7 +56,7 @@
                     android:layout_margin="10dp">
 
                     <ImageView
-                        android:id="@+id/gift_card_image"
+                        android:id="@+id/giftCardImage"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:background="@drawable/border_yellow_back_white"
@@ -71,7 +71,7 @@
 
 
                 <TextView
-                    android:id="@+id/giftcard_name"
+                    android:id="@+id/giftcardName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -82,7 +82,7 @@
                     android:textSize="16dp" />
 
                 <LinearLayout
-                    android:id="@+id/gift_card_view1"
+                    android:id="@+id/giftCardView1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -100,7 +100,7 @@
                         android:padding="15dp">
 
                         <LinearLayout
-                            android:id="@+id/offer_detils"
+                            android:id="@+id/offerDetils"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -136,7 +136,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/offer_details_description_view"
+                            android:id="@+id/offerDetailsDescriptionView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -168,7 +168,7 @@
                         android:padding="15dp">
 
                         <LinearLayout
-                            android:id="@+id/steps_to_redeem_the_voucher"
+                            android:id="@+id/stepsToRedeemTheVoucher"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -204,14 +204,14 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/step_to_redeem_the_voucher_description_view"
+                            android:id="@+id/stepToRedeemTheVoucherDescriptionView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:visibility="gone">
 
                             <TextView
-                                android:id="@+id/step_to_reteem_voucher"
+                                android:id="@+id/stepToReteemVoucher"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="10dp"
@@ -284,7 +284,7 @@
                         android:padding="15dp">
 
                         <LinearLayout
-                            android:id="@+id/terms_and_conditions"
+                            android:id="@+id/termsAndConditions"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -320,14 +320,14 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/tc_description_view"
+                            android:id="@+id/tcDescriptionView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:visibility="gone">
 
                             <TextView
-                                android:id="@+id/terms_and_condition"
+                                android:id="@+id/termsAndCondition"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="10dp"
@@ -352,7 +352,7 @@
                         android:padding="15dp">
 
                         <LinearLayout
-                            android:id="@+id/redeemable_outlet"
+                            android:id="@+id/redeemableOutlet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -388,14 +388,14 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/redeemable_outlet_description_view"
+                            android:id="@+id/redeemableOutletDescriptionView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:visibility="gone">
 
                             <TextView
-                                android:id="@+id/redeemable_outlet_text"
+                                android:id="@+id/redeemableOutletText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="10dp"
@@ -414,7 +414,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/point_payOnline_card"
+                    android:id="@+id/pointPayOnlineCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -467,7 +467,7 @@
 
 
                         <EditText
-                            android:id="@+id/amout_gift_cards"
+                            android:id="@+id/amoutGiftCards"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_marginTop="20dp"
@@ -499,7 +499,7 @@
                                 android:textSize="12sp" />
 
                             <TextView
-                                android:id="@+id/min_max_points"
+                                android:id="@+id/minMaxPoints"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
@@ -515,14 +515,14 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/point_editext"
+                        android:id="@+id/pointEditext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
 
                         <EditText
-                            android:id="@+id/point_balance_edittext"
+                            android:id="@+id/pointBalanceEdittext"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_marginTop="10dp"
@@ -553,7 +553,7 @@
                                 android:textSize="12sp" />
 
                             <TextView
-                                android:id="@+id/current_balance"
+                                android:id="@+id/currentBalance"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
@@ -570,7 +570,7 @@
 
 
                     <RelativeLayout
-                        android:id="@+id/gift_now_amout_point"
+                        android:id="@+id/giftNowAmoutPoint"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -594,7 +594,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/gift_now11"
+                    android:id="@+id/giftNow11"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="20dp"
@@ -627,7 +627,7 @@
 
     <!--  Voucher Issued Successfully -->
     <LinearLayout
-        android:id="@+id/voucher_issue_success_view"
+        android:id="@+id/voucherIssueSuccessView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -689,7 +689,7 @@
 
 
             <TextView
-                android:id="@+id/no_gift_voucher"
+                android:id="@+id/noGiftVoucher"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -700,7 +700,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/yes_gift_voucher"
+                android:id="@+id/yesGiftVoucher"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"

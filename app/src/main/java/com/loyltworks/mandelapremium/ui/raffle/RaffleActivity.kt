@@ -1,14 +1,14 @@
 package com.loyltworks.mandelapremium.ui.raffle
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityRaffleBinding
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
-import kotlinx.android.synthetic.main.activity_raffle.back
 
 class RaffleActivity  : BaseActivity() {
+
+    lateinit var binding: ActivityRaffleBinding
 
     override fun callInitialServices() {
     }
@@ -18,9 +18,9 @@ class RaffleActivity  : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_raffle)
-//        val toolbar: Toolbar = findViewById(R.id.toolbar)
-//        setSupportActionBar(toolbar)
+        binding = ActivityRaffleBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
 
         //set context
         context = this
@@ -32,7 +32,7 @@ class RaffleActivity  : BaseActivity() {
             resources.getDrawable(R.drawable.ic_back_arrow)
         //supportActionBar!!.setHomeAsUpIndicator(upArrow)
 
-        back.setOnClickListener{
+        binding.back.setOnClickListener{
             onBackPressed()
         }
 

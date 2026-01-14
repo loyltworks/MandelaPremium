@@ -29,7 +29,7 @@
             android:weightSum="2">
 
             <RelativeLayout
-                android:id="@+id/r_fromDate"
+                android:id="@+id/rFromDate"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="15dp"
@@ -38,7 +38,7 @@
                 android:background="@drawable/black_border_bg">
 
                 <TextView
-                    android:id="@+id/r_fromDate_tv"
+                    android:id="@+id/rFromDateTv"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_alignParentStart="true"
@@ -62,7 +62,7 @@
 
 
             <RelativeLayout
-                android:id="@+id/r_toDate"
+                android:id="@+id/rToDate"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="10dp"
@@ -71,7 +71,7 @@
                 android:background="@drawable/black_border_bg">
 
                 <TextView
-                    android:id="@+id/r_toDate_tv"
+                    android:id="@+id/rToDateTv"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_alignParentStart="true"
@@ -101,7 +101,7 @@
             android:gravity="bottom|end">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/r_filterBtn"
+                android:id="@+id/rFilterBtn"
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="5dp"
@@ -129,7 +129,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/MyRedemption_rv"
+        android:id="@+id/MyRedemptionRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -141,7 +141,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <TextView
-        android:id="@+id/redemption_error"
+        android:id="@+id/redemptionError"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"

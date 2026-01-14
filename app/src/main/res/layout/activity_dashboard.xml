@@ -59,7 +59,7 @@
                 android:layout_weight="2">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/dash_profile"
+                    android:id="@+id/dashProfile"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/default_person" />
@@ -160,7 +160,7 @@
 
                         <!--Scan layout-->
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/dash_scan"
+                            android:id="@+id/dashScan"
                             android:layout_width="0dp"
                             android:layout_height="80dp"
                             android:layout_marginStart="10dp"
@@ -198,7 +198,7 @@
 
                         <!--Earnings layout-->
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/dash_earning"
+                            android:id="@+id/dashEarning"
                             android:layout_width="0dp"
                             android:layout_height="80dp"
                             android:layout_marginStart="5dp"
@@ -236,7 +236,7 @@
 
                         <!--Redemption layout-->
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/dash_redemption"
+                            android:id="@+id/dashRedemption"
                             android:layout_width="0dp"
                             android:layout_height="80dp"
                             android:layout_marginStart="5dp"
@@ -274,7 +274,7 @@
 
                         <!--Help layout-->
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/dash_help"
+                            android:id="@+id/dashHelp"
                             android:layout_width="0dp"
                             android:layout_height="80dp"
                             android:layout_marginStart="5dp"
@@ -349,7 +349,7 @@
                             android:weightSum="2">
 
                             <LinearLayout
-                                android:id="@+id/my_gift_card"
+                                android:id="@+id/myGiftCard"
                                 android:layout_width="0dp"
                                 android:layout_height="90dp"
                                 android:layout_marginStart="10dp"
@@ -411,7 +411,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/buy_gift"
+                                android:id="@+id/buyGift"
                                 android:layout_width="0dp"
                                 android:layout_height="90dp"
                                 android:layout_marginStart="5dp"
@@ -536,7 +536,7 @@
                     </RelativeLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/products_rv"
+                        android:id="@+id/productsRv"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_marginBottom="30dp"
@@ -587,7 +587,7 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/navi_profile_image"
+                    android:id="@+id/naviProfileImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/default_person" />
@@ -619,7 +619,7 @@
                             android:src="@drawable/points" />
 
                         <TextView
-                            android:id="@+id/user_points"
+                            android:id="@+id/userPoints"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -642,7 +642,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/user_name"
+                    android:id="@+id/UserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
@@ -651,7 +651,7 @@
                     android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/user_mobile_number"
+                    android:id="@+id/userMobileNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
@@ -677,7 +677,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/nav_myProfile"
+                    android:id="@+id/navMyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -709,7 +709,7 @@
                     android:background="@color/light_orange" />
 
                 <LinearLayout
-                    android:id="@+id/navi_myearing"
+                    android:id="@+id/naviMyearing"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -735,7 +735,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/navi_redemption"
+                    android:id="@+id/naviRedemption"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -767,7 +767,7 @@
                     android:background="@color/light_orange" />
 
                 <LinearLayout
-                    android:id="@+id/navi_gift_card"
+                    android:id="@+id/naviGiftCard"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -792,7 +792,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/offer_and_promoions"
+                    android:id="@+id/offerAndPromoions"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -817,7 +817,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/navi_raffle"
+                    android:id="@+id/naviRaffle"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -842,7 +842,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/navi_help"
+                    android:id="@+id/naviHelp"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -874,7 +874,7 @@
                     android:background="@color/light_orange" />
 
                 <LinearLayout
-                    android:id="@+id/navi_about_mandela"
+                    android:id="@+id/naviAboutMandela"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -899,7 +899,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/navi_mybenefits"
+                    android:id="@+id/naviMybenefits"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -924,7 +924,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/navi_terms_and_condition"
+                    android:id="@+id/naviTermsAndCondition"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -949,7 +949,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/navi_faq"
+                    android:id="@+id/naviFaq"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center_vertical"
@@ -982,7 +982,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/navi_logout"
+                    android:id="@+id/naviLogout"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:layout_gravity="end"

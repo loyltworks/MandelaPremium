@@ -1,7 +1,6 @@
 package com.loyltworks.mandelapremium.ui.profile
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Base64
@@ -9,15 +8,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
-import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.ActivityProfileBinding
 import com.loyltworks.mandelapremium.model.ObjCustomer
-import com.loyltworks.mandelapremium.model.ObjCustomers
 import com.loyltworks.mandelapremium.model.UpdateProfileImageRequest
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.profile.fragment.ProfileViewModel
@@ -25,15 +22,15 @@ import com.loyltworks.mandelapremium.ui.profile.fragment.Tab1
 import com.loyltworks.mandelapremium.ui.profile.fragment.Tab2
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
+import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.vmb.fileSelect.FileSelector
 import com.vmb.fileSelect.FileSelectorCallBack
 import com.vmb.fileSelect.FileSelectorData
 import com.vmb.fileSelect.FileType
-import kotlinx.android.synthetic.main.activity_profile.back
-import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : BaseActivity(), View.OnClickListener {
 
+    lateinit var binding: ActivityProfileBinding
 
     override fun callInitialServices() {
     }
@@ -52,9 +49,9 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
-//        val toolbar: Toolbar = findViewById(R.id.toolbar)
-//        setSupportActionBar(toolbar)
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
 
         //set context
         context = this
@@ -64,9 +61,9 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
         //supportActionBar!!.setDisplayShowTitleEnabled(false)
 //        toolbar.title = "My Profile"
 
-        profile_image.setOnClickListener(this)
+        binding.profileImage.setOnClickListener(this)
 
-        back.setOnClickListener {
+        binding.back.setOnClickListener {
             onBackPressed()
         }
 
@@ -78,22 +75,22 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
         updateProfileImage()
 
-        user_name.text =
+        binding.userName.text =
             "Welcome " + PreferenceHelper.getDashboardDetails(context as ProfileActivity)!!.lstCustomerFeedBackJson!![0].FirstName
-        mobileNumber.text =
+        binding.mobileNumber.text =
             "Mobile number " + PreferenceHelper.getDashboardDetails(context as ProfileActivity)!!.lstCustomerFeedBackJson!![0].CustomerMobile
-        points.text =
+        binding.points.text =
             PreferenceHelper.getStringValue(context as ProfileActivity, BuildConfig.OverAllPoints)
 
         Glide.with(this@ProfileActivity).asBitmap()
             .load(PreferenceHelper.getStringValue(this, "ProfileImage"))
             .error(R.drawable.default_person).placeholder(R.drawable.default_person)
-            .into((profile_image))
+            .into((binding.profileImage))
 
         /** &&&&&&&&&&&&&&&&&&   Tab Items Declared with MyPageAdapter  &&&&&&&&&&&&&&&&&&&&&&  */
 
-        setupViewPager(pager)
-        tablayout!!.setupWithViewPager(pager)
+        setupViewPager(binding.pager)
+        binding.tablayout!!.setupWithViewPager(binding.pager)
 
     }
 
@@ -119,7 +116,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
         if (BlockMultipleClick.click()) return
         when (v!!.id) {
 
-            R.id.profile_image -> {
+            R.id.profileImage -> {
 
 
                 // Browse Image or Files
@@ -137,7 +134,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
                                 Glide.with(this@ProfileActivity).asBitmap()
                                     .load(Base64.decode(mProfileImagePath, Base64.DEFAULT))
-                                    .into((profile_image))
+                                    .into((binding.profileImage))
 
                                 profileViewModel.setProfileImageUpdate(
                                     UpdateProfileImageRequest(

@@ -36,7 +36,7 @@
                 android:background="@drawable/black_border_bg">
 
                 <TextView
-                    android:id="@+id/fromDate_tv"
+                    android:id="@+id/fromDateTv"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_alignParentStart="true"
@@ -69,7 +69,7 @@
                 android:background="@drawable/black_border_bg">
 
                 <TextView
-                    android:id="@+id/toDate_tv"
+                    android:id="@+id/toDateTv"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_alignParentStart="true"
@@ -99,7 +99,7 @@
             android:gravity="bottom|end">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/earning_filterBtn"
+                android:id="@+id/earningFilterBtn"
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="5dp"
@@ -127,7 +127,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/myearing_rv"
+        android:id="@+id/myearingRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -139,7 +139,7 @@
         tools:listitem="@layout/row_my_earning" />
 
     <TextView
-        android:id="@+id/earning_error"
+        android:id="@+id/earningError"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"

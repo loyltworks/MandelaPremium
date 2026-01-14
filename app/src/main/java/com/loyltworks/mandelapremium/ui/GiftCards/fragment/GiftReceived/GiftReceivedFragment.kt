@@ -2,32 +2,32 @@ package com.loyltworks.mandelapremium.ui.GiftCards.fragment.GiftReceived
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.loyltworks.mandelapremium.R
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.loyltworks.mandelapremium.R
+import com.loyltworks.mandelapremium.databinding.FragmentGiftReceivedBinding
 import com.loyltworks.mandelapremium.model.lstMerchantinfo
 import com.loyltworks.mandelapremium.ui.GiftCards.GiftCardsActivity
 import com.loyltworks.mandelapremium.ui.GiftCards.adapter.MyVoucherAdapter
 import com.loyltworks.mandelapremium.ui.GiftCards.fragment.MyVoucher.MyVoucherDetailsActivity
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import kotlinx.android.synthetic.main.fragment_gift_received.*
-import kotlinx.android.synthetic.main.fragment_my_voucher.*
 
 
 class GiftReceivedFragment : Fragment(), MyVoucherAdapter.OnItemClickListener {
-
+    
+    lateinit var binding: FragmentGiftReceivedBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gift_received, container, false)
-
+        binding = FragmentGiftReceivedBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,17 +47,17 @@ class GiftReceivedFragment : Fragment(), MyVoucherAdapter.OnItemClickListener {
                         }
                     }
                     if(lstMerchantinfo.isNotEmpty()){
-                        gift_received_rv.visibility = View.VISIBLE
-                        error_gift_recevied.visibility = View.GONE
-                        gift_received_rv.adapter = MyVoucherAdapter(it.lstMerchantinfo, this)
+                        binding.giftReceivedRv.visibility = View.VISIBLE
+                        binding.errorGiftRecevied.visibility = View.GONE
+                        binding.giftReceivedRv.adapter = MyVoucherAdapter(it.lstMerchantinfo, this)
                     }else{
-                        gift_received_rv.visibility = View.GONE
-                        error_gift_recevied.visibility = View.VISIBLE
+                        binding.giftReceivedRv.visibility = View.GONE
+                        binding.errorGiftRecevied.visibility = View.VISIBLE
                     }
 
                 }else {
-                    gift_received_rv.visibility = View.GONE
-                    error_gift_recevied.visibility = View.VISIBLE
+                    binding.giftReceivedRv.visibility = View.GONE
+                    binding.errorGiftRecevied.visibility = View.VISIBLE
                 }
 
             })

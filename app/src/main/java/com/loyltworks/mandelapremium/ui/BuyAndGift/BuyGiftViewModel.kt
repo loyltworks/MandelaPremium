@@ -14,12 +14,9 @@ class BuyGiftViewModel : BaseViewModel() {
 
     fun getBuyGift(getBuyGiftRequest: GetBuyGiftRequest) {
         scope.launch {
-            //get latest news from news repo
-            val buyGift_data = apiRepository.getBuyGiftList(getBuyGiftRequest)
             //post the value inside live data
-            _getBuyGiftListLiveData.postValue(buyGift_data)
+            _getBuyGiftListLiveData.postValue(apiRepository?.getBuyGiftList(getBuyGiftRequest))
         }
-
     }
 
     /*BuyGift Caseback Value */
@@ -28,12 +25,8 @@ class BuyGiftViewModel : BaseViewModel() {
 
     fun getBuyGiftCaseBackValue(getCaseBackRequest: GetCashBackRequest) {
         scope.launch {
-            //get latest news from news repo
-            val buyGiftcasebackValue_data = apiRepository.getBuyGiftCaseBackList(getCaseBackRequest)
-            //post the value inside live data
-            _getBuyGiftCaseBackValueListLiveData.postValue(buyGiftcasebackValue_data)
+            _getBuyGiftCaseBackValueListLiveData.postValue(apiRepository?.getBuyGiftCaseBackList(getCaseBackRequest))
         }
-
     }
 
 
@@ -44,13 +37,7 @@ class BuyGiftViewModel : BaseViewModel() {
 
     fun getBuyGiftBuyNow(getSaveGiftCardRequest: GetSaveGiftCardRequest) {
         scope.launch {
-            //get latest news from news repo
-            val buyGiftBuyNow_data = apiRepository.getBuyGiftBuyNow(getSaveGiftCardRequest)
-            //post the value inside live data
-            _getBuyGiftBuyNowLiveData.postValue(buyGiftBuyNow_data)
+            _getBuyGiftBuyNowLiveData.postValue(apiRepository?.getBuyGiftBuyNow(getSaveGiftCardRequest))
         }
-
     }
-
-
 }

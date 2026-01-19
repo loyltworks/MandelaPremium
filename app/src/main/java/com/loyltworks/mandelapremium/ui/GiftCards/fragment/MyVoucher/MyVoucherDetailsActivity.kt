@@ -32,6 +32,7 @@ import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.AlertMessageDialog
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 
 
 class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
@@ -329,7 +330,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
 
         Glide.with(this).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.dummy_image).load(
-                BuildConfig.GIFTCARD_IMAGE_BASE + lstMerchantinfo.Imageurl!!.replace(
+                UrlClass.catalogueImageBase() + lstMerchantinfo.Imageurl!!.replace(
                     "~",
                     ""
                 )
@@ -338,7 +339,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
 
         Glide.with(this).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.dummy_image).load(
-                BuildConfig.GIFTCARD_IMAGE_BASE + lstMerchantinfo.Imageurl!!.replace(
+                UrlClass.catalogueImageBase() + lstMerchantinfo.Imageurl!!.replace(
                     "~",
                     ""
                 )
@@ -405,7 +406,7 @@ class MyVoucherDetailsActivity : BaseActivity(), View.OnClickListener,
 
         Glide.with(this).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.dummy_image).load(
-                BuildConfig.GIFTCARD_IMAGE_BASE + lstPromotions.ImagePath!!.replace(
+                UrlClass.catalogueImageBase() + lstPromotions.ImagePath!!.replace(
                     "~",
                     ""
                 )

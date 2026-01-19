@@ -20,30 +20,21 @@ class DashBoardViewModel : BaseViewModel() {
     fun getDashBoardData(dashboardRequest: DashboardRequest) {
         ///launch the coroutine scope
         scope.launch {
-            //get latest news from news repo
-            val dashboard_data = apiRepository.getDashBoardData(dashboardRequest)
-            //post the value inside live data
-            _dashboardLiveData.postValue(dashboard_data)
+            _dashboardLiveData.postValue(apiRepository?.getDashBoardData(dashboardRequest))
         }
     }
 
     fun getDashBoardData2(dashboardCustomerRequest: DashboardCustomerRequest) {
         ///launch the coroutine scope
         scope.launch {
-            //get latest news from news repo
-            val dashboard_data2 = apiRepository.getDashBoardData2(dashboardCustomerRequest)
-            //post the value inside live data
-            _dashboardLiveData2.postValue(dashboard_data2)
+            _dashboardLiveData2.postValue(apiRepository?.getDashBoardData2(dashboardCustomerRequest))
         }
     }
 
     fun getBrandLogos(attributeRequest: AttributeRequest) {
         ///launch the coroutine scope
         scope.launch {
-            //get latest news from news repo
-            val attributeDetails = apiRepository.getAttributeDetails(attributeRequest)
-            //post the value inside live data
-            _attributeDetails.postValue(attributeDetails)
+            _attributeDetails.postValue(apiRepository?.getAttributeDetails(attributeRequest))
         }
     }
 

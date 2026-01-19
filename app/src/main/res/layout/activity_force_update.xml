@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.forceUpdateAndMaintenance.ForceUpdateActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin"
+        android:weightSum="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="28dp"
+            android:layout_weight="3"
+            android:src="@drawable/splash_logo" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="28dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="force_update.json"
+            app:lottie_loop="true" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:text="@string/UPDATE_MESSAGES"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:padding="8dp"
+            android:text="@string/UPDATE_MESSAGE"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/forceupdate"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center|bottom"
+            android:layout_margin="16dp"
+            android:background="@color/blue"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/update_now"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

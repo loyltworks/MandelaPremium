@@ -10,6 +10,7 @@ import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.RowHistoryNotificationsBinding
 import com.loyltworks.mandelapremium.model.HistoryNotificationResponse
 import com.loyltworks.mandelapremium.model.LstPushHistory
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 
 class HistoryNotificationAdapter(
     var hisotryListingResponse: HistoryNotificationResponse?,
@@ -45,7 +46,7 @@ class HistoryNotificationAdapter(
 
         if (notificationHistory.ImagesURL != null && !notificationHistory.ImagesURL.isNullOrEmpty())
             Glide.with(holder.itemView)
-            .load(BuildConfig.PROMO_IMAGE_BASE + notificationHistory.ImagesURL)
+            .load(UrlClass.promoImageBase() + notificationHistory.ImagesURL)
             .placeholder(R.drawable.dummy_image) //                .error(R.drawable.ic_default_img)
             .into(holder.NImage)
         else holder.NImageLayout.visibility = View.GONE

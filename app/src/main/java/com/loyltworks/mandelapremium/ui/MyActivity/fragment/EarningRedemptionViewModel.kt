@@ -11,32 +11,30 @@ class EarningRedemptionViewModel : BaseViewModel() {
 
     /*TransactionHistory Listing */
     private val _transactionHistoryListLiveData = MutableLiveData<TransactionHistoryResponse>()
-    val transactionHistoryListLiveData : LiveData<TransactionHistoryResponse> = _transactionHistoryListLiveData
+    val transactionHistoryListLiveData: LiveData<TransactionHistoryResponse> =
+        _transactionHistoryListLiveData
 
-     /*Redemption Listing */
+    /*Redemption Listing */
     private val _redemptionLiveData = MutableLiveData<RedemptionResponse>()
-    val redemptionLiveData : LiveData<RedemptionResponse> = _redemptionLiveData
+    val redemptionLiveData: LiveData<RedemptionResponse> = _redemptionLiveData
 
     private val _attributeDetails = MutableLiveData<AttributeResponse>()
     val filterData: LiveData<AttributeResponse> = _attributeDetails
 
     fun transactionHistoryLiveData(transactionHistoryRequest: TransactionHistoryRequest) {
         scope.launch {
-            //get latest news from news repo
-            val transactionHistory_data = apiRepository.getTansactionHistoryList(transactionHistoryRequest)
-            //post the value inside live data
-            _transactionHistoryListLiveData.postValue(transactionHistory_data)
+            _transactionHistoryListLiveData.postValue(
+                apiRepository?.getTansactionHistoryList(
+                    transactionHistoryRequest
+                )
+            )
         }
     }
 
     fun redemptionLiveData(redemptionRequest: RedemptionRequest) {
-            scope.launch {
-                //get latest news from news repo
-                val transactionHistory_data = apiRepository.getRedemptionResponse(redemptionRequest)
-                //post the value inside live data
-                _redemptionLiveData.postValue(transactionHistory_data)
-            }
+        scope.launch {
+            _redemptionLiveData.postValue(apiRepository?.getRedemptionResponse(redemptionRequest))
         }
-
+    }
 
 }

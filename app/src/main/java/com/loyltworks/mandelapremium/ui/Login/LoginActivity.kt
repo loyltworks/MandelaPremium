@@ -30,6 +30,7 @@ import com.loyltworks.mandelapremium.utils.dialogBox.AlertMessageDialog
 import com.loyltworks.mandelapremium.utils.dialogBox.ForgotPwd
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import com.loyltworks.mandelapremium.utils.dialogBox.TCDialog
+import com.loyltworks.mandelapremium.utils.fetchData.ShaKeyManager
 
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
@@ -57,6 +58,14 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
 
+        ShaKeyManager.fetchShaKeys(
+            onSuccess = {
+
+            },
+            onFailure = {
+                Toast.makeText(this,getString(R.string.something_went_wrong), Toast.LENGTH_LONG).show()
+            }
+        )
 
         binding.forgotpwdTv.setOnClickListener(this)
         binding.loginBtn.setOnClickListener(this)

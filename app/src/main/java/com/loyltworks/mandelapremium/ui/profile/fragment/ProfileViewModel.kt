@@ -16,10 +16,7 @@ class ProfileViewModel : BaseViewModel() {
     fun getProfile(myProfileRequest: RegistrationRequest) {
         ///launch the coroutine scope
         scope.launch {
-            //get latest news from news repo
-            val profile_data = apiRepository.getProfile(myProfileRequest)
-            //post the value inside live data
-            _myProfileResponse.postValue(profile_data)
+            _myProfileResponse.postValue(apiRepository?.getProfile(myProfileRequest))
         }
     }
 
@@ -29,7 +26,7 @@ class ProfileViewModel : BaseViewModel() {
 
     fun getCountryDetails(countryDetailsRequest: CountryDetailsRequest) {
         scope.launch {
-            _countyDetails.postValue(apiRepository.getCountryDetails(countryDetailsRequest))
+            _countyDetails.postValue(apiRepository?.getCountryDetails(countryDetailsRequest))
         }
     }
 
@@ -41,7 +38,7 @@ class ProfileViewModel : BaseViewModel() {
 
     fun setProffessionalListRequest(attributeRequest: AttributeRequest) {
         scope.launch {
-            _myProfession.postValue(apiRepository.getProfessionList(attributeRequest))
+            _myProfession.postValue(apiRepository?.getProfessionList(attributeRequest))
         }
     }
 
@@ -52,7 +49,7 @@ class ProfileViewModel : BaseViewModel() {
 
     fun setAgeGroupListRequest(attributeRequest: AttributeRequest) {
         scope.launch {
-            _getAgeGroupList.postValue(apiRepository.getAgeGroupList(attributeRequest))
+            _getAgeGroupList.postValue(apiRepository?.getAgeGroupList(attributeRequest))
         }
     }
 
@@ -62,7 +59,7 @@ class ProfileViewModel : BaseViewModel() {
 
     fun setCityListRequest(cityRequest: CityRequest) {
         scope.launch {
-            _getCityList.postValue(apiRepository.getCityList(cityRequest))
+            _getCityList.postValue(apiRepository?.getCityList(cityRequest))
         }
     }
 
@@ -72,10 +69,7 @@ class ProfileViewModel : BaseViewModel() {
 
     fun setUpdateProfileRequest(updateProfileRequest: UpdateProfileRequest) {
         scope.launch {
-//            //get latest news from news repo
-            val Operartorprofile_data = apiRepository.getProfileResponse(updateProfileRequest)
-            //post the value inside live data
-            _updateProfileResponse.postValue(Operartorprofile_data)
+            _updateProfileResponse.postValue(apiRepository?.getProfileResponse(updateProfileRequest))
         }
     }
 
@@ -88,12 +82,7 @@ class ProfileViewModel : BaseViewModel() {
 
     fun setProfileImageUpdate(updateProfileImageRequest: UpdateProfileImageRequest) {
         FileSelector.scope.launch {
-            //get latest news from news repo
-            val updateProfileImages = apiRepository.getUpdateProfileImage(updateProfileImageRequest)
-            //post the value inside live data
-            _updateProfileImageLiveData.postValue(updateProfileImages)
+            _updateProfileImageLiveData.postValue(apiRepository?.getUpdateProfileImage(updateProfileImageRequest))
         }
     }
-
-
 }

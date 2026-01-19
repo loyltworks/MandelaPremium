@@ -21,55 +21,49 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild{
+            cmake {
+                cppFlags+= ""
+            }
+        }
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+
+        buildConfigField "String", "PLAY_STORE_LINK", "\"https://play.google.com/store/apps/details?id=com.loyltworks.mandelapremium&hl=en\""
+        buildConfigField "String", "PUSH_TOKEN", "\"PUSH_TOKEN\""
+        buildConfigField "String", "LoyaltyID", "\"LoyaltyID\""
+        buildConfigField "String", "OverAllPoints", "\"OverAllPoints\""
+        buildConfigField "String", "IsLoggedIn", "\"IsLoggedIn\""
+        buildConfigField "String", "LWS_KEY", "\"LWS_KEY\""
+        buildConfigField "String", "AROKIA_KEY", "\"AROKIA_KEY\""
+        buildConfigField "String", "CENTURY_KEY", "\"CENTURY_KEY\""
+    }
+
+    // Link CMake with Gradle
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
     }
 
     buildTypes {
-        debug {
-            // Demo URL
-            buildConfigField "String", "BaseUrl", "\"https://ctrl-mandelaserv.loyltwo3ks.com/\""
-            buildConfigField("String", "PROMO_IMAGE_BASE", "\"https://ctrl-mandelaclub.loyltwo3ks.com/\"")
-            buildConfigField("String", "GIFTCARD_IMAGE_BASE", "\"https://ctrl-mandelaclub.loyltwo3ks.com/\"")
-            buildConfigField "String", "MerchantName", "\"Mandelademoadmin\""
-            buildConfigField "String", "MerchantID", "\"1\""
-
-            //Live URL
-//            buildConfigField "String", "BaseUrl", "\"http://gpserv.arokiait.com/\""
-//            buildConfigField("String", "PROMO_IMAGE_BASE", "\"http://rewards.goodpack.com/\"")
-//            buildConfigField("String", "GIFTCARD_IMAGE_BASE", "\"http://rewards.goodpack.com/\"")
-//            buildConfigField "String", "MerchantName", "\"Goodpackrewardsmerchant\""
-//            buildConfigField "String", "MerchantID", "\"1\""
-
-            buildConfigField "String", "PUSH_TOKEN", "\"PUSH_TOKEN\""
-            buildConfigField "String", "LoyaltyID", "\"LoyaltyID\""
-            buildConfigField "String", "OverAllPoints", "\"OverAllPoints\""
-            buildConfigField "String", "IsLoggedIn", "\"IsLoggedIn\""
-
-
-        }
         release {
-            minifyEnabled false
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-            // Demo URL
-            buildConfigField "String", "BaseUrl", "\"https://ctrl-mandelaserv.loyltwo3ks.com/\""
-            buildConfigField("String", "PROMO_IMAGE_BASE", "\"https://ctrl-mandelaserv.loyltwo3ks.com/\"")
-            buildConfigField("String", "GIFTCARD_IMAGE_BASE", "\"https://ctrl-mandelaserv.loyltwo3ks.com/\"")
-            buildConfigField "String", "MerchantName", "\"Mandelademoadmin\""
-            buildConfigField "String", "MerchantID", "\"1\""
-
-            //Live URL
-//            buildConfigField "String", "BaseUrl", "\"http://gpserv.arokiait.com/\""
-//            buildConfigField("String", "PROMO_IMAGE_BASE", "\"http://rewards.goodpack.com/\"")
-//            buildConfigField("String", "GIFTCARD_IMAGE_BASE", "\"http://rewards.goodpack.com/\"")
-//            buildConfigField "String", "MerchantName", "\"Goodpackrewardsmerchant\""
-//            buildConfigField "String", "MerchantID", "\"1\""
-
-            buildConfigField "String", "PUSH_TOKEN", "\"PUSH_TOKEN\""
-            buildConfigField "String", "LoyaltyID", "\"LoyaltyID\""
-            buildConfigField "String", "OverAllPoints", "\"OverAllPoints\""
-            buildConfigField "String", "IsLoggedIn", "\"IsLoggedIn\""
+            ndk.debugSymbolLevel="FULL"
+        }
+        debug {
+            ext.enableCrashlytics = false
         }
     }
+
+    ndkVersion = "29.0.14206865"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -82,6 +76,13 @@ android {
 
     buildFeatures {
         viewBinding true
+    }
+
+    //... Allow all language string files
+    bundle {
+        language {
+            enableSplit = false
+        }
     }
 }
 
@@ -151,4 +152,8 @@ dependencies {
     implementation 'com.github.prabhat1707:EasyWayLocation:2.0'
 
     implementation 'com.google.maps.android:android-maps-utils:3.8.2'
+
+
+    // Root detection
+    implementation 'com.github.loyltworks:RootChecker:v1.0.2'
 }

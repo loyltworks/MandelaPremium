@@ -1,13 +1,21 @@
 package com.loyltworks.mandelapremium.ui.help
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.loyltworks.mandelapremium.model.*
+import com.loyltworks.mandelapremium.model.FeedbackRequest
+import com.loyltworks.mandelapremium.model.FeedbackResponse
+import com.loyltworks.mandelapremium.model.GetHelpTopicResponse
+import com.loyltworks.mandelapremium.model.HelpTopicRetrieveRequest
+import com.loyltworks.mandelapremium.model.PostChatStatusRequest
+import com.loyltworks.mandelapremium.model.PostChatStatusResponse
+import com.loyltworks.mandelapremium.model.QueryChatElementRequest
+import com.loyltworks.mandelapremium.model.QueryChatElementResponse
+import com.loyltworks.mandelapremium.model.QueryListingRequest
+import com.loyltworks.mandelapremium.model.QueryListingResponse
+import com.loyltworks.mandelapremium.model.SaveNewTicketQueryRequest
+import com.loyltworks.mandelapremium.model.SaveNewTicketQueryResponse
 import com.loyltworks.mandelapremium.ui.baseClass.BaseViewModel
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
 import kotlinx.coroutines.launch
 
 class HelpViewModel : BaseViewModel() {
@@ -17,7 +25,7 @@ class HelpViewModel : BaseViewModel() {
     val queryListLiveData: LiveData<QueryListingResponse> = _queryListLiveData
 
     fun getQueryListLiveData(queryList: QueryListingRequest) {
-        scope.launch { _queryListLiveData.postValue(apiRepository.getQueryListData(queryList)) }
+        scope.launch { _queryListLiveData.postValue(apiRepository?.getQueryListData(queryList)) }
     }
 
     /*Help topic listing*/
@@ -26,8 +34,7 @@ class HelpViewModel : BaseViewModel() {
 
     fun getHelpTopicListLiveData(topicList: HelpTopicRetrieveRequest) {
         scope.launch {
-            val helpTopic_data = apiRepository.getHelpTopic(topicList)
-            _topicListData.postValue(helpTopic_data)
+            _topicListData.postValue(apiRepository?.getHelpTopic(topicList))
         }
     }
 
@@ -36,7 +43,7 @@ class HelpViewModel : BaseViewModel() {
     val queryChatLiveData: LiveData<QueryChatElementResponse> = _queryChatLiveData
 
     fun getQueryChat(chatQuery: QueryChatElementRequest) {
-        scope.launch { _queryChatLiveData.postValue(apiRepository.getChatQuery(chatQuery)) }
+        scope.launch { _queryChatLiveData.postValue(apiRepository?.getChatQuery(chatQuery)) }
     }
 
     /*Save new ticket request-response*/
@@ -47,11 +54,7 @@ class HelpViewModel : BaseViewModel() {
     fun saveNewTicketQuery(saveNewTicketQueryRequest: SaveNewTicketQueryRequest) {
 
         scope.launch {
-            _saveNewTicketQueryLiveData.postValue(
-                apiRepository.getSaveNewTicketQuery(
-                    saveNewTicketQueryRequest
-                )
-            )
+            _saveNewTicketQueryLiveData.postValue(apiRepository?.getSaveNewTicketQuery(saveNewTicketQueryRequest))
         }
     }
 
@@ -64,11 +67,7 @@ class HelpViewModel : BaseViewModel() {
     fun getPostReply(postChatStatusRequest: PostChatStatusRequest, context: Context) {
 
         scope.launch {
-            _postChatStatusResponseLiveData.postValue(
-                apiRepository.getPostReply(
-                    postChatStatusRequest
-                )
-            )
+            _postChatStatusResponseLiveData.postValue(apiRepository?.getPostReply(postChatStatusRequest))
         }
     }
 
@@ -81,13 +80,8 @@ class HelpViewModel : BaseViewModel() {
     fun getFeedback(feedbacRequest: FeedbackRequest) {
 
         scope.launch {
-            _feedbackResponseLiveData.postValue(
-                apiRepository.getFeedbackResponse(
-                    feedbacRequest
-                )
-            )
+            _feedbackResponseLiveData.postValue(apiRepository?.getFeedbackResponse(feedbacRequest))
         }
     }
-
 }
 

@@ -16,6 +16,7 @@ import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.RowLeftChatCellBinding
 import com.loyltworks.mandelapremium.databinding.RowRightChatCellBinding
 import com.loyltworks.mandelapremium.model.QueryChatElementResponse
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 import com.vmb.fileSelect.FileSelector
 
 
@@ -111,7 +112,7 @@ class QueryChatAdapter(var queryListingResponse: QueryChatElementResponse?, var 
                 holder.row_query_missed_call?.visibility = View.GONE
                 Glide.with(holder.itemView)
                     .load(
-                        BuildConfig.PROMO_IMAGE_BASE + lstQueryDetail.ImageUrl!!.replace(
+                        UrlClass.promoImageBase() + lstQueryDetail.ImageUrl!!.replace(
                             "~",
                             ""
                         )
@@ -134,7 +135,7 @@ class QueryChatAdapter(var queryListingResponse: QueryChatElementResponse?, var 
 
         holder.chatImage?.setOnClickListener(View.OnClickListener {
             chatImageDisplay.onClickChatImage(
-                BuildConfig.PROMO_IMAGE_BASE + lstQueryDetail.ImageUrl!!
+                UrlClass.promoImageBase() + lstQueryDetail.ImageUrl!!
                     .replace("~", "")
             )
         })

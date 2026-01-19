@@ -12,9 +12,7 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
     suspend fun getLoginData(loginRequest: LoginRequest): LoginResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.fetchLoginDataAsync(loginRequest).await() },
-            error = "Error fetching Login Details"
-            //convert to mutable list
+            call = { apiInterface.fetchLoginDataAsync(loginRequest).await() }
         )
     }
 
@@ -22,9 +20,7 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
     suspend fun getDashBoardData(dashboardRequest: DashboardRequest): DashboardResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.fetchDashBoardAsync(dashboardRequest).await() },
-            error = "Error fetching Dashboard Details"
-            //convert to mutable list
+            call = { apiInterface.fetchDashBoardAsync(dashboardRequest).await() }
         )
     }
 
@@ -32,76 +28,61 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
     suspend fun getDashBoardData2(dashboardCustomerRequest: DashboardCustomerRequest): DashboardCustomerResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.fetchDashBoardDetailsAsync(dashboardCustomerRequest).await() },
-            error = "Error fetching Dashboard Details 2"
-            //convert to mutable list
+            call = { apiInterface.fetchDashBoardDetailsAsync(dashboardCustomerRequest).await() }
         )
     }
 
 
-/*
-    // OTP api call
-    suspend fun getOTP(otpRequest: OTPRequest): OTPResponse? {
-        return safeApiCall(
-            //await the result of deferred type
-            call = { apiInterface.getOTPAsync(otpRequest).await() },
-            error = "Error OTP trigger"
-            //convert to mutable list
-        )
-    }
-*/
+    /*
+        // OTP api call
+        suspend fun getOTP(otpRequest: OTPRequest): OTPResponse? {
+            return safeApiCall(
+                //await the result of deferred type
+                call = { apiInterface.getOTPAsync(otpRequest).await() }
+            )
+        }
+    */
 
     // email api call
     suspend fun getEmailExist(emailCheckRequest: EmailCheckRequest): EmailCheckResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.getEmailExistAsync(emailCheckRequest).await() },
-            error = "Error email check"
-            //convert to mutable list
+            call = { apiInterface.getEmailExistAsync(emailCheckRequest).await() }
         )
     }
 
-   /*
+    /*
 
-    // email domain api call
-    suspend fun getEmailDomain(emailDomainCheckRequest: EmailDomainCheckRequest): EmailDomainCheckResponse? {
-        return safeApiCall(
-            //await the result of deferred type
-            call = { apiInterface.getEmailDomainCheckAsync(emailDomainCheckRequest).await() },
-            error = "Error email domain check"
-            //convert to mutable list
-        )
-    }*/
-
+     // email domain api call
+     suspend fun getEmailDomain(emailDomainCheckRequest: EmailDomainCheckRequest): EmailDomainCheckResponse? {
+         return safeApiCall(
+             //await the result of deferred type
+             call = { apiInterface.getEmailDomainCheckAsync(emailDomainCheckRequest).await() }
+         )
+     }*/
 
 
     // get attributes data
     suspend fun getAttributeDetails(attributeRequest: AttributeRequest): AttributeResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.getAttributeDetailsAsync(attributeRequest).await() },
-            error = "Error Customer Type"
-            //convert to mutable list
+            call = { apiInterface.getAttributeDetailsAsync(attributeRequest).await() }
         )
     }
 
-  /*  // get Country data
-    suspend fun getCountryDetails(countryDetailsRequest: CountryDetailsRequest): CountryDetailResponse? {
-        return safeApiCall(
-            //await the result of deferred type
-            call = { apiInterface.getCountryDetailsAsync(countryDetailsRequest).await() },
-            error = "Error Country details retrieve"
-            //convert to mutable list
-        )
-    }*/
+    /*  // get Country data
+      suspend fun getCountryDetails(countryDetailsRequest: CountryDetailsRequest): CountryDetailResponse? {
+          return safeApiCall(
+              //await the result of deferred type
+              call = { apiInterface.getCountryDetailsAsync(countryDetailsRequest).await() }
+          )
+      }*/
 
     // Scan code save api call
     suspend fun saveScanCodeData(scanRequest: ScanRequest): ScanResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.saveScanCodeResponseAsync(scanRequest).await() },
-            error = "Error scan code save"
-            //convert to mutable list
+            call = { apiInterface.saveScanCodeResponseAsync(scanRequest).await() }
         )
     }
 
@@ -109,45 +90,40 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
         return safeApiCall(
             call = {
                 apiInterface.getValidateScratchCodeRequest(validateScratchCodeRequest).await()
-            },
-            error = "Error ValidateScratchCodeRequest Trigger"
+            }
         )
     }
 
 
-  //QueryList for support api call
+    //QueryList for support api call
     suspend fun getQueryListData(queryListingRequest: QueryListingRequest): QueryListingResponse? {
 
         return safeApiCall(
-            call = { apiInterface.qetQueryListingQueryResponse(queryListingRequest).await() },
-            error = "Error Query List trigger"
+            call = { apiInterface.qetQueryListingQueryResponse(queryListingRequest).await() }
         )
 
     }
 
-//    Help topic listing
+    //    Help topic listing
     suspend fun getHelpTopic(topicListRequest: HelpTopicRetrieveRequest): GetHelpTopicResponse? {
         return safeApiCall(
-            call = { apiInterface.getHelpTopicHeadersResponse(topicListRequest).await() },
-            error = "Error help topic list trigger"
+            call = { apiInterface.getHelpTopicHeadersResponse(topicListRequest).await() }
         )
     }
 
-//    QueryChat for specific queryID
-   suspend fun getChatQuery(chatQuery: QueryChatElementRequest): QueryChatElementResponse? {
+    //    QueryChat for specific queryID
+    suspend fun getChatQuery(chatQuery: QueryChatElementRequest): QueryChatElementResponse? {
         return safeApiCall(
-                call = { apiInterface.getQueryChatElementResponse(chatQuery).await()},
-                error = "Error Query Chat trigger"
+            call = { apiInterface.getQueryChatElementResponse(chatQuery).await() }
         )
     }
 
-//     Transaction History Listing
+    //     Transaction History Listing
     suspend fun getTansactionHistoryList(transactionHistoryRequest: TransactionHistoryRequest): TransactionHistoryResponse? {
         return safeApiCall(
-                call = {
-                    apiInterface.getTransactionHistoryResponse(transactionHistoryRequest).await()
-                },
-                error = "Error Transaction History Trigger"
+            call = {
+                apiInterface.getTransactionHistoryResponse(transactionHistoryRequest).await()
+            }
         )
     }
 
@@ -157,19 +133,17 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
         return safeApiCall(
             call = {
                 apiInterface.getWisePointsResponse(wishPointRequest).await()
-            },
-            error = "Error Wise Points Trigger"
+            }
         )
     }
 
 
-//     Redemption Listing
+    //     Redemption Listing
     suspend fun getRedemptionResponse(redemptionRequest: RedemptionRequest): RedemptionResponse? {
         return safeApiCall(
-                call = {
-                    apiInterface.getRedemptionResponse(redemptionRequest).await()
-                },
-                error = "Error Redemption"
+            call = {
+                apiInterface.getRedemptionResponse(redemptionRequest).await()
+            }
         )
     }
 
@@ -178,8 +152,7 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
         return safeApiCall(
             call = {
                 apiInterface.getPromotionDetailsMobileApp(whatsNewRequest).await()
-            },
-            error = "Error  Promotion Trigger"
+            }
         )
     }
 
@@ -188,19 +161,18 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
         return safeApiCall(
             call = {
                 apiInterface.getBuyGiftMerchantDetailsForCustomerEvoucher(getBuyGiftRequest).await()
-            },
-            error = "Error  Buy Gift Trigger"
+            }
         )
     }
 
 
-  /* BuyGift Api Call */
+    /* BuyGift Api Call */
     suspend fun getGiftCardList(getBuyGiftRequest: GetGiftCardRequest): GetGiftCardResponse? {
         return safeApiCall(
             call = {
-                apiInterface.getGiftCardMerchantDetailsForCustomerEvoucher(getBuyGiftRequest).await()
-            },
-            error = "Error Gift Card Trigger"
+                apiInterface.getGiftCardMerchantDetailsForCustomerEvoucher(getBuyGiftRequest)
+                    .await()
+            }
         )
     }
 
@@ -208,20 +180,20 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
     suspend fun getAlbumsWithImageList(getAlbumWithImagesRequest: GetAlbumsWithImagesRequest): GetAlbumsWithImagesResponse? {
         return safeApiCall(
             call = {
-                apiInterface.getAlbumsWithImagesMerchantDetailsForCustomerEvoucher(getAlbumWithImagesRequest).await()
-            },
-            error = "Error AlbumsWithImage Trigger"
+                apiInterface.getAlbumsWithImagesMerchantDetailsForCustomerEvoucher(
+                    getAlbumWithImagesRequest
+                ).await()
+            }
         )
     }
 
 
- /* AlbumsImages By Albums ID Api Call */
+    /* AlbumsImages By Albums ID Api Call */
     suspend fun getAlbumsImageByIDList(getAlbumWithImagesRequest: GetAlbumsWithImagesRequest): GetAlbumsWithImagesResponse? {
         return safeApiCall(
             call = {
                 apiInterface.getAlbumsImagesByAlbumsID(getAlbumWithImagesRequest).await()
-            },
-            error = "Error AlbumsWithImage Trigger"
+            }
         )
     }
 
@@ -230,8 +202,7 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
         return safeApiCall(
             call = {
                 apiInterface.getReceiverID(getReceiverIDRequest).await()
-            },
-            error = "Error Receiver ID Trigger"
+            }
         )
     }
 
@@ -241,8 +212,7 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
         return safeApiCall(
             call = {
                 apiInterface.getMyVoucherGiftCardSubmit(myVouhcerGiftCardSubmitRequest).await()
-            },
-            error = "Error Receiver ID Trigger"
+            }
         )
     }
 
@@ -252,8 +222,7 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
         return safeApiCall(
             call = {
                 apiInterface.getBuyGiftCaseBackValue(getbuyGiftCasebackValue).await()
-            },
-            error = "Error  Buy Gift CaseBack Back Trigger"
+            }
         )
     }
 
@@ -263,56 +232,50 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
         return safeApiCall(
             call = {
                 apiInterface.getBuyGiftBuyNow(getbuyGiftCardRequest).await()
-            },
-            error = "Error  Buy Gift Trigger"
+            }
         )
     }
 
-   /*
-   suspend fun getPromotionDetail(promotionDetailsRequest: GetPromotionDetailsRequest): GetPromotionResponse? {
-        return safeApiCall(
-            call = {
-                apiInterface.getCustomerPromotionDetailsByPromotionID(promotionDetailsRequest).await()
-            },
-            error = "Error  Promotion Detail Trigger"
-        )
-    }
-    */
+    /*
+    suspend fun getPromotionDetail(promotionDetailsRequest: GetPromotionDetailsRequest): GetPromotionResponse? {
+         return safeApiCall(
+             call = {
+                 apiInterface.getCustomerPromotionDetailsByPromotionID(promotionDetailsRequest).await()
+             }
+         )
+     }
+     */
 
     suspend fun getSaveNewTicketQuery(saveNewTicketQueryRequest: SaveNewTicketQueryRequest): SaveNewTicketQueryResponse? {
         return safeApiCall(
-                call = {
-                    apiInterface.getSaveNewTicketQueryResponse(saveNewTicketQueryRequest).await()
-                },
-                error = "Error  Promotion Detail Trigger"
+            call = {
+                apiInterface.getSaveNewTicketQueryResponse(saveNewTicketQueryRequest).await()
+            }
         )
     }
 
     suspend fun getProfile(myProfileRequest: RegistrationRequest): RegistrationResponse? {
         return safeApiCall(
-                call = {
-                    apiInterface.getCustomerDetailsByDeviceIDAsync(myProfileRequest).await()
-                },
-                error = "Error  Profile Trigger"
+            call = {
+                apiInterface.getCustomerDetailsByDeviceIDAsync(myProfileRequest).await()
+            }
         )
     }
 
 
     suspend fun getPostReply(postChatStatusRequest: PostChatStatusRequest): PostChatStatusResponse? {
         return safeApiCall(
-                call = {
-                    apiInterface.getPostReplyHelpTopicStatus(postChatStatusRequest).await()
-                },
-                error = "Error PostReplyHelpTopicStatus Trigger"
+            call = {
+                apiInterface.getPostReplyHelpTopicStatus(postChatStatusRequest).await()
+            }
         )
     }
 
     suspend fun getFeedbackResponse(feedbackRequest: FeedbackRequest): FeedbackResponse? {
         return safeApiCall(
-                call = {
-                    apiInterface.getFeedbackresponse(feedbackRequest).await()
-                },
-                error = "Error FeedbackResponse Trigger"
+            call = {
+                apiInterface.getFeedbackresponse(feedbackRequest).await()
+            }
         )
     }
 
@@ -320,26 +283,24 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
         return safeApiCall(
             call = {
                 apiInterface.getHistoryNotifiation(historyNotificationRequest).await()
-            },
-            error = "Error History Notification Trigger"
+            }
         )
     }
 
     suspend fun getHistoryNotificationDetailByIdList(historyNotificationDetailsRequest: HistoryNotificationDetailsRequest): HistoryNotificationResponse? {
         return safeApiCall(
             call = {
-                apiInterface.getHistoryNotifiationDetailByID(historyNotificationDetailsRequest).await()
-            },
-            error = "Error History Notification Detail By ID Trigger"
+                apiInterface.getHistoryNotifiationDetailByID(historyNotificationDetailsRequest)
+                    .await()
+            }
         )
     }
 
     suspend fun getForgotPasswordData(forgotPasswordRequest: ForgotPasswordRequest): ForgotPasswordResponse? {
         return safeApiCall(
-                call = {
-                    apiInterface.getForgotPasswordResponse(forgotPasswordRequest).await()
-                },
-                error = "Error Forgot Password Trigger"
+            call = {
+                apiInterface.getForgotPasswordResponse(forgotPasswordRequest).await()
+            }
         )
     }
 
@@ -347,57 +308,44 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
     suspend fun getCountryDetails(countryDetailsRequest: CountryDetailsRequest): CountryDetailResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.getCountryDetailsAsync(countryDetailsRequest).await() },
-            error = "Error Country details retrieve"
-            //convert to mutable list
+            call = { apiInterface.getCountryDetailsAsync(countryDetailsRequest).await() }
         )
     }
 
     suspend fun getProfessionList(attributeRequest: AttributeRequest): AttributeResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.getProfessionalDetail(attributeRequest).await() },
-            error = "Error profession Request retrieve"
-            //convert to mutable list
+            call = { apiInterface.getProfessionalDetail(attributeRequest).await() }
         )
     }
 
     suspend fun getAgeGroupList(attributeRequest: AttributeRequest): AttributeResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.getAgeGroupDetail(attributeRequest).await() },
-            error = "Error age-group Request retrieve"
-            //convert to mutable list
+            call = { apiInterface.getAgeGroupDetail(attributeRequest).await() }
         )
     }
 
     suspend fun getCityList(cityRequest: CityRequest): CityResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.getCitiesBasedOnCountry(cityRequest).await() },
-            error = "Error cityRequest retrieve"
-            //convert to mutable list
+            call = { apiInterface.getCitiesBasedOnCountry(cityRequest).await() }
         )
     }
 
     suspend fun getProfileResponse(updateProfileRequest: UpdateProfileRequest): UpdateProfileResponse? {
         return safeApiCall(
             //await the result of deferred type
-            call = { apiInterface.getUpdateProfileRequest(updateProfileRequest).await() },
-            error = "Error getUpdateProfileRequest retrieve"
-            //convert to mutable list
+            call = { apiInterface.getUpdateProfileRequest(updateProfileRequest).await() }
         )
     }
-
 
     /*Update Profile Image callback*/
     suspend fun getUpdateProfileImage(updateProfileImageRequest: UpdateProfileImageRequest): UpdateProfileImageResponse? {
         return safeApiCall(
             call = {
                 apiInterface.getupdateProfileImage(updateProfileImageRequest).await()
-            },
-            error = "Error updateProfileImageRequest Trigger"
+            }
         )
     }
-
 }

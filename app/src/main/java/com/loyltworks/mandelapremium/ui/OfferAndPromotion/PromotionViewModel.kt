@@ -15,10 +15,7 @@ class PromotionViewModel : BaseViewModel() {
 
     fun getPromotion(getWhatsNewRequest: GetWhatsNewRequest) {
         scope.launch {
-            //get latest news from news repo
-            val promotion_data = apiRepository.getPromotionList(getWhatsNewRequest)
-            //post the value inside live data
-            _getPromotionListLiveData.postValue(promotion_data)
+            _getPromotionListLiveData.postValue(apiRepository?.getPromotionList(getWhatsNewRequest))
         }
     }
 

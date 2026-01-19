@@ -43,6 +43,7 @@ import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.Vibrator
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import com.oneloyalty.goodpack.utils.BlockMultipleClick
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 import java.io.Serializable
 import java.text.DecimalFormat
 
@@ -172,17 +173,17 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                     PreferenceHelper.setStringValue(
                         this,
                         "ProfileImage",
-                        BuildConfig.PROMO_IMAGE_BASE + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture
+                        UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture
                     )
 
                     Glide.with(this).asBitmap()
-                        .load(BuildConfig.PROMO_IMAGE_BASE + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture)
+                        .load(UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture)
                         .error(R.drawable.default_person).placeholder(R.drawable.default_person)
                         .into((binding.dashProfile))
 
 
                     Glide.with(this).asBitmap()
-                        .load(BuildConfig.PROMO_IMAGE_BASE + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture)
+                        .load(UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture)
                         .error(R.drawable.default_person).placeholder(R.drawable.default_person)
                         .into((binding.naviProfileImage))
 

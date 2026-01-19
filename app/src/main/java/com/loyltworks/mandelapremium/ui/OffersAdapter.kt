@@ -8,6 +8,7 @@ import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.RowOffersBinding
 import com.loyltworks.mandelapremium.model.LstPromotionList
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 
 class OffersAdapter(val lstPromotionJsonList: List<LstPromotionList>,val promotionClickListener: PromotionClickListener) : RecyclerView.Adapter<OffersAdapter.ViewHolder>() {
 
@@ -29,7 +30,7 @@ class OffersAdapter(val lstPromotionJsonList: List<LstPromotionList>,val promoti
         val data = lstPromotionJsonList[position]
 
         Glide.with(holder.itemView.context)
-            .load(BuildConfig.PROMO_IMAGE_BASE + data.ProImage?.replace("..", ""))
+            .load(UrlClass.promoImageBase() + data.ProImage?.replace("..", ""))
             .placeholder(R.drawable.dummy_image)
             .fitCenter()
             .into(holder.promoImage)

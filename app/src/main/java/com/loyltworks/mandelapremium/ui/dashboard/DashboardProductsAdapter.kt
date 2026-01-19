@@ -9,6 +9,7 @@ import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.RowProductsBinding
 import com.loyltworks.mandelapremium.model.AttributeResponse
 import com.loyltworks.mandelapremium.model.LstAttributesDetail
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 
 class DashboardProductsAdapter(
     var productResponse: AttributeResponse?,
@@ -39,7 +40,7 @@ class DashboardProductsAdapter(
 
         if (promotionListing.AttributeValue != null)
             Glide.with(holder.itemView.context)
-                .load(BuildConfig.GIFTCARD_IMAGE_BASE + promotionListing.AttributeValue.split("~")[1])
+                .load(UrlClass.catalogueImageBase() + promotionListing.AttributeValue.split("~")[1])
                 .error(R.drawable.temp_brand_product_name)
                 .into(holder.brandImages)
 

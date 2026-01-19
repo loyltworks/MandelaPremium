@@ -31,6 +31,7 @@ import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.AlertMessageDialog
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 
 
 class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
@@ -42,7 +43,6 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
     lateinit var lstVoucherDetails: LstVoucherDetails
 
     lateinit var giftCardsViewModel: GiftCardsViewModel
-
 
     var AmountConvertPoints: Int = 0
     var merchantID: Int = 0
@@ -238,7 +238,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
 
         Glide.with(this).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.dummy_image).load(
-                BuildConfig.GIFTCARD_IMAGE_BASE + lstVoucherDetails.ImageUrl!!.replace(
+                UrlClass.catalogueImageBase() + lstVoucherDetails.ImageUrl!!.replace(
                     "~",
                     ""
                 )
@@ -292,8 +292,8 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
                 buyGiftViewModel.getBuyGiftCaseBackValue(
                     GetCashBackRequest(
                         binding.amoutGiftCards.text.toString(),
-                        BuildConfig.MerchantID,
-                        BuildConfig.MerchantName
+                        "1",
+                        UrlClass.merchentName()
                     )
                 )
 
@@ -395,7 +395,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
                                         IssuedEncashBalance = true,
                                         Is_Active = false,
                                         IsUsingLoyaltyPoints = false,
-                                        MerchantName = BuildConfig.MerchantName,
+                                        MerchantName = UrlClass.merchentName(),
 //                                        MobileNo = lstVoucherDetails.,
                                         GiftCardCatName = lstVoucherDetails.CardName,
                                     )),

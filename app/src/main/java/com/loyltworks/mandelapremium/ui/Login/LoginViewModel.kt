@@ -25,10 +25,7 @@ class LoginViewModel : BaseViewModel() {
     fun getLoginData(loginRequest: LoginRequest) {
         ///launch the coroutine scope
         scope.launch {
-            //get latest news from news repo
-            val login_data = apiRepository.getLoginData(loginRequest)
-            //post the value inside live data
-            _loginLiveData.postValue(login_data)
+            _loginLiveData.postValue(apiRepository?.getLoginData(loginRequest))
         }
     }
 
@@ -41,10 +38,7 @@ class LoginViewModel : BaseViewModel() {
     fun getUserNameExistence(emailCheckRequest: EmailCheckRequest) {
         ///launch the coroutine scope
         scope.launch {
-            //get latest news from news repo
-            val login_data = apiRepository.getEmailExist(emailCheckRequest)
-            //post the value inside live data
-            _emailExists.postValue(login_data)
+            _emailExists.postValue(apiRepository?.getEmailExist(emailCheckRequest))
         }
     }
 
@@ -57,10 +51,7 @@ class LoginViewModel : BaseViewModel() {
     fun getForgotPwd(forgotPasswordRequest: ForgotPasswordRequest) {
         ///launch the coroutine scope
         scope.launch {
-            //get latest news from news repo
-            val forgotPassword = apiRepository.getForgotPasswordData(forgotPasswordRequest)
-            //post the value inside live data
-            _forgotPasswordLiveData.postValue(forgotPassword)
+            _forgotPasswordLiveData.postValue(apiRepository?.getForgotPasswordData(forgotPasswordRequest))
         }
     }
 
@@ -69,20 +60,14 @@ class LoginViewModel : BaseViewModel() {
     fun getCustomerDataByDeviceId(request: RegistrationRequest) {
         ///launch the coroutine scope
         scope.launch {
-            //get latest news from news repo
-            val customer_data = apiRepository.getCustomerDetailsByDeviceID(request)
-            //post the value inside live data
-            _customer_Data.postValue(customer_data)
+               _customer_Data.postValue(apiRepository?.getCustomerDetailsByDeviceID(request))
         }
     }
 
     fun getCustomerType(attributeRequest: AttributeRequest) {
         ///launch the coroutine scope
         scope.launch {
-            //get latest news from news repo
-            val attributeDetails = apiRepository.getAttributeDetails(attributeRequest)
-            //post the value inside live data
-            _attributeDetails.postValue(attributeDetails)
+                  _attributeDetails.postValue(apiRepository?.getAttributeDetails(attributeRequest))
         }
     }
 */

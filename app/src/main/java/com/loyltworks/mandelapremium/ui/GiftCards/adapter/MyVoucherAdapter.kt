@@ -9,6 +9,7 @@ import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.RowMyVoucherBinding
 import com.loyltworks.mandelapremium.model.lstMerchantinfo
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 
 class MyVoucherAdapter(
     var lstMerchantinfo: List<lstMerchantinfo>,
@@ -95,7 +96,7 @@ class MyVoucherAdapter(
 
         Glide.with(holder.itemView).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.dummy_image).load(
-                BuildConfig.GIFTCARD_IMAGE_BASE + merchantinfo.Imageurl!!.replace(
+                UrlClass.catalogueImageBase() + merchantinfo.Imageurl!!.replace(
                     "~",
                     ""
                 )

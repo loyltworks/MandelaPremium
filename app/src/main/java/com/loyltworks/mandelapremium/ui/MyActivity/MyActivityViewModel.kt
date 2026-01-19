@@ -15,10 +15,7 @@ class MyActivityViewModel : BaseViewModel() {
 
     fun wishPointsLiveData(wishPointRequest: WishPointRequest) {
         scope.launch {
-            //get latest news from news repo
-            val wisepoint_data = apiRepository.getLocationWiseList(wishPointRequest)
-            //post the value inside live data
-            _wishPointListLiveData.postValue(wisepoint_data)
+            _wishPointListLiveData.postValue(apiRepository?.getLocationWiseList(wishPointRequest))
         }
     }
 }

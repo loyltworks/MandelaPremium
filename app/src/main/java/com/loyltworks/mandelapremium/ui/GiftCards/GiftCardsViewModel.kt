@@ -21,14 +21,9 @@ class GiftCardsViewModel : BaseViewModel() {
 
     fun getGiftCard(getGiftCardRequest: GetGiftCardRequest) {
         scope.launch {
-            //get latest news from news repo
-            val promotion_data = apiRepository.getGiftCardList(getGiftCardRequest)
-            //post the value inside live data
-            _getGiftCardListLiveData.postValue(promotion_data)
+            _getGiftCardListLiveData.postValue(apiRepository?.getGiftCardList(getGiftCardRequest))
         }
     }
-
-
 
     /*GetAlbumsWithImages Listing */
     private val _getGetAlbumWithImageListLiveData = MutableLiveData<GetAlbumsWithImagesResponse>()
@@ -36,10 +31,7 @@ class GiftCardsViewModel : BaseViewModel() {
 
     fun getAlbumWithImage(getAlbumWithImagesRequest: GetAlbumsWithImagesRequest) {
         scope.launch {
-            //get latest news from news repo
-            val albumwithImage_data = apiRepository.getAlbumsWithImageList(getAlbumWithImagesRequest)
-            //post the value inside live data
-            _getGetAlbumWithImageListLiveData.postValue(albumwithImage_data)
+            _getGetAlbumWithImageListLiveData.postValue(apiRepository?.getAlbumsWithImageList(getAlbumWithImagesRequest))
         }
     }
 
@@ -49,14 +41,9 @@ class GiftCardsViewModel : BaseViewModel() {
 
     fun getAlbumImageByID(getAlbumWithImagesRequest: GetAlbumsWithImagesRequest) {
         scope.launch {
-            //get latest news from news repo
-            val albumwithImagebyID_data = apiRepository.getAlbumsImageByIDList(getAlbumWithImagesRequest)
-            //post the value inside live data
-            _getGetAlbumImageByIDListLiveData.postValue(albumwithImagebyID_data)
+            _getGetAlbumImageByIDListLiveData.postValue(apiRepository?.getAlbumsImageByIDList(getAlbumWithImagesRequest))
         }
     }
-
-
 
    /*Get Receiver ID  */
     private val _getReceiverIDLiveData = MutableLiveData<GetReceiverIDResponse>()
@@ -64,10 +51,7 @@ class GiftCardsViewModel : BaseViewModel() {
 
     fun getReceiverIdName(giftReceiverIdRequest: GetReceiverIDRequest) {
         scope.launch {
-            //get latest news from news repo
-            val receiverID_data = apiRepository.getReceiverIdName(giftReceiverIdRequest)
-            //post the value inside live data
-            _getReceiverIDLiveData.postValue(receiverID_data)
+            _getReceiverIDLiveData.postValue(apiRepository?.getReceiverIdName(giftReceiverIdRequest))
         }
     }
 
@@ -78,14 +62,8 @@ class GiftCardsViewModel : BaseViewModel() {
 
     fun getMyVoucherGiftNow(myVoucherGiftCardSubmitRequest: MyVoucherGiftCardSubmitRequest) {
         scope.launch {
-            //get latest news from news repo
-            val myVoucherGiftNow_data = apiRepository.getMyVoucherGiftCardSubmit(myVoucherGiftCardSubmitRequest)
-            //post the value inside live data
-            _getMyVoucherGiftNowLiveData.postValue(myVoucherGiftNow_data)
+            _getMyVoucherGiftNowLiveData.postValue(apiRepository?.getMyVoucherGiftCardSubmit(myVoucherGiftCardSubmitRequest))
         }
     }
-
-
-
 }
 

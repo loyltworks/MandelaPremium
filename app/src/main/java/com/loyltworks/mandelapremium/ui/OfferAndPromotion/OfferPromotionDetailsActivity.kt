@@ -10,6 +10,7 @@ import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.ActivityOfferPromotionDetailsBinding
 import com.loyltworks.mandelapremium.model.LstPromotionList
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 
 class OfferPromotionDetailsActivity : BaseActivity() {
     lateinit var binding: ActivityOfferPromotionDetailsBinding
@@ -62,7 +63,7 @@ class OfferPromotionDetailsActivity : BaseActivity() {
 
         Glide.with(this).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.dummy_image).load(
-                BuildConfig.PROMO_IMAGE_BASE + offersPromotions.ProImage!!.replace(
+                UrlClass.promoImageBase() + offersPromotions.ProImage!!.replace(
                     "..",
                     ""
                 )

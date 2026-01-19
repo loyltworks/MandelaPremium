@@ -8,6 +8,7 @@ import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.RowMyVoucherChildDetailsBinding
 import com.loyltworks.mandelapremium.model.LstPromotions
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 
 class MyVoucherDetailsChildAdapter(
     var lstPromotions: List<LstPromotions>,
@@ -41,7 +42,7 @@ class MyVoucherDetailsChildAdapter(
 
         Glide.with(holder.itemView).asBitmap().error(R.drawable.dummy_image)
             .placeholder(R.drawable.dummy_image).load(
-                BuildConfig.GIFTCARD_IMAGE_BASE + lstPromotion.ImagePath!!.replace(
+                UrlClass.catalogueImageBase() + lstPromotion.ImagePath!!.replace(
                     "~",
                     ""
                 )

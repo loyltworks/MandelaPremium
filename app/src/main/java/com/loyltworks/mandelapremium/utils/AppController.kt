@@ -2,6 +2,7 @@ package com.loyltworks.mandelapremium.utils
 
 import android.content.Context
 import android.text.format.DateUtils
+import com.loyltworks.rootchecker.rootChecker.RootChecker
 
 object AppController {
 
@@ -45,5 +46,9 @@ object AppController {
         return DateUtils.isToday(PreferenceHelper.getLongValue(context, "TodayDate"))
     }
 
-
+    /*** Device is Rooted or Not ***/
+    fun deviceIsRootedOrNot(context: Context?):Boolean{
+        val rootChecker = RootChecker.isRooted(context)
+        return rootChecker
+    }
 }

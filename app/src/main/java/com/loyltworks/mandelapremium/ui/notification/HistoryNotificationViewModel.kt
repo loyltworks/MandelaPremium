@@ -17,11 +17,7 @@ class HistoryNotificationViewModel : BaseViewModel() {
 
     fun getNotificationHistoryResponse(historyNotificationRequest: HistoryNotificationRequest) {
         scope.launch {
-            //get latest news from news repo
-            val HistoryNotification_data =
-                apiRepository.getHistoryNotificationList(historyNotificationRequest)
-            //post the value inside live data
-            _historyNotificationtLiveData.postValue(HistoryNotification_data)
+            _historyNotificationtLiveData.postValue(apiRepository?.getHistoryNotificationList(historyNotificationRequest))
         }
     }
 
@@ -33,11 +29,7 @@ class HistoryNotificationViewModel : BaseViewModel() {
 
     fun getHistoryNotificationDetailById(historyNotificationDetailsRequest: HistoryNotificationDetailsRequest) {
         scope.launch {
-            //get latest news from news repo
-            val HistoryNotificationDetailByID =
-                apiRepository.getHistoryNotificationDetailByIdList(historyNotificationDetailsRequest)
-            //post the value inside live data
-            _historyNotificationtLiveData.postValue(HistoryNotificationDetailByID)
+            _historyNotificationtLiveData.postValue(apiRepository?.getHistoryNotificationDetailByIdList(historyNotificationDetailsRequest))
         }
     }
 
@@ -50,11 +42,7 @@ class HistoryNotificationViewModel : BaseViewModel() {
 
     fun getDeleteHistoryNotificationResponse(historyNotificationDetailsRequest: HistoryNotificationDetailsRequest) {
         scope.launch {
-            //get latest news from news repo
-            val HistoryNotificationDetailByID =
-                apiRepository.getHistoryNotificationDetailByIdList(historyNotificationDetailsRequest)
-            //post the value inside live data
-//            _historyNotificationtLiveData.postValue(HistoryNotificationDetailByID)
+            _historyNotificationtLiveData.postValue(apiRepository?.getHistoryNotificationDetailByIdList(historyNotificationDetailsRequest))
         }
     }
 

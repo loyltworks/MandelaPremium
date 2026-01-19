@@ -8,6 +8,7 @@ import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.RowOfferAndPromotionBinding
 import com.loyltworks.mandelapremium.model.LstPromotionList
+import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
 
 class offerAndPromotionAdapter(
     var lstPromotionJsonList: MutableList<LstPromotionList>,
@@ -48,7 +49,7 @@ class offerAndPromotionAdapter(
         try {
             Glide.with(holder.itemView).asBitmap().error(R.drawable.dummy_image)
                 .placeholder(R.drawable.dummy_image)
-                .load(BuildConfig.PROMO_IMAGE_BASE + promotionListing.ProImage!!.replace("..", ""))
+                .load(UrlClass.promoImageBase() + promotionListing.ProImage!!.replace("..", ""))
                 .into(holder.offers_img)
         } catch (e: Exception) {
         }

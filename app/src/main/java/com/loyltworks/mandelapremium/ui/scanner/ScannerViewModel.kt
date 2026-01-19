@@ -16,10 +16,7 @@ class ScannerViewModel : BaseViewModel() {
     val scanCodeLiveData: LiveData<ScanResponse> = _scanCodeLiveData
     fun submitScanCode(scanCodeRequest: ScanRequest) {
         scope.launch {
-            //get latest news from news repo
-            val scanCodeDetail = apiRepository.saveScanCodeData(scanCodeRequest)
-            //post the value inside live data
-            _scanCodeLiveData.postValue(scanCodeDetail)
+            _scanCodeLiveData.postValue(apiRepository?.saveScanCodeData(scanCodeRequest))
         }
     }
 
@@ -29,11 +26,7 @@ class ScannerViewModel : BaseViewModel() {
 
     fun setValidateScratchCode(validateScratchCodeRequest: ValidateScratchCodeRequest) {
         scope.launch {
-            //get latest news from news repo
-            val validateScratchCode = apiRepository.validateScratchCodeRequest(validateScratchCodeRequest)
-            //post the value inside live data
-            _validateScratchCodeResponse.postValue(validateScratchCode)
+            _validateScratchCodeResponse.postValue(apiRepository?.validateScratchCodeRequest(validateScratchCodeRequest))
         }
     }
-
 }

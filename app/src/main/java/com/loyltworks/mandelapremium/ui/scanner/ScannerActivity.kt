@@ -3,11 +3,9 @@ package com.loyltworks.mandelapremium.ui.scanner
 
 import android.annotation.SuppressLint
 import android.location.Location
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.easywaylocation.EasyWayLocation
@@ -23,16 +21,13 @@ import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.DialogueCallBack
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import com.loyltworks.mandelapremium.utils.dialogBox.ScanDialogCallback
-import com.vmb.scanner.Scanner
-import com.vmb.scanner.Scanner.Already_Code_Scanned
-import com.vmb.scanner.Scanner.resumeScan
-import com.vmb.scanner.ScannerListener
+import com.loyltworks.mylibrary.qrcodescanner.QrCodeScanner
+import com.loyltworks.mylibrary.qrcodescanner.QrCodeScannerListner
 import java.text.SimpleDateFormat
 import java.util.Date
 
-@RequiresApi(Build.VERSION_CODES.M)
-class ScannerActivity : BaseActivity(), ScannerListener , Listener {
-    
+class ScannerActivity : BaseActivity(), QrCodeScannerListner , Listener {
+
     lateinit var binding: ActivityScannerBinding
 
     var latitude: String = ""
@@ -70,7 +65,7 @@ class ScannerActivity : BaseActivity(), ScannerListener , Listener {
                         object : DialogueCallBack {
                             override fun onScanAgain() {
 //                            scanLayout.visibility = View.VISIBLE
-                                Scanner.resumeScan()
+                                QrCodeScanner.resumeScan()
                             }
 
                             override fun onBack() {
@@ -91,7 +86,7 @@ class ScannerActivity : BaseActivity(), ScannerListener , Listener {
             }
 
         })
-        
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -126,46 +121,20 @@ class ScannerActivity : BaseActivity(), ScannerListener , Listener {
             binding.productQRCodeLayout.visibility = View.GONE
             binding.raffleQRCodeLayout.visibility = View.VISIBLE
         }
-
-
-
-        Scanner.cameraSelect(Scanner.BackCamera)
-
     }
 
 
     private fun scannerCameraInit() {
-       /* Scanner.startScanner(this, scannerPreView, this)
-            .checkCodeExists(false)
-            .setResolution(Scanner.Low_Resolution)
-            .logPrint(true)
-            .muteBeepSound(true)
-            .scanDelayTime(1000)*/
-
-
-        Scanner.startScanner(this, binding.scannerPreView, this)
-            .checkCodeExists(false)
-            .setResolution(Scanner.Low_Resolution)
-            .logPrint(true)
-//            .muteBeepSound(true)
-            .scanDelayTime(2000)
+        QrCodeScanner.startScanner(this,binding.scannerPreView,this)
     }
 
 
     override fun onFailed(s: String) {
-        Log.d("codeScaneerFailed", ": $s")
-        if (!s.equals(Already_Code_Scanned, ignoreCase = true)) {
-            snackBar("Code is already scanned", R.color.red)
-            resumeScan()
-        } else {
-            snackBar(s, R.color.red)
-            resumeScan()
-        }
 
     }
 
     override fun onSuccess(scanCode: String) {
-        Log.d(TAG, "onSuccess: " + scanCode)
+        Log.d(TAG, "onSuccess: $scanCode")
         checkSaveQrCode(scanCode)
     }
 
@@ -236,8 +205,8 @@ class ScannerActivity : BaseActivity(), ScannerListener , Listener {
 //
 //        } else{
 //        scanLayout.visibility = View.GONE
-//        Scanner.pauseScan()
-        Scanner.logPrint(true)
+//        QrCodeScanner.pauseScan()
+        QrCodeScanner.logPrint(true)
         LoadingDialogue.showDialog(this)
 //        viewModel.setValidateScratchCode(
 //            ValidateScratchCodeRequest(
@@ -252,7 +221,7 @@ class ScannerActivity : BaseActivity(), ScannerListener , Listener {
 
         if(latitude.isNotEmpty() && longitude.isNotEmpty() && address.isNotEmpty() && city.isNotEmpty() && country.isNotEmpty() && state.isNotEmpty() && pincode.isNotEmpty()) {
             val scanCodeList: ArrayList<QRCodeSaveRequestLists> =
-                ArrayList<QRCodeSaveRequestLists>()
+                ArrayList()
 //            val customerOtherInfo: ArrayList<CustomerOtherInFoRequests> = ArrayList<CustomerOtherInFoRequests>()
             val qrCodeSaveRequestLists = QRCodeSaveRequestLists();
             qrCodeSaveRequestLists.QRCode = scanCodes

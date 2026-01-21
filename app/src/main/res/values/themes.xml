@@ -14,7 +14,7 @@
         <item name="android:windowDisablePreview">true</item>
 
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
-
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
         <!-- Customize your theme here. -->
     </style>
 

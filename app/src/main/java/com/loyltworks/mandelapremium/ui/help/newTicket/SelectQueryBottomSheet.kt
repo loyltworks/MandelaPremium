@@ -39,9 +39,9 @@ class SelectQueryBottomSheet{
              val closeBottomsheet = dialog.findViewById<ImageView>(R.id.close_bottomsheet)
 
              val mTextview = dialog.findViewById<TextView>(R.id.select_continue)
-            recyclerView!!.setHasFixedSize(true)
+            //recyclerView!!.setHasFixedSize(true)
             // use a linear layout manager
-            recyclerView.isNestedScrollingEnabled = false
+            recyclerView!!.isNestedScrollingEnabled = false
             recyclerView.setRecycledViewPool(RecycledViewPool())
             recyclerView.itemAnimator = DefaultItemAnimator()
 
@@ -57,7 +57,7 @@ class SelectQueryBottomSheet{
                  override fun onSlide(bottomSheet: View, slideOffset: Float) {}
              })
 
-             closeBottomsheet!!.setOnClickListener(View.OnClickListener { dialog.dismiss() })
+             closeBottomsheet!!.setOnClickListener { dialog.dismiss() }
 
 
              dialog.show()

@@ -1,13 +1,11 @@
 package com.loyltworks.mandelapremium.ui.help.newTicket
 
-import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.ActivityNewTicketBinding
@@ -24,131 +22,111 @@ import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.vmb.fileSelect.FileSelector
 import com.vmb.fileSelect.FileSelectorCallBack
 import com.vmb.fileSelect.FileSelectorData
+import com.vmb.fileSelect.FileType
 
 class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    lateinit var binding: ActivityNewTicketBinding
-
+    private lateinit var binding: ActivityNewTicketBinding
     private lateinit var viewModel: HelpViewModel
-    var __PaymentmethodList = ArrayList<ObjHelpTopicList>()
 
-    private var fileExtenstion: String = ""
+    private var fileExtension: String = ""
     private var mProfileImagePath = ""
-    private var helpTopicId: Int = -1
+    private var selectedTopicPosition = 0
 
-    private var mSelectedHelpTopic: ObjHelpTopicList? = null
-    var helpTopicList = mutableListOf<ObjHelpTopicList>()
+    private var helpTopicList = mutableListOf<ObjHelpTopicList>()
 
     override fun callInitialServices() {
-        LoadingDialogue.showDialog(this)
-        viewModel.getHelpTopicListLiveData(
-            HelpTopicRetrieveRequest(
-                GetHelpTopicRetrieveRequest(
-                    "4", PreferenceHelper.getLoginDetails(
-                        this
-                    )?.UserList!![0].UserId.toString(), "true"
-                )
-            )
-        )
+
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun callObservers() {
-
-        viewModel.topicListLiveData.observe(this, androidx.lifecycle.Observer {
-            LoadingDialogue.dismissDialog()
-            if (it != null && it.GetHelpTopicsResult.objHelpTopicList != null) {
-
-                helpTopicList.clear()
-                helpTopicList.addAll(it.GetHelpTopicsResult.objHelpTopicList)
-                helpTopicList.add(
-                    0,
-                    ObjHelpTopicList(HelpTopicId = -1, HelpTopicName = "Select topic")
-                )
-                binding.helpTopicSpinner.adapter = HelptopicsAdapter(
-                    this,
-                    android.R.layout.simple_spinner_item,
-                    helpTopicList as ArrayList<ObjHelpTopicList>
-                )
-
-            } else {
-                helpTopicList.clear()
-                helpTopicList.add(
-                    0,
-                    ObjHelpTopicList(HelpTopicId = -1, HelpTopicName = "Select topic")
-                )
-                binding.helpTopicSpinner.adapter = HelptopicsAdapter(
-                    this,
-                    android.R.layout.simple_spinner_item,
-                    helpTopicList as ArrayList<ObjHelpTopicList>
-                )
-            }
-        })
-
-        viewModel.saveNewTicketQueryLiveData.observe(this, androidx.lifecycle.Observer {
-            LoadingDialogue.dismissDialog()
-            if (it != null && !it.ReturnMessage.isNullOrEmpty()) {
-                val message: String = java.lang.String.valueOf(it.ReturnMessage)
-                if (!TextUtils.isEmpty(message) && message.split("~".toRegex())
-                        .toTypedArray()[0].toInt() > 0
-                ) {
-
-                    Toast.makeText(
-                        context,
-                        "Support Ticket has been submitted successfully",
-                        Toast.LENGTH_SHORT
-                    ).show()
-//                    snackBar(" Support Ticket has been submitted successfully", R.color.green)
-//                    view?.findNavController()?.popBackStack()
-                    onBackPressed()
-                } else {
-                    Toast.makeText(this,"Failed to submit new ticket",Toast.LENGTH_SHORT).show()
-
-//                    onBackPressed()
-//                    view?.findNavController()?.popBackStack()
-                }
-            } else {
-                Toast.makeText(this,"Something went wrong, please try again later",Toast.LENGTH_SHORT).show()
-
-            }
-        })
-
-
     }
-
-    var paymentPosition = -1
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        viewModel = ViewModelProvider(this).get(HelpViewModel::class.java)
         super.onCreate(savedInstanceState)
+
         binding = ActivityNewTicketBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //set context
         context = this
 
-        binding.helpTopicSpinner.onItemSelectedListener = this
+        viewModel = ViewModelProvider(this)[HelpViewModel::class.java]
 
+        binding.helpTopicSpinner.onItemSelectedListener = this
         binding.browseImage.setOnClickListener(this)
         binding.submit.setOnClickListener(this)
         binding.back.setOnClickListener(this)
 
+        if (savedInstanceState != null) {
+            selectedTopicPosition = savedInstanceState.getInt("selected_topic_position", 0)
+        }
 
+        observeViewModel()
+        loadTopicsIfNeeded()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+    private fun loadTopicsIfNeeded() {
+        if (viewModel.topicListLiveData.value == null) {
+            LoadingDialogue.showDialog(this)
+            viewModel.getHelpTopicListLiveData(
+                HelpTopicRetrieveRequest(
+                    GetHelpTopicRetrieveRequest(
+                        "4",
+                        PreferenceHelper.getLoginDetails(this)?.UserList!![0].UserId.toString(),
+                        "true"
+                    )
+                )
+            )
+        }
     }
 
+    private fun observeViewModel() {
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right)
+        viewModel.topicListLiveData.observe(this) {
+            LoadingDialogue.dismissDialog()
+
+            helpTopicList.clear()
+
+            helpTopicList.add(
+                ObjHelpTopicList(
+                    HelpTopicId = -1,
+                    HelpTopicName = "Select topic"
+                )
+            )
+
+            it?.GetHelpTopicsResult?.objHelpTopicList?.let { list ->
+                helpTopicList.addAll(list)
+            }
+
+            binding.helpTopicSpinner.adapter = HelptopicsAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                helpTopicList as ArrayList<ObjHelpTopicList>
+            )
+
+            // Restore selection safely
+            binding.helpTopicSpinner.setSelection(selectedTopicPosition)
+        }
+
+        viewModel.saveNewTicketQueryLiveData.observe(this) {
+            LoadingDialogue.dismissDialog()
+
+            if (it != null && !it.ReturnMessage.isNullOrEmpty()) {
+                val message = it.ReturnMessage
+                val status = message.split("~")[0].toIntOrNull() ?: 0
+
+                if (status > 0) {
+                    Toast.makeText(this, "Support Ticket has been submitted successfully", Toast.LENGTH_SHORT).show()
+                    onBackPressed()
+                } else {
+                    Toast.makeText(this, "Failed to submit new ticket", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "Something went wrong, please try again later", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onClick(v: View?) {
         if (BlockMultipleClick.click()) return
 
@@ -158,91 +136,95 @@ class NewTicketActivity : BaseActivity(), View.OnClickListener, AdapterView.OnIt
                 onBackPressed()
             }
 
-            R.id.browseImage -> this.let {
+            R.id.browseImage -> {
 
-                // Browse Image or Files
-                FileSelector.open(this, object : FileSelectorCallBack {
-                    override fun onResponse(fileSelectorData: FileSelectorData) {
-                        mProfileImagePath = fileSelectorData.responseInBase64!!
-                        fileExtenstion = fileSelectorData.extension!!
+                FileSelector.requiredFileTypes(FileType.IMAGES).open(this, object : FileSelectorCallBack {
+                        override fun onResponse(fileSelectorData: FileSelectorData) {
 
-                        binding.browseImg.visibility = View.VISIBLE
+                            mProfileImagePath = fileSelectorData.responseInBase64 ?: ""
 
-                        binding.browseImg.setImageBitmap(fileSelectorData.thumbnail)
+                            fileExtension = fileSelectorData.extension ?: ""
 
-
-                        /* if(fileExtenstion.equals("png",true)) {
-                                     binding.browseImg.visibility = View.VISIBLE
-                                     file_name.visibility = View.GONE
-                                     Glide.with(requireContext())
-                                         .asBitmap()
-                                         .load(Base64.decode(mProfileImagePath, Base64.DEFAULT))
-                                         .into(binding.browseImg)
-                                 }else{
-                                     binding.browseImg.visibility = View.GONE
-                                     file_name.visibility = View.VISIBLE
-
-                                     file_name.text = fileName
-                                 }*/
-                    }
-                })
-
+                            binding.browseImg.visibility = View.VISIBLE
+                            binding.browseImg.setImageBitmap(fileSelectorData.thumbnail)
+                        }
+                    })
             }
 
             R.id.submit -> {
-                //Validate before submit query :
-                if (mSelectedHelpTopic?.HelpTopicId == -1) {
-                    Toast.makeText(this,"Select any topic.",Toast.LENGTH_SHORT).show()
+
+                val selectedTopic =
+                    helpTopicList.getOrNull(selectedTopicPosition)
+
+                if (selectedTopic == null || selectedTopic.HelpTopicId == -1) {
+                    Toast.makeText(
+                        this,
+                        "Select any topic.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     return
-                } else if (TextUtils.isEmpty(binding.queryDetails.text.toString())) {
+                }
+
+                if (TextUtils.isEmpty(binding.queryDetails.text.toString())) {
                     binding.queryDetails.error = "Enter ticket details."
                     binding.queryDetails.requestFocus()
                     return
-                } else {
+                }
 
-                    try {
-                        LoadingDialogue.showDialog(this)
-                        viewModel.saveNewTicketQuery(
-                            SaveNewTicketQueryRequest(
-                                ActionType = "0",
-                                ActorId = PreferenceHelper.getLoginDetails(this)?.UserList!![0].UserId.toString(),
-                                CustomerName = PreferenceHelper.getLoginDetails(this)?.UserList!![0].Name.toString(),
-                                Email = PreferenceHelper.getLoginDetails(this)?.UserList!![0].Email.toString(),
-                                HelpTopic = mSelectedHelpTopic?.HelpTopicName,
-                                HelpTopicID = mSelectedHelpTopic?.HelpTopicId.toString(),
-                                IsQueryFromMobile = "true",
-                                LoyaltyID = PreferenceHelper.getLoginDetails(this)?.UserList!![0].UserName.toString(),
-                                Mobile = PreferenceHelper.getLoginDetails(this)?.UserList!![0].Mobile.toString(),
-                                QueryDetails = binding.queryDetails.text.toString(),
-                                QuerySummary = binding.queryDetails.text.toString(),
-                                SourceType = "1",
-//                                FileType = fileExtenstion,
-                                ImageUrl = mProfileImagePath
-                            )
+                try {
+                    LoadingDialogue.showDialog(this)
+
+                    val user =
+                        PreferenceHelper.getLoginDetails(this)?.UserList!![0]
+
+                    viewModel.saveNewTicketQuery(
+                        SaveNewTicketQueryRequest(
+                            ActionType = "0",
+                            ActorId = user.UserId.toString(),
+                            CustomerName = user.Name,
+                            Email = user.Email,
+                            HelpTopic = selectedTopic.HelpTopicName,
+                            HelpTopicID = selectedTopic.HelpTopicId.toString(),
+                            IsQueryFromMobile = "true",
+                            LoyaltyID = user.UserName,
+                            Mobile = user.Mobile,
+                            QueryDetails = binding.queryDetails.text.toString(),
+                            QuerySummary = binding.queryDetails.text.toString(),
+                            SourceType = "1",
+                            ImageUrl = mProfileImagePath
                         )
-//
-                    } catch (e: Exception) {
-                        Log.d("TAG", "onClick: $e")
-                    }
+                    )
+
+                } catch (e: Exception) {
+                    Log.d("TAG", "Submit Error: $e")
                 }
             }
         }
     }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        when (parent!!.id) {
-
-            R.id.helpTopicSpinner -> {
-                mSelectedHelpTopic = parent.getItemAtPosition(position) as ObjHelpTopicList
-            }
-
-
+    override fun onItemSelected(
+        parent: AdapterView<*>?,
+        view: View?,
+        position: Int,
+        id: Long
+    ) {
+        if (parent?.id == R.id.helpTopicSpinner) {
+            selectedTopicPosition = position
         }
     }
 
-    override fun onNothingSelected(p0: AdapterView<*>?) {
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("selected_topic_position", selectedTopicPosition)
     }
 
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(
+            R.anim.slide_from_left,
+            R.anim.slide_to_right
+        )
+    }
 }

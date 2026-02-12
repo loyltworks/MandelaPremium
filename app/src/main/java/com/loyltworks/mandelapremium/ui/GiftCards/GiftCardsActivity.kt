@@ -68,9 +68,7 @@ class GiftCardsActivity : BaseActivity() {
         binding.back.setOnClickListener{
             onBackPressed()
         }
-
     }
-
 
     private fun setupViewPager(viewPager: ViewPager) {
 
@@ -79,7 +77,6 @@ class GiftCardsActivity : BaseActivity() {
         myPagerAdapter.addFrag(GiftReceivedFragment(), "Gift Received")
         myPagerAdapter.addFrag(GiftSentFragment(), "Gift Sent")
         viewPager.adapter = myPagerAdapter
-
     }
 
 
@@ -93,6 +90,4 @@ class GiftCardsActivity : BaseActivity() {
         super.onBackPressed()
         overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right)
     }
-
-
 }

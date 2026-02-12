@@ -29,30 +29,7 @@
             app:tabRippleColor="@null"
             app:tabSelectedTextColor="@color/black"
             app:tabTextAppearance="@style/MyCustomTabTextAppearance"
-            app:tabTextColor="@color/black">
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/current_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Current"
-                android:textAlignment="center" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/upcoming_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upcoming" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/previous_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Previous" />
-
-
-        </com.google.android.material.tabs.TabLayout>
-
+            app:tabTextColor="@color/black" />
 
         <RelativeLayout
             android:layout_width="match_parent"

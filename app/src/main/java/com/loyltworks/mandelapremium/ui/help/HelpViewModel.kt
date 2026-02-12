@@ -48,8 +48,7 @@ class HelpViewModel : BaseViewModel() {
 
     /*Save new ticket request-response*/
     private val _saveNewTicketQueryLiveData = MutableLiveData<SaveNewTicketQueryResponse>()
-    val saveNewTicketQueryLiveData: LiveData<SaveNewTicketQueryResponse> =
-        _saveNewTicketQueryLiveData
+    val saveNewTicketQueryLiveData: LiveData<SaveNewTicketQueryResponse> = _saveNewTicketQueryLiveData
 
     fun saveNewTicketQuery(saveNewTicketQueryRequest: SaveNewTicketQueryRequest) {
 

@@ -39,44 +39,22 @@
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="11dp"
-        android:visibility="gone"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="11dp"
         android:background="@drawable/yellow_stroke"
+        android:visibility="gone"
         app:tabBackground="@drawable/tab_selector"
         app:tabIndicatorHeight="0dp"
         app:tabRippleColor="@null"
         app:tabSelectedTextColor="@color/black"
         app:tabTextAppearance="@style/MyCustomTabTextAppearance"
-        app:tabTextColor="@color/black">
+        app:tabTextColor="@color/black" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/current_tab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Earning"
-            android:textAlignment="center" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/upcoming_tab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Redemptions" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/previous_tab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Promotions" />
-
-
-    </com.google.android.material.tabs.TabLayout>
 
     <com.loyltworks.mandelapremium.utils.NonSwipeableViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

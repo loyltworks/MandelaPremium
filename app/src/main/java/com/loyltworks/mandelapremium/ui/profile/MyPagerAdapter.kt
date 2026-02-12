@@ -4,10 +4,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 
+class MyPagerAdapter(fm: FragmentManager) :
+    FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
-    val mFragmentList: MutableList<Fragment> = ArrayList()
-    val mFragmentTitleList: MutableList<String> = ArrayList()
+    private val mFragmentList = ArrayList<Fragment>()
+    private val mFragmentTitleList = ArrayList<String>()
 
     override fun getItem(position: Int): Fragment {
         return mFragmentList[position]
@@ -18,14 +19,11 @@ class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     }
 
     fun addFrag(fragment: Fragment, title: String) {
-        if (!fragment.isAdded) {
-            mFragmentList.add(fragment)
-            mFragmentTitleList.add(title)
-        }
+        mFragmentList.add(fragment)
+        mFragmentTitleList.add(title)
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-//        return null
-         return mFragmentTitleList.get(position);
+    override fun getPageTitle(position: Int): CharSequence {
+        return mFragmentTitleList[position]
     }
 }

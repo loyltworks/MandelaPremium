@@ -140,27 +140,10 @@
             android:background="@drawable/yellow_stroke"
             app:tabBackground="@drawable/tab_selector"
             app:tabIndicatorHeight="0dp"
+            app:tabRippleColor="@null"
             app:tabSelectedTextColor="@color/black"
             app:tabTextAppearance="@style/MyCustomTabTextAppearance"
-            app:tabTextColor="@color/black"
-            app:tabRippleColor="@null">
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/general_info_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="General Information"
-                android:textAlignment="center" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/bank_detail_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vehicle Informatioin" />
-
-
-        </com.google.android.material.tabs.TabLayout>
-
+            app:tabTextColor="@color/black" />
 
     </LinearLayout>
 

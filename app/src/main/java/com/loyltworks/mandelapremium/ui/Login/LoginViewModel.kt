@@ -2,6 +2,8 @@ package com.loyltworks.mandelapremium.ui.Login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.loyltworks.mandelapremium.model.CancelRequest
+import com.loyltworks.mandelapremium.model.CancelResponse
 import com.loyltworks.mandelapremium.model.EmailCheckRequest
 import com.loyltworks.mandelapremium.model.EmailCheckResponse
 import com.loyltworks.mandelapremium.model.ForgotPasswordRequest
@@ -73,4 +75,15 @@ class LoginViewModel : BaseViewModel() {
 */
 
 
+    /*** Cancel account deletion request ***/
+    private val _cancelDeleteLiveData = MutableLiveData<CancelResponse>()
+    val cancelDeleteLiveData: LiveData<CancelResponse> = _cancelDeleteLiveData
+
+    fun cancelAccountDeletion(cancelRequest: CancelRequest) {
+        ///launch the coroutine scope
+        scope.launch {
+            //post the value inside live data
+            _cancelDeleteLiveData.postValue(apiRepository?.cancelAccountDeletion(cancelRequest))
+        }
+    }
 }

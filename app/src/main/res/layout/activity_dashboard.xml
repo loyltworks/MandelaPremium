@@ -570,7 +570,7 @@
         android:elevation="20dp"
         android:focusable="true"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"

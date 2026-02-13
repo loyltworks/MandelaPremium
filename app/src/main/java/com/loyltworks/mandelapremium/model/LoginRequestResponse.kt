@@ -1,5 +1,6 @@
 package com.loyltworks.mandelapremium.model
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -71,5 +72,15 @@ data class UserList(
     val UserLastName: Any? = null,
     val UserName: String? = null,
     val UserType: String? = null,
-    val VerifiedStatus: Int? = null
+    val VerifiedStatus: Int? = null,
+    @Json(name = "MembershipID")
+    val membershipID: String?=null,
+    @Json(name = "CustomerName")
+    val customerName: String?=null,
+    @Json(name = "DeletedDate")
+    val deletedDate: String?=null,
+    @Json(name = "AccountStatus")
+    val accountStatus: String?=null,
+    @Json(name = "IsDelete")
+    val isDelete: Int? = null
 )

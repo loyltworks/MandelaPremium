@@ -19,4 +19,19 @@
     <string name="UPDATE_MESSAGES">Update is available for CenturyProClub</string>
     <string name="maintainance_msg">The app is unable to access the services as the system is down for maintenance! "\n" Please try after sometime.</string>
     <string name="something_went_wrong">Something went wrong please try after some time</string>
+
+    <string name="your_account_deletion_request_has_been_sent_to_admin_kindly_find_the_account_datils_below">Your account deletion request has been sent to admin. Kindly find the account details below.</string>
+    <string name="_3_email_id">Email ID</string>
+    <string name="_4_date_of_request">Date of request</string>
+    <string name="_5_status">Status</string>
+    <string name="_2_name">Name</string>
+    <string name="_1_membership_id">Membership ID</string>
+    <string name="cancel_delete_request">Cancel Delete Request</string>
+    <string name="we_hope_you_will_consider_us_again_in_the_future_nthank_you_for_your_support">We hope you will consider us again in the future.\nThank you! for your support.</string>
+    <string name="your_account_deletion_request_has_been_processed">Your account deletion request has been processed and the below basic information and related transactional data will be remained safe with us for future references.</string>
+    <string name="we_are_glad_that_you_have_taken_a_right_decision_to_enjoy_the_program_benefits_please_click_on_yes_to_cancel_the_account_delete_request_or_no_to_view_your_status">We are glad that you have taken a right decision to enjoy the program benefits. Please click on “Yes” to cancel the account delete request or “No” to view your status</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="your_account_deleted_request_has_been_cancelled_successfully">Your account deleted request has been cancelled successfully.</string>
+    <string name="back_to_login">Go back to login</string>
+    <string name="something_went_wrong_please_try_again_later">Something went wrong. Please try again later !</string>
 </resources>

@@ -1,8 +1,73 @@
 package com.loyltworks.mandelapremium.utils.fetchData.apiCall
 
-import com.loyltworks.mandelapremium.model.*
+import com.loyltworks.mandelapremium.model.AttributeRequest
+import com.loyltworks.mandelapremium.model.AttributeResponse
+import com.loyltworks.mandelapremium.model.CancelRequest
+import com.loyltworks.mandelapremium.model.CancelResponse
+import com.loyltworks.mandelapremium.model.CityRequest
+import com.loyltworks.mandelapremium.model.CityResponse
+import com.loyltworks.mandelapremium.model.CountryDetailResponse
+import com.loyltworks.mandelapremium.model.CountryDetailsRequest
+import com.loyltworks.mandelapremium.model.DashboardCustomerRequest
+import com.loyltworks.mandelapremium.model.DashboardCustomerResponse
+import com.loyltworks.mandelapremium.model.DashboardRequest
+import com.loyltworks.mandelapremium.model.DashboardResponse
+import com.loyltworks.mandelapremium.model.DeleteAccountRequest
+import com.loyltworks.mandelapremium.model.DeleteAccountResponse
+import com.loyltworks.mandelapremium.model.EmailCheckRequest
+import com.loyltworks.mandelapremium.model.EmailCheckResponse
+import com.loyltworks.mandelapremium.model.FeedbackRequest
+import com.loyltworks.mandelapremium.model.FeedbackResponse
+import com.loyltworks.mandelapremium.model.ForgotPasswordRequest
+import com.loyltworks.mandelapremium.model.ForgotPasswordResponse
+import com.loyltworks.mandelapremium.model.GetAlbumsWithImagesRequest
+import com.loyltworks.mandelapremium.model.GetAlbumsWithImagesResponse
+import com.loyltworks.mandelapremium.model.GetBuyGiftRequest
+import com.loyltworks.mandelapremium.model.GetBuyGiftResponse
+import com.loyltworks.mandelapremium.model.GetCashBackRequest
+import com.loyltworks.mandelapremium.model.GetCashBackResponse
+import com.loyltworks.mandelapremium.model.GetGiftCardRequest
+import com.loyltworks.mandelapremium.model.GetGiftCardResponse
+import com.loyltworks.mandelapremium.model.GetHelpTopicResponse
+import com.loyltworks.mandelapremium.model.GetPromotionResponse
+import com.loyltworks.mandelapremium.model.GetReceiverIDRequest
+import com.loyltworks.mandelapremium.model.GetReceiverIDResponse
+import com.loyltworks.mandelapremium.model.GetSaveGiftCardRequest
+import com.loyltworks.mandelapremium.model.GetSaveGiftCardResponse
+import com.loyltworks.mandelapremium.model.GetWhatsNewRequest
+import com.loyltworks.mandelapremium.model.HelpTopicRetrieveRequest
+import com.loyltworks.mandelapremium.model.HistoryNotificationDetailsRequest
+import com.loyltworks.mandelapremium.model.HistoryNotificationRequest
+import com.loyltworks.mandelapremium.model.HistoryNotificationResponse
+import com.loyltworks.mandelapremium.model.LoginRequest
+import com.loyltworks.mandelapremium.model.LoginResponse
+import com.loyltworks.mandelapremium.model.MyVoucherGiftCardSubmitRequest
+import com.loyltworks.mandelapremium.model.MyVoucherGiftCardSubmitResponse
+import com.loyltworks.mandelapremium.model.PostChatStatusRequest
+import com.loyltworks.mandelapremium.model.PostChatStatusResponse
+import com.loyltworks.mandelapremium.model.QueryChatElementRequest
+import com.loyltworks.mandelapremium.model.QueryChatElementResponse
+import com.loyltworks.mandelapremium.model.QueryListingRequest
+import com.loyltworks.mandelapremium.model.QueryListingResponse
+import com.loyltworks.mandelapremium.model.RedemptionRequest
+import com.loyltworks.mandelapremium.model.RedemptionResponse
+import com.loyltworks.mandelapremium.model.RegistrationRequest
+import com.loyltworks.mandelapremium.model.RegistrationResponse
+import com.loyltworks.mandelapremium.model.SaveNewTicketQueryRequest
+import com.loyltworks.mandelapremium.model.SaveNewTicketQueryResponse
+import com.loyltworks.mandelapremium.model.ScanRequest
+import com.loyltworks.mandelapremium.model.ScanResponse
+import com.loyltworks.mandelapremium.model.TransactionHistoryRequest
+import com.loyltworks.mandelapremium.model.TransactionHistoryResponse
+import com.loyltworks.mandelapremium.model.UpdateProfileImageRequest
+import com.loyltworks.mandelapremium.model.UpdateProfileImageResponse
+import com.loyltworks.mandelapremium.model.UpdateProfileRequest
+import com.loyltworks.mandelapremium.model.UpdateProfileResponse
+import com.loyltworks.mandelapremium.model.ValidateScratchCodeRequest
+import com.loyltworks.mandelapremium.model.ValidateScratchCodeResponse
+import com.loyltworks.mandelapremium.model.WishPointRequest
+import com.loyltworks.mandelapremium.model.WishPointsResponse
 import kotlinx.coroutines.Deferred
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -184,5 +249,14 @@ interface ApiInterface {
     /*updateProfileImage */
     @POST("${mobileApi}UpdateCustomerProfileMobileApp")
     fun getupdateProfileImage(@Body updateProfileImageRequest: UpdateProfileImageRequest?):  Deferred<Response<UpdateProfileImageResponse>>
+
+    //Request for account deletion
+    @POST("${mobileApi}CustomerAccountDelete")
+    fun requestAccountDeletion(@Body deleteAccountRequest: DeleteAccountRequest): Deferred<Response<DeleteAccountResponse>>
+
+
+    //Cancel account deletion
+    @POST("${mobileApi}CancelationAccountDeleteRequest")
+    fun cancelAccountDeletion(@Body cancelRequest: CancelRequest): Deferred<Response<CancelResponse>>
 
 }

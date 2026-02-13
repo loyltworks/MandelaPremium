@@ -348,4 +348,24 @@ class ApiRepository(private val apiInterface: ApiInterface) : BaseRepository() {
             }
         )
     }
+
+
+    //Request for account deletion
+    suspend fun requestAccountDeletion(deleteAccountRequest: DeleteAccountRequest): DeleteAccountResponse? {
+        return safeApiCall(
+            //await the result of deferred type
+            call = { apiInterface.requestAccountDeletion(deleteAccountRequest).await() }
+            //convert to mutable list
+        )
+    }
+
+
+    //Cancel account deletion
+    suspend fun cancelAccountDeletion(cancelRequest: CancelRequest): CancelResponse? {
+        return safeApiCall(
+            //await the result of deferred type
+            call = { apiInterface.cancelAccountDeletion(cancelRequest).await() }
+            //convert to mutable list
+        )
+    }
 }

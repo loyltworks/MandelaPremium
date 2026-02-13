@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import com.loyltworks.mandelapremium.model.AttributeRequest
 import com.loyltworks.mandelapremium.model.CustomerDetails
 import com.loyltworks.mandelapremium.model.DashboardCustomerRequest
 import com.loyltworks.mandelapremium.model.DashboardRequest
+import com.loyltworks.mandelapremium.model.DeleteAccountRequest
 import com.loyltworks.mandelapremium.model.GetWhatsNewRequest
 import com.loyltworks.mandelapremium.model.LstAttributesDetail
 import com.loyltworks.mandelapremium.model.LstPromotionList
@@ -41,9 +43,12 @@ import com.loyltworks.mandelapremium.ui.raffle.RaffleActivity
 import com.loyltworks.mandelapremium.ui.scanner.ScannerActivity
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.Vibrator
+import com.loyltworks.mandelapremium.utils.dialogBox.CommonInformationDailog
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.Serializable
 import java.text.DecimalFormat
 
@@ -96,6 +101,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         binding.dashEarning.setOnClickListener(this)
         binding.dashScan.setOnClickListener(this)
         binding.ourLocation.setOnClickListener(this)
+        binding.deleteAccount.setOnClickListener(this)
 
         val gridLayoutManager = GridLayoutManager(this, 3)
         binding.productsRv.layoutManager = gridLayoutManager
@@ -257,6 +263,37 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         }
 
 
+        dashBoardViewModel.deleteAccountLiveData.observe(this) {
+            if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
+                LoadingDialogue.dismissDialog()
+                if (it != null && it.returnMessage.contentEquals("1")) {
+
+                    PreferenceHelper.clear(applicationContext!!)
+
+                    CommonInformationDailog.showDailog(
+                        this,
+                        false,
+                       true,
+                        "Your account deletion request has been sent to the admin successfully and on admin confirmation the account will be deleted within 30 days.",
+                        object :CommonInformationDailog.onClickCallback {
+                            override fun onPositiveClick() {
+
+                            }
+
+                            override fun onNegativeClick() {
+
+                            }
+
+
+                        })
+
+                } else {
+
+                }
+            }
+        }
+
+
     }
 
     override fun onPromotionClicked(lstPromotionJson: LstPromotionList) {
@@ -294,6 +331,21 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
             R.id.darkBackground -> {
                 Vibrator.vibrate(this@DashboardActivity)
                 closeDrawer()
+            }
+            R.id.deleteAccount->{
+                Vibrator.vibrate(this@DashboardActivity)
+                closeDrawer()
+                CommonInformationDailog.showDailog(this,true,true,"Are you sure want to delete account",object :CommonInformationDailog.onClickCallback{
+                    override fun onPositiveClick() {
+                        requestAccountDeletion()
+                    }
+
+                    override fun onNegativeClick() {
+
+                    }
+
+                })
+
             }
 
             R.id.openDrawer -> {
@@ -544,6 +596,17 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         }
     }
 
+
+    private fun requestAccountDeletion() {
+        LoadingDialogue.showDialog(this)
+        dashBoardViewModel.requestAccountDeletion(
+            DeleteAccountRequest(
+                actionType = 1,
+                userid = PreferenceHelper.getLoginDetails(this)?.UserList!![0].UserId.toString(),
+                userName = PreferenceHelper.getLoginDetails(this)?.UserList!![0].UserName.toString()
+            )
+        )
+    }
 
     companion object {
 

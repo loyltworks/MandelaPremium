@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="cancel_confirm.json"
+            app:lottie_loop="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/we_are_glad_that_you_have_taken_a_right_decision_to_enjoy_the_program_benefits_please_click_on_yes_to_cancel_the_account_delete_request_or_no_to_view_your_status"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/noBtn"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/gradiant_button"
+            android:backgroundTint="@color/orange"
+            android:text="No"
+            android:textColor="@color/white"
+            android:textAllCaps="false" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/yesBtn"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/red"
+            android:textColor="@color/white"
+            android:background="@drawable/gradiant_button"
+            android:text="Yes"
+            android:textAllCaps="false" />
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -129,5 +129,16 @@ class DashBoardViewModel : BaseViewModel() {
 
 
 
+    /*** Requesting for account deletion ***/
+    private val _deleteAccountLiveData = MutableLiveData<DeleteAccountResponse>()
+    val deleteAccountLiveData: LiveData<DeleteAccountResponse> = _deleteAccountLiveData
+
+    fun requestAccountDeletion(deleteAccountResponse: DeleteAccountRequest) {
+        ///launch the coroutine scope
+        scope.launch {
+            //post the value inside live data
+            _deleteAccountLiveData.postValue(apiRepository?.requestAccountDeletion(deleteAccountResponse))
+        }
+    }
 
 }

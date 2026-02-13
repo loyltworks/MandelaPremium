@@ -13,20 +13,26 @@ import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.ActivityLoginBinding
+import com.loyltworks.mandelapremium.model.CancelRequest
 import com.loyltworks.mandelapremium.model.EmailCheckRequest
 import com.loyltworks.mandelapremium.model.ForgotPasswordRequest
 import com.loyltworks.mandelapremium.model.Location
 import com.loyltworks.mandelapremium.model.LoginRequest
+import com.loyltworks.mandelapremium.model.LoginResponse
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.dashboard.DashboardActivity
 import com.loyltworks.mandelapremium.utils.Keyboard
 import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.dialogBox.AlertMessageDialog
+import com.loyltworks.mandelapremium.utils.dialogBox.CancelConfirmationDialog
+import com.loyltworks.mandelapremium.utils.dialogBox.CancelInfoDialog
+import com.loyltworks.mandelapremium.utils.dialogBox.CancelSuccessDialog
 import com.loyltworks.mandelapremium.utils.dialogBox.ForgotPwd
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
 import com.loyltworks.mandelapremium.utils.dialogBox.TCDialog
@@ -43,6 +49,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     var _mDailog: Dialog? = null
 
     var token:String?=null
+
+    private lateinit var loginResponse: LoginResponse
 
 
     lateinit var forgotPasswordNumber : String
@@ -291,62 +299,140 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
              *           other -> Invalid User name and binding.password.
              */
 
+            if(this.lifecycle.currentState== Lifecycle.State.RESUMED){
+                if (it != null) {
+                    loginResponse = it
+                    val result: Int? = it.UserList?.get(0)?.Result
+                    var Msg=""
 
-            if (it != null) {
+                    Log.d("jhfkdsjf", result.toString())
 
-                val result: Int? = it.UserList?.get(0)?.Result
-                var Msg: String
 
-                Log.d("jhfkdsjf", result.toString())
+                    when (result) {
+                        1 -> {
+                            checkAccountDeletionStatus()
+                        }
 
-                when (result) {
-                    1 -> {
+                        -1 -> {
+                            Msg = "Invalid binding.password"
+                        }
 
-                        // set Login successful
-                        PreferenceHelper.setBooleanValue(
-                            this,
-                            BuildConfig.IsLoggedIn,
-                            true
-                        )
-                        // save login details
-                        PreferenceHelper.setLoginDetails(this, it)
-                        LoadingDialogue.dismissDialog()
-                        // Go to dashboard
-                        val intent = Intent(this, DashboardActivity::class.java)
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
+                        6 -> {
+                            Msg = "Invalid username Id"
+                        }
 
-                        // login message display
-                        Msg = "Login successful"
-
+                        else -> {
+                            Msg = "Invalid Username and binding.password"
+                        }
                     }
 
-                    -1 -> {
-                        Msg = "Invalid binding.password"
-                    }
+                    // display snack bar
+                    Toast.makeText(this,Msg,Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this,"Something went wrong, please try again.",Toast.LENGTH_SHORT).show()
 
-                    6 -> {
-                        Msg = "Invalid username Id"
-                    }
-
-                    else -> {
-                        Msg = "Invalid Username and binding.password"
-                    }
                 }
-
-                // display snack bar
-                Toast.makeText(this,Msg,Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this,"Something went wrong, please try again.",Toast.LENGTH_SHORT).show()
-
             }
 
-            LoadingDialogue.dismissDialog();
+
 
 
         }
 
+
+        viewModel.cancelDeleteLiveData.observe(this){
+            if (this.lifecycle.currentState == Lifecycle.State.RESUMED){
+
+                LoadingDialogue.dismissDialog()
+
+                if(it !=null && it.returnMessage.contentEquals("1")){
+                    showCancelSuccessPopup()
+                }else{
+                    Toast.makeText(this, getString(R.string.something_went_wrong_please_try_again_later), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+    }
+    private fun checkAccountDeletionStatus() {
+        if(loginResponse.UserList!![0].isDelete == 0){
+            verifiedStatus(loginResponse)
+        }else if(loginResponse.UserList!![0].accountStatus == "0" || loginResponse.UserList!![0].accountStatus == "1"){
+            showCancelDeleteRequestPopup()
+        }else if(loginResponse.UserList!![0].accountStatus == "2"){
+           snackBar("Username Does not exist!", R.color.red)
+        }
+    }
+
+
+    private fun showCancelDeleteRequestPopup() {
+        CancelInfoDialog.showDialog(this,loginResponse,object : CancelInfoDialog.dialogCallback{
+            override fun OnCancelClick() {
+                showCancelConfirmPopup()
+            }
+            override fun clear() {
+                binding.userName.setText("")
+                binding.password.setText("")
+            }
+        })
+
+
+
+    }
+
+
+    private fun showCancelConfirmPopup() {
+        CancelConfirmationDialog.showDialog(this,object : CancelConfirmationDialog.dialogCallback{
+            override fun OnYesClick() {
+              cancelDeletionRequest()
+            }
+
+            override fun OnNoClick() {
+                showCancelDeleteRequestPopup()
+            }
+        })
+    }
+
+
+    private fun showCancelSuccessPopup() {
+        CancelSuccessDialog.showDialog(this,object : CancelSuccessDialog.dialogCallback{
+            override fun OnBackClick() {
+                binding.userName.setText("")
+                binding.password.setText("")
+            }
+        })
+    }
+
+    private fun verifiedStatus(loginResponse: LoginResponse) {
+        // set Login successful
+        PreferenceHelper.setBooleanValue(
+            this,
+            BuildConfig.IsLoggedIn,
+            true
+        )
+        // save login details
+        PreferenceHelper.setLoginDetails(this, loginResponse)
+        LoadingDialogue.dismissDialog()
+        // Go to dashboard
+        val intent = Intent(this, DashboardActivity::class.java)
+        intent.flags =
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+    }
+
+
+
+    private fun cancelDeletionRequest() {
+        LoadingDialogue.showDialog(this)
+        viewModel.cancelAccountDeletion(
+            CancelRequest(
+            actionType = 6,
+            userid = loginResponse.UserList?.get(0)?.UserId.toString().toInt(),
+                emailOrMobile = loginResponse.UserList?.get(0)?.Email.toString(),
+            firstName = loginResponse.UserList?.get(0)?.customerName.toString(),
+            userName = loginResponse.UserList?.get(0)?.UserName.toString()
+        )
+        )
     }
 
 

@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import com.loyltworks.mandelapremium.BuildConfig
 import com.loyltworks.mandelapremium.R
 import com.loyltworks.mandelapremium.databinding.ActivityProfileBinding
-import com.loyltworks.mandelapremium.model.ObjCustomer
+import com.loyltworks.mandelapremium.model.ObjCustomerJson
 import com.loyltworks.mandelapremium.model.UpdateProfileImageRequest
 import com.loyltworks.mandelapremium.ui.baseClass.BaseActivity
 import com.loyltworks.mandelapremium.ui.profile.fragment.ProfileViewModel
@@ -138,10 +138,10 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
                                 profileViewModel.setProfileImageUpdate(
                                     UpdateProfileImageRequest(
-                                        ActorId = PreferenceHelper.getLoginDetails(this@ProfileActivity)?.UserList!![0].UserId.toString(),
-                                        ObjCustomer(
-                                            DisplayImage = mProfileImagePath,
-                                            LoyaltyId = PreferenceHelper.getLoginDetails(this@ProfileActivity)?.UserList!![0].UserName.toString()
+                                        actorId = PreferenceHelper.getLoginDetails(this@ProfileActivity)?.UserList!![0].UserId.toString(),
+                                        ObjCustomerJson(
+                                            displayImage = mProfileImagePath,
+                                            loyaltyId = PreferenceHelper.getLoginDetails(this@ProfileActivity)?.UserList!![0].UserName.toString()
                                         )
                                     )
                                 )
@@ -165,7 +165,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
         /*Update Profile Image Observer*/
 
         profileViewModel.updateProfileImage.observe(this, androidx.lifecycle.Observer {
-            if (it != null && it.ReturnMessage!!.length > 0) {
+            if (it != null && it.returnMessage!!.length > 0) {
                 Toast.makeText(this,getString(R.string.profile_image_updated),Toast.LENGTH_SHORT).show()
 
             } else {

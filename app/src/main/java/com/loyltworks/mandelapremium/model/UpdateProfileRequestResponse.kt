@@ -1,5 +1,6 @@
 package com.loyltworks.mandelapremium.model
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /*Update Profile Request*/
@@ -58,10 +59,11 @@ data class UpdateProfileResponse (
 )
 
 
-/*Update Profile Image Request*/
+/*Update Profile Image Request*//*
+
 
 @JsonClass(generateAdapter = true)
-data class ObjCustomer(
+data class ObjCustomerJson(
     var DisplayImage: String,
     var LoyaltyId: String
 )
@@ -70,13 +72,54 @@ data class ObjCustomer(
 @JsonClass(generateAdapter = true)
 data class UpdateProfileImageRequest(
     var ActorId: String,
-    var ObjCustomer: ObjCustomer
+    var ObjCustomer: ObjCustomerJson
 )
 
-/*Update Profile Image Response*/
+*/
+/*Update Profile Image Response*//*
+
 @JsonClass(generateAdapter = true)
 data class UpdateProfileImageResponse(
     var ReturnMessage: String? = null,
     var ReturnValue: Int? = null,
     var TotalRecords: Int? = null
+)
+*/
+
+
+
+
+
+/**** udpate profile request ****/
+
+@JsonClass(generateAdapter = true)
+data class UpdateProfileImageRequest(
+    @Json(name = "ActorId")
+    var actorId: String? = null,
+    @Json(name = "ObjCustomerJson")
+    var objCustomerJson: ObjCustomerJson? = null
+)
+
+@JsonClass(generateAdapter = true)
+data class ObjCustomerJson(
+    @Json(name = "DisplayImage")
+    var displayImage: String? = null,
+    @Json(name = "LoyaltyId")
+    var loyaltyId: String? = null
+)
+
+
+
+/**** udpate profile respoen ****/
+
+@JsonClass(generateAdapter = true)
+data class UpdateProfileImageResponse(
+    @Json(name = "lstCustomer")
+    var lstCustomer: Any? = null,
+    @Json(name = "ReturnMessage")
+    var returnMessage: String? = null,
+    @Json(name = "ReturnValue")
+    var returnValue: Int? = null,
+    @Json(name = "TotalRecords")
+    var totalRecords: Int? = null
 )

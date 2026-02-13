@@ -1,9 +1,8 @@
 package com.loyltworks.mandelapremium.ui.dashboard
-
-
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.core.app.ActivityCompat
@@ -45,10 +44,8 @@ import com.loyltworks.mandelapremium.utils.PreferenceHelper
 import com.loyltworks.mandelapremium.utils.Vibrator
 import com.loyltworks.mandelapremium.utils.dialogBox.CommonInformationDailog
 import com.loyltworks.mandelapremium.utils.dialogBox.LoadingDialogue
-import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import com.loyltworks.mandelapremium.utils.fetchData.ndk.UrlClass
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.oneloyalty.goodpack.utils.BlockMultipleClick
 import java.io.Serializable
 import java.text.DecimalFormat
 
@@ -174,22 +171,24 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
 
         profileViewModel.myProfileResponse.observe(this) {
             getDashboardDetails()
-                if (it != null && !it.GetCustomerDetailsMobileAppResult?.lstCustomerJson.isNullOrEmpty()) {
+                if (it != null && !it.getCustomerDetailsMobileAppResult?.lstCustomerJson.isNullOrEmpty()) {
 
                     PreferenceHelper.setStringValue(
                         this,
                         "ProfileImage",
-                        UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture
+                        UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.profilePicture
                     )
 
+                    Log.d("sdghdsoighsdogh",""+UrlClass.promoImageBase())
+
                     Glide.with(this).asBitmap()
-                        .load(UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture)
+                        .load(UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.profilePicture)
                         .error(R.drawable.default_person).placeholder(R.drawable.default_person)
                         .into((binding.dashProfile))
 
 
                     Glide.with(this).asBitmap()
-                        .load(UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfilePicture)
+                        .load(UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.profilePicture)
                         .error(R.drawable.default_person).placeholder(R.drawable.default_person)
                         .into((binding.naviProfileImage))
 

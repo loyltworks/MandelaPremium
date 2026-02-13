@@ -31,10 +31,10 @@ class VehicleManagerAdapter(val lstVehicleJson: ArrayList<LstVehicleJson>) : Rec
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val lstVehicleJson = lstVehicleJson[position]
-        holder.vehicle_brand.setText(lstVehicleJson.VehicleType)
-        holder.model_no.setText(lstVehicleJson.ModelNo)
-        holder.fuel_type.setText(lstVehicleJson.FuelType)
-        holder.registration_number.setText(String.valueOf(lstVehicleJson.VehicleNo))
+        holder.vehicle_brand.setText(lstVehicleJson.vehicleType)
+        holder.model_no.setText(lstVehicleJson.modelNo)
+        holder.fuel_type.setText(lstVehicleJson.fuelType)
+        holder.registration_number.setText(String.valueOf(lstVehicleJson.vehicleNo))
 
     }
 

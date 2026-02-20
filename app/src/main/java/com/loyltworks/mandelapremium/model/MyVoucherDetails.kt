@@ -1,6 +1,7 @@
 package com.loyltworks.mandelapremium.model
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.io.Serializable
 
@@ -53,15 +54,24 @@ data class GetReceiverIDRequest(
 /*Get Receiver ID Exist or Not Response */
 @JsonClass(generateAdapter = true)
 data class GetReceiverIDResponse(
+    @Json(name = "LstGiftCardHolderInfoDetails")
+    var lstGiftCardHolderInfoDetails: Any? = null,
+    @Json(name = "LstGiftCardIssueDetails")
+    var lstGiftCardIssueDetails: Any? = null,
+    @Json(name = "LstGiftCardNomineeDetails")
+    var lstGiftCardNomineeDetails: Any? = null,
+    @Json(name = "LstGiftCardType")
+    var lstGiftCardType: List<Any?>? = null,
+    @Json(name = "LstIssuedGiftCardList")
+    var lstIssuedGiftCardList: Any? = null,
+    @Json(name = "lstPointbalance")
+    var lstPointbalance: Any? = null,
+    @Json(name = "ReturnMessage")
     var ReturnMessage: String? = null,
-    var ReturnValue: Int? = null,
-    var TotalRecords: Int? = null,
-    var LstGiftCardHolderInfoDetails: String? = null,
-    var LstGiftCardIssueDetails: String? = null,
-    var LstGiftCardNomineeDetails: String? = null,
-    var LstGiftCardType: String? = null,
-    var LstIssuedGiftCardList: String? = null,
-    var lstPointbalance: String? = null
+    @Json(name = "ReturnValue")
+    var returnValue: Int? = null,
+    @Json(name = "TotalRecords")
+    var totalRecords: Int? = null
 )
 
 

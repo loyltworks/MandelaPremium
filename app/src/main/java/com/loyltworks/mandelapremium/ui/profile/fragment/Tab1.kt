@@ -213,33 +213,33 @@ class Tab1 : Fragment(), DatePickerFragment.CalenderCallBack ,View.OnClickListen
         })
 
         viewModel.myProfileResponse.observe(viewLifecycleOwner, Observer {
-            if (it != null && !it.GetCustomerDetailsMobileAppResult?.lstCustomerJson.isNullOrEmpty()) {
-                binding.address1.text.append(it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.Address1.toString())
-                binding.address2.text.append(it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.Address2.toString())
-                if (it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.JDOB != null) {
+            if (it != null && !it.getCustomerDetailsMobileAppResult?.lstCustomerJson.isNullOrEmpty()) {
+                binding.address1.text.append(it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.address1.toString())
+                binding.address2.text.append(it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.address2.toString())
+                if (it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.jDOB != null) {
                     binding.dob.text = /*DateFormat.dateUIFormat(*/
-                        it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.JDOB.toString()
+                        it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.jDOB.toString()
                             .split(" ")[0]
 //                    )
                 } else {
                     binding.dob.text = "Select Birthday"
                 }
 
-                Log.d(TAG, "onActivityCreated: ${it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.JDOB.toString()}")
+                Log.d(TAG, "onActivityCreated: ${it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.jDOB.toString()}")
                 AddressID =
-                    it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.AddressId.toString()
+                    it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.addressId.toString()
                 CustomerID =
-                    it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.CustomerId.toString()
+                    it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.customerId.toString()
                 CustomerDetailID =
-                    it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.CustomerDetailId.toString()
+                    it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.customerDetailId.toString()
                 LoyaltyId =
-                    it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.LoyaltyId.toString()
-                val countryID = it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.CountryId
-                cityID = it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.CityId!!
+                    it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.loyaltyId.toString()
+                val countryID = it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.countryId
+                cityID = it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.cityId!!
                 val professionID =
-                    it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ProfessionId
-                val ageGroupID = it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.AgeGroupId
-                val genderName = it.GetCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.Gender
+                    it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.professionId
+                val ageGroupID = it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.ageGroupId
+                val genderName = it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.gender
 
 //                Log.d(TAG, "onActivityCreated: $cityID")
 //                viewModel.setCityListRequest(CityRequest(StateId = countryID.toString()))

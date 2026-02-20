@@ -70,7 +70,7 @@ data class ObjCustomer(
 @JsonClass(generateAdapter = true)
 data class UpdateProfileImageRequest(
     var ActorId: String,
-    var ObjCustomer: ObjCustomer
+    var ObjCustomerJson: ObjCustomer
 )
 
 /*Update Profile Image Response*/

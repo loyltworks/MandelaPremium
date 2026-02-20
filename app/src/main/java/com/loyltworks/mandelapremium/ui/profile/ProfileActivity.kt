@@ -140,7 +140,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
                                     UpdateProfileImageRequest(
                                         ActorId = PreferenceHelper.getLoginDetails(this@ProfileActivity)?.UserList!![0].UserId.toString(),
                                         ObjCustomer(
-                                            DisplayImage = mProfileImagePath,
+                                            DisplayImage = "mProfileImagePath",
                                             LoyaltyId = PreferenceHelper.getLoginDetails(this@ProfileActivity)?.UserList!![0].UserName.toString()
                                         )
                                     )

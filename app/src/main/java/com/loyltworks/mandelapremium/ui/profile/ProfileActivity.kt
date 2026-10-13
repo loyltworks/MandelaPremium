@@ -83,7 +83,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
             PreferenceHelper.getStringValue(context as ProfileActivity, BuildConfig.OverAllPoints)
 
         Glide.with(this@ProfileActivity).asBitmap()
-            .load(PreferenceHelper.getStringValue(this, "ProfileImage"))
+            .load(PreferenceHelper.getStringValue(this, "ProfileImage").replace("~", ""))
             .error(R.drawable.default_person).placeholder(R.drawable.default_person)
             .into((binding.profileImage))
 

@@ -199,7 +199,7 @@ class QueryChatActivity  : BaseActivity(), View.OnClickListener, QueryChatAdapte
             when (QueryStatus) {
                 "Resolved",
                 "Reopen" -> ticketId = 2
-                "Resolved-Follow up" -> ticketId = 5
+                "Resolved-Follow Up" -> ticketId = 5
                 "Closed" -> ticketId = 4
                 "Pending" -> ticketId = 1
             }

@@ -363,7 +363,7 @@ class Tab1 : Fragment(), DatePickerFragment.CalenderCallBack ,View.OnClickListen
                             CountryId = mSelectedCountryDetail!!.CountryId.toString(),
 //                            StateId = mSelectedCountryDetail!!.CountryId.toString(),
                             CustomerId = CustomerID,
-                            JDOB = DateFormat.dateFormat(binding.dob.text.toString()),
+                            JDOB = DateFormat.serverFormat(binding.dob.text.toString()),
                             Email = PreferenceHelper.getDashboardDetails(context as ProfileActivity)!!.lstCustomerFeedBackJson!![0].CustomerEmail,
                             Mobile = PreferenceHelper.getDashboardDetails(context as ProfileActivity)!!.lstCustomerFeedBackJson!![0].CustomerMobile,
                             FirstName = PreferenceHelper.getDashboardDetails(context as ProfileActivity)!!.lstCustomerFeedBackJson!![0].FirstName,

@@ -16,6 +16,12 @@ object DateFormat {
         return "$year/$month/$day"
     }
 
+    fun serverFormat(reqDate: String): String {
+        return reqDate.split("/".toRegex())
+            .toTypedArray()[2] + "-" + reqDate.split("/".toRegex())
+            .toTypedArray()[1] + "-" + reqDate.split("/".toRegex()).toTypedArray()[0]
+    }
+
     fun dateUIFormat(reqDate: String): String? {
         val year = reqDate.split("/".toRegex()).toTypedArray()[2]
         val day = reqDate.split("/".toRegex()).toTypedArray()[1]

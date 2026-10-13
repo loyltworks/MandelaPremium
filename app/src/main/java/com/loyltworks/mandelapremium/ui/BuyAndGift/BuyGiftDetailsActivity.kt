@@ -271,6 +271,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
                 if (lstVoucherDetails.CardCatName.equals("Fixed")) {
 
                     if (lstVoucherDetails.FixedValue!!.toInt() != binding.amoutGiftCards.text.toString().toInt()) {
+                        binding.amoutGiftCards.setText("")
                         binding.pointBalanceEdittext.setText("")
                         Toast.makeText(this, "Amount binding.range should be given binding.range", Toast.LENGTH_LONG).show()
                         return@OnFocusChangeListener
@@ -279,6 +280,7 @@ class BuyGiftDetailsActivity : BaseActivity(), View.OnClickListener {
                 }else {
                     if (!binding.amoutGiftCards.text.toString().isNullOrEmpty() && minRange != null && maxRange != null) {
                         if (minRange > binding.amoutGiftCards.text.toString().toInt() || maxRange < binding.amoutGiftCards.text.toString().toInt()) {
+                            binding.amoutGiftCards.setText("")
                             binding.pointBalanceEdittext.setText("")
                             Toast.makeText(this, "Amount binding.range should be given binding.range", Toast.LENGTH_LONG).show()
                             return@OnFocusChangeListener

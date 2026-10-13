@@ -60,6 +60,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var _attributesDetailsList: List<LstAttributesDetail>
     private lateinit var _listPromotions: List<LstPromotionList>
+    var profilePhoto = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,13 +104,19 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
         val gridLayoutManager = GridLayoutManager(this, 3)
         binding.productsRv.layoutManager = gridLayoutManager
 
-        getProfileDetails()
-        observers()
-
         // Request camera and location permission
         ActivityCompat.requestPermissions(
             this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
         )
+
+        observers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        getProfileDetails()
+        getDashboardDetails()
 
     }
 
@@ -168,27 +175,31 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
     }
 
     fun observers() {
-
         profileViewModel.myProfileResponse.observe(this) {
-            getDashboardDetails()
                 if (it != null && !it.getCustomerDetailsMobileAppResult?.lstCustomerJson.isNullOrEmpty()) {
+
+                    if (it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.profilePicture!!.contains("/UploadFiles/CustomerImage/")) {
+                        profilePhoto = UrlClass.promoImageBase() + it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.profilePicture!!
+                    } else {
+                        profilePhoto = UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.profilePicture
+                    }
 
                     PreferenceHelper.setStringValue(
                         this,
                         "ProfileImage",
-                        UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.profilePicture
+                        profilePhoto
                     )
 
                     Log.d("sdghdsoighsdogh",""+UrlClass.promoImageBase())
 
                     Glide.with(this).asBitmap()
-                        .load(UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.profilePicture)
+                        .load(profilePhoto.replace("~", ""))
                         .error(R.drawable.default_person).placeholder(R.drawable.default_person)
                         .into((binding.dashProfile))
 
 
                     Glide.with(this).asBitmap()
-                        .load(UrlClass.promoImageBase() + "/UploadFiles/CustomerImage/" + it.getCustomerDetailsMobileAppResult?.lstCustomerJson?.get(0)?.profilePicture)
+                        .load(profilePhoto.replace("~", ""))
                         .error(R.drawable.default_person).placeholder(R.drawable.default_person)
                         .into((binding.naviProfileImage))
 
@@ -332,7 +343,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener,
                 closeDrawer()
             }
             R.id.deleteAccount->{
-                Vibrator.vibrate(this@DashboardActivity)
+ //               Vibrator.vibrate(this@DashboardActivity)
                 closeDrawer()
                 CommonInformationDailog.showDailog(this,true,true,"Are you sure want to delete account",object :CommonInformationDailog.onClickCallback{
                     override fun onPositiveClick() {
